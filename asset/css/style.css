@@ -1,0 +1,30 @@
+header h1{
+    float: left;
+    padding: 20px 5px;
+    text-shadow: #00000061 4px 3px 3px;
+}
+header h1 span{
+    padding: 5px;
+    font-size: 18px;
+    position: relative;
+    top: -5px;
+}
+header h1 span:last-child{
+    font-size: 14px;
+    position: relative;
+    left: -50px;
+    top: 6px;
+}
+.homeSection{
+    min-height: 300px;
+}
+.newMsg i{
+    background: #15bbfb;
+    padding: 15px;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 25px;
+    font-weight: 500;
+    cursor: pointer;
+}
