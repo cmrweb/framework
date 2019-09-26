@@ -1,5 +1,6 @@
 <?php
     if(!isset($_SESSION['user'])){
+        $msg="connexion requise";
         header('Location: ./');
     }
 ?> 
