@@ -22,6 +22,10 @@ switch ($url) {
     require 'web/pages/eshop.php';
     break;
 
+    case $url[0]=='test'AND empty($url[1]):
+    require 'test2_sql.php';
+    break;
+
     case $url[0]=='traitement'AND $url[1]=="insert":
     $data = json_encode($_POST);
     echo $data;

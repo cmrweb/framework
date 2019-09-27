@@ -1,7 +1,7 @@
 <?php
 class DB
 {
-    protected $pdo;
+    public $pdo;
     public $result;
     function __construct()
     {
@@ -34,15 +34,31 @@ class DB
             }
         }
     }
-    public function insert(string $into,string $value,?string $where=null):self
+    public function insert(string $into, $value,?string $where=null):self
     {
         if($where){
             $req=$this->pdo->prepare("INSERT INTO $into VALUES ($value) WHERE $where");
             $req->execute();
             return $this;            
         }else{
-            $req=$this->pdo->prepare("INSERT INTO $into VALUES ($value)");
-            $req->execute();
+            $query="INSERT INTO $into(";
+            foreach ($value as $key => $val) {
+                $query.="$key,";
+            }
+            $query=substr($query,0,-1);
+            $params="";
+            $query.=") VALUES (";
+            foreach ($value as $key => $val) {
+                $query.="$key=':$key',"; 
+                $params.="'$key'=>'$val',";
+            }
+            $query=substr($query,0,-1);
+            $query.=")";
+            echo $query;
+            $params=substr($params,0,-1);
+            echo $params;
+            $req=$this->pdo->prepare("$query");
+            $req->execute([$params]);
             return $this;        
         }
     }

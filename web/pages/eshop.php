@@ -1,22 +1,15 @@
 <?php
-echo $html->h("1", "boutique");
-?>
-<form>
-    <input type="text" name="" id="name">
-    <input type="text" name="" id="description">
-    <button type="submit">send</button>
-</form>
+    if(!isset($_SESSION['user'])){
+        $msg="connexion requise";
+        header('Location: ./');
+    }
+?> 
+<section class="large light articles">
+<h1>Article <?= isset($id) ? $id  : '' ?></h1>
 
-<script>
-    $('button').click((e) => {
-        e.preventDefault();
-        //console.log($('#name').val())
-        var name = $('#name').val()
-        var description = $('#description').val()
-        ajaxRequest("insert",{
-            "name": name,
-            "description": description
-        })
-
-    })
-</script>
+<?php if (isset($id)) : ?>
+    <?php require_once '../' . ROOT_DIR . MOD_DIR . 'shopping/mod_shopping.php'; ?>
+<?php else : ?>
+    <?php require_once '../' . ROOT_DIR . MOD_DIR . 'shopping/mod_shopping.php'; ?>
+<?php endif;?>
+   </section>
