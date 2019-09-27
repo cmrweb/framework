@@ -1,6 +1,6 @@
 {
     "name": "cmrweb/cmrframework",
-    "type": "library",
+    "type": "project",
     "description": "mini frameworks PHP",
     "keywords": ["PHP","mini","db","quick"],
     "homepage": "http://cmrweb.free.fr",
