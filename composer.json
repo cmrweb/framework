@@ -12,5 +12,6 @@
             "homepage": "http://cmrweb.free.fr",
             "role": "Developer"
         }
-    ]
+    ],
+    "minimum-stability":"stable"
 }
