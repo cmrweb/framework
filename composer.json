@@ -13,6 +13,8 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability":"dev",
-    "version":"dev"
+ 
+        "minimum-stability": "dev",
+        "prefer-stable": true
+    
 }
