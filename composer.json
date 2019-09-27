@@ -1,0 +1,16 @@
+{
+    "name": "cmrweb/cmrframework",
+    "type": "library",
+    "description": "mini frameworks PHP",
+    "keywords": ["PHP","mini","db","quick"],
+    "homepage": "http://cmrweb.free.fr",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Enrique CAMARA",
+            "email": "camaraenrique@hotmail.fr",
+            "homepage": "http://cmrweb.free.fr",
+            "role": "Developer"
+        }
+    ]
+}
