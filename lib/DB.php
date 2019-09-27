@@ -46,19 +46,21 @@ class DB
                 $query.="$key,";
             }
             $query=substr($query,0,-1);
-            $params="";
+
             $query.=") VALUES (";
             foreach ($value as $key => $val) {
-                $query.="$key=':$key',"; 
-                $params.="'$key'=>'$val',";
+                $query.=":$key,"; 
             }
             $query=substr($query,0,-1);
             $query.=")";
-            echo $query;
-            $params=substr($params,0,-1);
-            echo $params;
+            
+            foreach ($value as $key => $val) {
+                $params[$key]=$val;
+            }
+            // echo $query;
+            // dump($params);
             $req=$this->pdo->prepare("$query");
-            $req->execute([$params]);
+            $req->execute($params);
             return $this;        
         }
     }

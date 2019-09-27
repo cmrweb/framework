@@ -11,3 +11,4 @@
 // $req->execute();
 $test=new test2();
 $test->setData(["nom"=>"yo","prenom"=>"hello"]);
+dump($test->getData());
