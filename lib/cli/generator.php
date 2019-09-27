@@ -1,8 +1,4 @@
 <?php
-/**
- * GENERATE DATABASE
- */
-
 $sql="<?php\n\$db = new PDO(\"mysql:host=localhost;dbname=db_cmrfw;\",\"root\",\"\",[PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
 \$query=\" CREATE TABLE IF NOT EXISTS {$argv[1]}
 (
@@ -19,7 +15,13 @@ $sql="<?php\n\$db = new PDO(\"mysql:host=localhost;dbname=db_cmrfw;\",\"root\",\
     $sql=substr($sql, 0, -2);
 $sql.=")\";\n
 \$req=\$db->prepare(\$query);\n
-\$req->execute();";
+\$req->execute();\n
+/*
+*   Quick test
+*/
+//\${$argv[1]}=new {$argv[1]}();
+//\${$argv[1]}->setData([]);
+//dump(\${$argv[1]}->getData());";
 //echo $sql;
 
 $pathsql = '../../';
@@ -67,6 +69,12 @@ $class.="
     public function getData(): ?array
     {
         return \$this->data;
+    }
+    public function setData(\$data)
+    {
+
+        \$this->pdo = new DB;
+        \$this->pdo->insert('{$argv[1]}',\$data);
     }
 }";
 // echo $class;
