@@ -1,8 +1,9 @@
 # cmrweb2020
  nouveau site web
-
-
-    composer require cmrweb/cmrframework:dev-master
+      
+   composer create-project cmrweb/cmrframework
+   
+   composer require cmrweb/cmrframework:dev-master
 
  frameworks class/table generator usage 
  exemple:
