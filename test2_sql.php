@@ -7,7 +7,6 @@
 // prenom varchar(100))";
 
 // $req=$db->prepare($query);
-
 // $req->execute();
 $test = new test2();
 if (isset($_POST['send'])) {

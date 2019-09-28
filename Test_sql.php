@@ -22,5 +22,6 @@ foreach ($array as $key => $value) {
 $params=substr($params,0,-1);
 $params.="]";
 echo $params;
+
 // $req=$db->prepare($query);
 // $req->execute($params);
