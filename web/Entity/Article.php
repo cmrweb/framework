@@ -43,6 +43,11 @@ class Article
     {
         return $this->data;
     }
+    public function setData($data)
+    {
+        $this->pdo = new DB;
+        $this->pdo->insert('cmr_post',$data);
+    }
     public function getPostId():array
     {
         return $this->post_id;

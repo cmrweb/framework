@@ -43,7 +43,7 @@ class Shopping
     public function setData($data)
     {
         $this->pdo = new DB;
-        $this->pdo->insert('test',$data);
+        $this->pdo->insert('cmr_shop_product',$data);
     }
     public function getPostId(): array
     {

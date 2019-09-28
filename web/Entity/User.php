@@ -34,6 +34,11 @@ class User
         if($this->data)
         return $this->data;
     }
+    public function setData($data)
+    {
+        $this->pdo = new DB;
+        $this->pdo->insert('cmr_user',$data);
+    }
     public function getUserId():array
     {
         return $this->user_id;
