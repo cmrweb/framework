@@ -9,6 +9,7 @@
     - cd lib/cli
     - php generator.php Voiture nom-varchar-150 couleur-varchar-100 porte-int 
    
+    - change .env info
     - add route in web\includes\main.php
     - launch page for create table
     - comment or remove the sql part
