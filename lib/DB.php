@@ -5,93 +5,118 @@ class DB
     public $result;
     function __construct()
     {
-        $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};","{$_ENV['DB_USER']}","{$_ENV['DB_PASS']}",[PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);            
+        $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
         return $this->pdo;
-
     }
-    public function select(string $select,string $from,?string $where=null,?bool $order=false,?bool $group=false):array
-    {       
-        $order = preg_replace('/cmr_/','',$from);
-        if($where){
-            if(!$order){
-                $req=$this->pdo->prepare("SELECT $select FROM $from WHERE $where order by {$order}_id asc");
+    public function select(string $select, string $from, ?string $where = null, ?bool $order = false, ?bool $group = false): array
+    {
+        $order = preg_replace('/cmr_/', '', $from);
+        if ($where) {
+            if (!$order) {
+                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where");
                 $req->execute();
                 return $this->result = $req->fetchAll();
-            }else{
-                $req=$this->pdo->prepare("SELECT $select FROM $from WHERE $where order by {$order}_id desc");
+            } else {
+                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where order by {$order}_id desc");
                 $req->execute();
                 return $this->result = $req->fetchAll();
             }
-        }else{
-            if($group){
-                $req=$this->pdo->prepare("SELECT $select FROM $from GROUP by {$group}");
+        } else {
+            if ($group) {
+                $req = $this->pdo->prepare("SELECT $select FROM $from GROUP by {$group}");
                 $req->execute();
                 return $this->result = $req->fetchAll();
-            }else{
-                $req=$this->pdo->prepare("SELECT $select FROM $from");
+            } else {
+                $req = $this->pdo->prepare("SELECT $select FROM $from");
                 $req->execute();
-                return $this->result = $req->fetchAll();  
+                return $this->result = $req->fetchAll();
             }
         }
     }
-    public function insert(string $into, $value,?string $where=null):self
+    public function insert(string $into, $value, ?string $where = null): self
     {
-        if($where){
-            $query="INSERT INTO $into(";
+        if ($where) {
+            $query = "INSERT INTO $into(";
             foreach ($value as $key => $val) {
-                $query.="$key,";
+                $query .= "$key,";
             }
-            $query=substr($query,0,-1);
+            $query = substr($query, 0, -1);
 
-            $query.=") VALUES (";
+            $query .= ") VALUES (";
             foreach ($value as $key => $val) {
-                $query.=":$key,"; 
+                $query .= ":$key,";
             }
-            $query=substr($query,0,-1);
-            $query.=") WHERE $where";
-            
+            $query = substr($query, 0, -1);
+            $query .= ") WHERE $where";
+
             foreach ($value as $key => $val) {
-                $params[$key]=$val;
+                $params[$key] = $val;
             }
             // echo $query;
             // dump($params);
-            $req=$this->pdo->prepare("$query");
+            $req = $this->pdo->prepare("$query");
             $req->execute($params);
-            return $this;            
-        }else{
-            $query="INSERT INTO $into(";
+            return $this;
+        } else {
+            $query = "INSERT INTO $into(";
             foreach ($value as $key => $val) {
-                $query.="$key,";
+                $query .= "$key,";
             }
-            $query=substr($query,0,-1);
+            $query = substr($query, 0, -1);
 
-            $query.=") VALUES (";
+            $query .= ") VALUES (";
             foreach ($value as $key => $val) {
-                $query.=":$key,"; 
+                $query .= ":$key,";
             }
-            $query=substr($query,0,-1);
-            $query.=")";
-            
+            $query = substr($query, 0, -1);
+            $query .= ")";
+
             foreach ($value as $key => $val) {
-                $params[$key]=$val;
+                $params[$key] = $val;
             }
             // echo $query;
             // dump($params);
-            $req=$this->pdo->prepare("$query");
+            $req = $this->pdo->prepare("$query");
             $req->execute($params);
-            return $this;        
+            return $this;
         }
     }
-    public function update(string $table,string $set,?string $where=null):self
+    public function update(string $table, array $set, ?string $where = null): self
     {
-        if($where){
-            $req=$this->pdo->prepare("UPDATE $table SET $set WHERE $where");
+
+        if ($where) {
+            $query = "UPDATE $table SET ";
+            foreach ($set as $key => $val) {
+                $query .= "$key='{$val}',";
+            }
+            $query = substr($query, 0, -1);
+            $query .= "WHERE $where";
+            $req = $this->pdo->prepare("$query");
             $req->execute();
-            return $this;            
-        }else{
-            $req=$this->pdo->prepare("UPDATE $table SET $set");
+            return $this;
+        } else {
+            $query = "UPDATE $table SET ";
+            foreach ($set as $key => $val) {
+                $query .= "$key='{$val}',";
+            }
+            $query = substr($query, 0, -1);
+            $req = $this->pdo->prepare("$query");
             $req->execute();
-            return $this;        
+            return $this;
+        }
+    }
+    public function delete(string $table, ?string $where = null): self
+    {
+        if ($where) {
+            $query = "DELETE FROM $table WHERE $where";
+            echo $query;
+            $req = $this->pdo->prepare("$query");
+            $req->execute();
+            return $this;
+        } else {
+            $req = $this->pdo->prepare("DELETE FROM $table");
+            $req->execute();
+            return $this;
         }
     }
 }

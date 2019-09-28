@@ -76,6 +76,16 @@ $class.="
         \$this->pdo = new DB;
         \$this->pdo->insert('{$argv[1]}',\$data);
     }
+    public function update(\$data,\$id)
+    {
+        \$this->pdo = new DB;
+        \$this->pdo->update('test2',\$data,\$id);
+    }
+    public function delete(\$data)
+    {
+        \$this->pdo = new DB;
+        \$this->pdo->delete('test2',\"id=\".\$data);
+    }
 }";
 // echo $class;
 $pathClass = '../../web/Entity/';

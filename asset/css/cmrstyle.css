@@ -364,6 +364,7 @@ PC DISPLAY
         display: flex;
         flex-direction: row; 
         position: relative;
+        top: -30px;
     }
     .nav ul ul li{   
         display: grid;

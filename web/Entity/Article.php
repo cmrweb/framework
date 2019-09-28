@@ -35,10 +35,7 @@ class Article
         
         return $this->data;
     }
-    public function like($id){
-        $this->pdo->update("cmr_post","like_count=like_count + 1","post_id={$id}");
-        return $this;
-    }
+
     public function getData():?array
     {
         return $this->data;
@@ -47,6 +44,16 @@ class Article
     {
         $this->pdo = new DB;
         $this->pdo->insert('cmr_post',$data);
+    }
+    public function update($data,$id)
+    {
+        $this->pdo = new DB;
+        $this->pdo->update('cmr_post',$data,$id);
+    }
+    public function delete($data)
+    {
+        $this->pdo = new DB;
+        $this->pdo->delete('cmr_post',"id=".$data);
     }
     public function getPostId():array
     {

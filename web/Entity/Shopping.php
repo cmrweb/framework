@@ -45,6 +45,16 @@ class Shopping
         $this->pdo = new DB;
         $this->pdo->insert('cmr_shop_product',$data);
     }
+    public function update($data,$id)
+    {
+        $this->pdo = new DB;
+        $this->pdo->update('cmr_shop_product',$data,$id);
+    }
+    public function delete($data)
+    {
+        $this->pdo = new DB;
+        $this->pdo->delete('cmr_shop_product',"id=".$data);
+    }
     public function getPostId(): array
     {
         return $this->id;

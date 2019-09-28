@@ -31,8 +31,17 @@ $this->prenom[] = $value['prenom'];
     }
     public function setData($data)
     {
-
         $this->pdo = new DB;
         $this->pdo->insert('test2',$data);
+    }
+    public function update($data,$id)
+    {
+        $this->pdo = new DB;
+        $this->pdo->update('test2',$data,$id);
+    }
+    public function delete($data)
+    {
+        $this->pdo = new DB;
+        $this->pdo->delete('test2',"id=".$data);
     }
 }
