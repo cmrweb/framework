@@ -2,9 +2,7 @@
 **cmrframework**	
 
   * Install
-    - composer create-project cmrweb/cmrframework  
-  **ou**
-    - composer require cmrweb/cmrframework:dev-master
+    - composer create-project cmrweb/cmrframework:dev-master 
 
   * Usage
     - cd lib/cli
