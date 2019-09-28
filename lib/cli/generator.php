@@ -21,7 +21,6 @@ $sql.=")\";\n
 */
 //\${$argv[1]}=new {$argv[1]}();
 //\${$argv[1]}->setData([]);
-//dump(\${$argv[1]}->getData());
 //if (isset(\$_POST['send'])) {
 //    \${$argv[1]}->setData([\"value\" => \$_POST['value']]);
 //    header(\"Location: ./\");
@@ -55,8 +54,8 @@ $sql.=")\";\n
 ";
 //echo $sql;
 
-$pathsql = '../../';
-$sqlFile = $pathsql.$argv[1].'_sql.php';
+$pathsql = '../../web/pages/';
+$sqlFile = $pathsql.$argv[1].'.php';
 file_put_contents($sqlFile,$sql);
 
 /**

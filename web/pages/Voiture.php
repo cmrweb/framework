@@ -12,7 +12,7 @@
 // $req->execute();
 
 /*
-*   Quick test
+*   Quick test replace value by your input name
 */
 $Voiture=new Voiture();
 $Voiture->setData([]);

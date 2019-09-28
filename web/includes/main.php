@@ -23,7 +23,7 @@ switch ($url) {
     break;
 
     case $url[0]=='test'AND empty($url[1]):
-    require 'Voiture_sql.php';
+    require 'web/pages/Voiture.php';
     break;
 
     case $url[0]=='traitement'AND $url[1]=="insert":
