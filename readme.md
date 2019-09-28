@@ -2,6 +2,7 @@
 **cmrframework**	
 
   * Install
+    -  [composer](https://getcomposer.org/download/)
     - composer create-project cmrweb/cmrframework:dev-master 
 
   * Usage
@@ -14,5 +15,5 @@
     - uncomment the PHP code
     - replace "name" by your input name
  
- [docs pdf](https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing).
+ [docs pdf](https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing)
 
