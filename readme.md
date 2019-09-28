@@ -3,7 +3,7 @@
 
   * Install
     - composer create-project cmrweb/cmrframework  
-    ou
+  **ou**
     - composer require cmrweb/cmrframework:dev-master
 
   * Usage
