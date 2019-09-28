@@ -10,11 +10,11 @@
     - cd lib/cli
     - php generator.php Voiture nom-varchar-150 couleur-varchar-100 porte-int 
    
-    *add route in web\includes\main.php
-    *launch page for creat table
-    *comment or remove the sql part
-    *uncomment the PHP code
-    *replace "name" by your input name
+    - add route in web\includes\main.php
+    - launch page for creat table
+    - comment or remove the sql part
+    - uncomment the PHP code
+    - replace "name" by your input name
  
  [docs pdf](https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing).
 
