@@ -71,6 +71,7 @@ class DB
             $query = substr($query, 0, -1);
             $query .= ")";
 
+            $params=[];
             foreach ($value as $key => $val) {
                 $params[$key] = $val;
             }

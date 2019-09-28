@@ -17,11 +17,42 @@ $sql.=")\";\n
 \$req=\$db->prepare(\$query);\n
 \$req->execute();\n
 /*
-*   Quick test
+*   Quick test replace value by your input name
 */
 //\${$argv[1]}=new {$argv[1]}();
 //\${$argv[1]}->setData([]);
-//dump(\${$argv[1]}->getData());";
+//dump(\${$argv[1]}->getData());
+//if (isset(\$_POST['send'])) {
+//    \${$argv[1]}->setData([\"value\" => \$_POST['value']]);
+//    header(\"Location: ./\");
+//}
+//if (isset(\$_POST['update'])) {
+//    \${$argv[1]}->update([\"value\" => \$_POST['value']],\"id=\".\$_POST['id']);
+//    header(\"Location: ./\");
+//}
+//if (isset(\$_POST['delete'])) {
+//    \${$argv[1]}->delete(\$_POST['id']);
+//    header(\"Location: ./\");
+//}
+//
+//echo \$html->h('1', 'Create') .
+//    \$html->formOpen('', 'post', 'large primary') .
+//    \$html->input(\"text\", \"value\", \"value\") .
+//    \$html->button('submit', 'success center', 'envoyer', 'send') .
+//    \$html->formClose();
+//
+//if(\${$argv[1]}->getData()){
+//    echo \$html->h('1', 'Read Update Delete');
+//    foreach (\${$argv[1]}->getData() as \$key => \$value) :
+//    echo \$html->formOpen('', 'post', 'small primary') .
+//            \$html->input(\"hidden\", \"id\", \"\", \"\", \$value['id'],\$value['id']) . 
+//            \$html->input(\"text\", \"value\", \"value\", \"\", \$value['value'],\$value['value']) . 
+//            \$html->button('submit', 'success center', 'mettre a jour', 'update') .
+//            \$html->button('delete', 'danger center', 'supprimer', 'delete') .
+//            \$html->formClose();
+//    endforeach;
+//}
+";
 //echo $sql;
 
 $pathsql = '../../';
@@ -79,12 +110,12 @@ $class.="
     public function update(\$data,\$id)
     {
         \$this->pdo = new DB;
-        \$this->pdo->update('test2',\$data,\$id);
+        \$this->pdo->update('{$argv[1]}',\$data,\$id);
     }
     public function delete(\$data)
     {
         \$this->pdo = new DB;
-        \$this->pdo->delete('test2',\"id=\".\$data);
+        \$this->pdo->delete('{$argv[1]}',\"id=\".\$data);
     }
 }";
 // echo $class;

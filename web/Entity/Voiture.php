@@ -38,4 +38,14 @@ $this->porte[] = $value['porte'];
         $this->pdo = new DB;
         $this->pdo->insert('Voiture',$data);
     }
+    public function update($data,$id)
+    {
+        $this->pdo = new DB;
+        $this->pdo->update('Voiture',$data,$id);
+    }
+    public function delete($data)
+    {
+        $this->pdo = new DB;
+        $this->pdo->delete('Voiture',"id=".$data);
+    }
 }
