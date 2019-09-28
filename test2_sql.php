@@ -9,6 +9,21 @@
 // $req=$db->prepare($query);
 
 // $req->execute();
-$test=new test2();
-$test->setData(["nom"=>"newTEST","prenom"=>"newTEST"]);
-dump($test->getData());
+$test = new test2();
+if(isset($_POST['send'])){
+ $test->setData(["nom"=>$_POST['nom'],"prenom"=>$_POST['prenom']]);   
+ header("Location: ./");
+}
+
+//dump($test->getData());
+echo
+    $html->formOpen('', 'post', 'large primary') .
+        $html->input("text", "nom", "nom") .
+        $html->input("text", "prenom", "prenom") .
+        $html->button('submit', 'success center', 'envoyer', 'send') .
+        $html->formClose();
+
+        
+foreach ($test->getData() as $key => $value):?>
+<p><?=$value['nom']." ".$value['prenom']?></p>
+<?php endforeach?>
