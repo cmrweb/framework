@@ -24,7 +24,7 @@ $sql.=")\";\n
 /*
 Quick test 
     *add route in web\includes\main.php
-    *launch page for creat table
+    *launch page for create table
     *comment or remove the sql part
     *uncomment the following code
     *replace \"name\" by your input name
