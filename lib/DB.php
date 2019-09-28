@@ -37,8 +37,26 @@ class DB
     public function insert(string $into, $value,?string $where=null):self
     {
         if($where){
-            $req=$this->pdo->prepare("INSERT INTO $into VALUES ($value) WHERE $where");
-            $req->execute();
+            $query="INSERT INTO $into(";
+            foreach ($value as $key => $val) {
+                $query.="$key,";
+            }
+            $query=substr($query,0,-1);
+
+            $query.=") VALUES (";
+            foreach ($value as $key => $val) {
+                $query.=":$key,"; 
+            }
+            $query=substr($query,0,-1);
+            $query.=") WHERE $where";
+            
+            foreach ($value as $key => $val) {
+                $params[$key]=$val;
+            }
+            // echo $query;
+            // dump($params);
+            $req=$this->pdo->prepare("$query");
+            $req->execute($params);
             return $this;            
         }else{
             $query="INSERT INTO $into(";
