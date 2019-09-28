@@ -1,5 +1,10 @@
 <?php
-$sql="<?php\n\$db = new PDO(\"mysql:host=localhost;dbname=db_cmrfw;\",\"root\",\"\",[PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
+$sql="<?php\n
+/*
+SQL Part
+    *launch page and remove the following code
+*/\n
+\$db = new PDO(\"mysql:host=localhost;dbname=db_cmrfw;\",\"root\",\"\",[PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
 \$query=\" CREATE TABLE IF NOT EXISTS {$argv[1]}
 (
     id INT PRIMARY KEY AUTO_INCREMENT,\n";
@@ -17,16 +22,21 @@ $sql.=")\";\n
 \$req=\$db->prepare(\$query);\n
 \$req->execute();\n
 /*
-*   Quick test replace value by your input name
+Quick test 
+    *add route in web\includes\main.php
+    *launch page for creat table
+    *comment or remove the sql part
+    *uncomment the following code
+    *replace \"name\" by your input name
 */
 //\${$argv[1]}=new {$argv[1]}();
 //\${$argv[1]}->setData([]);
 //if (isset(\$_POST['send'])) {
-//    \${$argv[1]}->setData([\"value\" => \$_POST['value']]);
+//    \${$argv[1]}->setData([\"name\" => \$_POST['name']]);
 //    header(\"Location: ./\");
 //}
 //if (isset(\$_POST['update'])) {
-//    \${$argv[1]}->update([\"value\" => \$_POST['value']],\"id=\".\$_POST['id']);
+//    \${$argv[1]}->update([\"name\" => \$_POST['name']],\"id=\".\$_POST['id']);
 //    header(\"Location: ./\");
 //}
 //if (isset(\$_POST['delete'])) {
@@ -36,7 +46,7 @@ $sql.=")\";\n
 //
 //echo \$html->h('1', 'Create') .
 //    \$html->formOpen('', 'post', 'large primary') .
-//    \$html->input(\"text\", \"value\", \"value\") .
+//    \$html->input(\"text\", \"name\", \"name\") .
 //    \$html->button('submit', 'success center', 'envoyer', 'send') .
 //    \$html->formClose();
 //
@@ -45,7 +55,7 @@ $sql.=")\";\n
 //    foreach (\${$argv[1]}->getData() as \$key => \$value) :
 //    echo \$html->formOpen('', 'post', 'small primary') .
 //            \$html->input(\"hidden\", \"id\", \"\", \"\", \$value['id'],\$value['id']) . 
-//            \$html->input(\"text\", \"value\", \"value\", \"\", \$value['value'],\$value['value']) . 
+//            \$html->input(\"text\", \"name\", \"name\", \"\", \$value['name'],\$value['name']) . 
 //            \$html->button('submit', 'success center', 'mettre a jour', 'update') .
 //            \$html->button('delete', 'danger center', 'supprimer', 'delete') .
 //            \$html->formClose();

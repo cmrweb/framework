@@ -1,5 +1,11 @@
 <?php
-// $db = new PDO("mysql:host=localhost;dbname=db_cmrfw;","root","",[PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
+
+/*
+SQL Part
+    *launch page and remove the following code
+*/
+
+// $db = new PDO("mysql:host=localhost;dbnom=db_cmrfw;","root","",[PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
 // $query=" CREATE TABLE IF NOT EXISTS Voiture
 // (
 //     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -12,7 +18,12 @@
 // $req->execute();
 
 /*
-*   Quick test replace value by your input name
+Quick test 
+    *add route in web\includes\main.php
+    *launch page for creat table
+    *comment or remove the sql part
+    *uncomment the following code
+    *replace "nom" by your input nom
 */
 $Voiture=new Voiture();
 $Voiture->setData([]);
