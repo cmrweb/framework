@@ -1,11 +1,11 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
-include 'Autoload.php';
+require 'Autoload.php';
 use cmr\autoload\Autoloader;
 Autoloader::register(); 
 $html = new Html();
-include 'lib/version.php';
+require 'lib/version.php';
 $dotenv = Dotenv\Dotenv::create(__DIR__);;
 $dotenv->overload();
 //dump($_ENV);

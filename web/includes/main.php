@@ -1,8 +1,14 @@
 <?php
 
+$loader = new \Twig\Loader\FilesystemLoader('web/templates');
+$twig = new \Twig\Environment($loader, [
+    'cache' => false//'/tmp',
+]);
+
 switch ($url) {
     case '':
-    require 'web/pages/home.php';
+    echo $twig->render('home.twig', ['id' => $userid, 'name' => $username]);
+    //require 'web/pages/home.php';
     break;
 
     case $url[0]=='article'AND empty($url[1]):
