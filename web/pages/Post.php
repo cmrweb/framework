@@ -58,6 +58,7 @@ echo $html->code('section',
     $html->input("text", "title", "title") .
     $html->textarea(5, "post", "post") .
     $html->input("file", "img", "img") .
+    $html->img("","preview","imgpreview small center").
     $html->button('submit', 'success center', 'envoyer', 'send') .
     $html->formClose() .
     $html->p($msg),

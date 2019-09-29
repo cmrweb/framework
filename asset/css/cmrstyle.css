@@ -150,9 +150,21 @@ pre.medium {
     display: inline-block;
     margin: auto;
 }
+.article img{
+    width: 20%;
+}
+/* .articles:hover{
+ 
+    box-shadow: #9e9e9ed9 1px 1px 3px;
+    z-index: 50;
+    position: relative;
+    width: 20%;
+    background: #ffffff2e;
+  
+} */
 .articles{
     display: inline-block;
-    width: 33%;
+    width: 20%;
 }
 /*****************************************************************************************
 NAV
