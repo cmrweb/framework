@@ -15,15 +15,15 @@ if (isset($_POST['send'])) {
             if (is_uploaded_file($_FILES['img']["tmp_name"]))
                 if (move_uploaded_file($_FILES['img']["tmp_name"],  $target_dir . $uploadName)) {
                     $Post->setData(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => $fileDbName]);
-                    header("Location: ./post");
+
                 }
         } else {
             $msg = "image trop lourde";
         }
     } else {
         $Post->setData(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post']]);
-        header("Location: ./post");
-    }
+    }                   
+     header("Location: ./edit");
 }
 if (isset($_POST['update'])) {
     if (!empty($_FILES['img']["size"])) {
@@ -37,19 +37,18 @@ if (isset($_POST['update'])) {
             if (is_uploaded_file($_FILES['img']["tmp_name"]))
                 if (move_uploaded_file($_FILES['img']["tmp_name"],  $target_dir . $uploadName)) {
                     $Post->update(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => $fileDbName], "id=" . $_POST['id']);
-                    header("Location: ./post");
                 }
         } else {
             $msg = "image trop lourde";
         }
     } else {
         $Post->update(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post']], "id=" . $_POST['id']);
-        header("Location: ./post");
-    }
+    }     
+    header("Location: ./edit");
 }
 if (isset($_POST['delete'])) {
     $Post->delete($_POST['id']);
-    header("Location: ./post");
+    header("Location: ./edit");
 }
 
 echo$html->code("div","","background");
