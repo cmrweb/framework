@@ -231,7 +231,7 @@ function openPopup() {
     $('.formSign').hide()
     $('.formLog').hide()
     $('.formBall,.background').hide()
-    $(".newMsg i,.background").click((e) => {
+    $(".newMsg,.background").click((e) => {
         e.preventDefault()
         $('.formBall,.background').slideToggle('fast')
     });

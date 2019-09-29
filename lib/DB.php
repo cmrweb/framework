@@ -13,15 +13,33 @@ class DB
         $order = preg_replace('/cmr_/', '', $from);
         if ($where) {
             if (!$order) {
-                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where");
+                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where ORDER BY `id` asc");
                 $req->execute();
                 return $this->result = $req->fetchAll();
             } else {
-                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where order by {$order}_id desc");
+                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where order by id desc");
+                $req->execute();
+                return $this->result = $req->fetchAll();
+            }
+            if ($group) {
+                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where GROUP by {$group}");
+                $req->execute();
+                return $this->result = $req->fetchAll();
+            } else {
+                $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where");
                 $req->execute();
                 return $this->result = $req->fetchAll();
             }
         } else {
+            if (!$order) {
+                $req = $this->pdo->prepare("SELECT $select FROM $from ORDER BY `id` asc");
+                $req->execute();
+                return $this->result = $req->fetchAll();
+            } else {
+                $req = $this->pdo->prepare("SELECT $select FROM $from  order by id desc");
+                $req->execute();
+                return $this->result = $req->fetchAll();
+            }
             if ($group) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from GROUP by {$group}");
                 $req->execute();

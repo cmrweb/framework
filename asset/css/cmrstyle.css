@@ -146,12 +146,13 @@ pre.medium {
 }
 .article{
     padding: 10px;
-    width: 33%;
+    width: 100%;
     display: inline-block;
     margin: auto;
 }
 .articles{
-    width: 80%;
+    display: inline-block;
+    width: 33%;
 }
 /*****************************************************************************************
 NAV
@@ -291,6 +292,31 @@ COLOR
 /*****************************************************************************************
 FORM
 *****************************************************************************************/
+.newMsg{
+    z-index: 100;
+    position: fixed;
+    top: 75px;
+    right: 0;
+    border-radius: 25px;
+    background: #fff;
+    padding: 14px;
+    box-shadow: #949292b8 -1px 4px 3px;
+    border: .5px solid #626262b5;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+.newMsg:hover{
+    z-index: 100;
+    position: fixed;
+    top: 75px;
+    right: 4px;
+    border-radius: 25px;
+    background: #edfdff;
+    padding: 14px;
+    box-shadow: #85c9e4b8 -1px 4px 3px;
+    border: .5px solid #626262b5;
+    cursor: pointer;
+}
 .background{
     display:none;
     background: #9696968c;
@@ -318,10 +344,21 @@ FORM
     display:none;
     border-radius: 50%;
     padding: 60px;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     z-index: 200;
+    transition: all .3s linear;
+}
+.formBall:hover {
+    display: none;
+    border-radius: 50%;
+    padding: 60px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    box-shadow: #727171 5px 4px 3px;
 }
 .form {
     margin-bottom: 10px;

@@ -11,12 +11,12 @@ class User
         $pdo->select("*", "cmr_user",$where);
         foreach ($pdo->result as $value) {
             $this->data[] = [
-                'user_id' => $value['user_id'],
+                'user_id' => $value['id'],
                 'username' => $value['username'],
                 'password' => $value["password"]
             ];
             if(!$where){
-                $this->user_id[] = $value['user_id'];
+                $this->user_id[] = $value['id'];
                 $this->username[] = $value['username'];
                 $this->password[] = $value['password'];
             }else{

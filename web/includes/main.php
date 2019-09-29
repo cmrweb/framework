@@ -25,8 +25,16 @@ switch ($url) {
     case $url[0]=='category'AND empty($url[1]):
     require 'web/pages/Category.php';
     break;
-    case $url[0]=='post'AND empty($url[1]):
+    case $url[0]=='edit'AND empty($url[1]):
     require 'web/pages/Post.php';
+    break;
+
+    case $url[0]=='post'AND empty($url[1]):
+    require 'web/pages/PostRender.php';
+    break;
+    case $url[0]=='post'AND !empty($url[1]):
+    $id=$url[1];
+    require 'web/pages/PostRender.php';
     break;
     
     // case $url[0]==''AND empty($url[1]):
