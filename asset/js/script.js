@@ -232,17 +232,18 @@ function openPopup() {
     $('.formLog').hide()
     $('.formBall,.background').hide()
     $(".newMsg ,.background").click((e) => {
+        e.preventDefault()
         $('.formBall,.background').slideToggle('fast')
     });
     var popupBtn = $('.popupBtn');
     //console.log(popupBtn)
     popupBtn[0].addEventListener('click', (e) => {
-        //e.preventDefault()
+        e.preventDefault()
         $('.formSign').toggle('fast')
         $('.formLog').hide()
     });
     popupBtn[1].addEventListener('click', (e) => {
-        //e.preventDefault()
+        e.preventDefault()
         $('.formLog').toggle('fast')
         $('.formSign').hide()
     });

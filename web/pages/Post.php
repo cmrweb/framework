@@ -54,6 +54,7 @@ if (isset($_POST['delete'])) {
 
 echo$html->code("div","","background");
 echo $html->code('section',
+    $html->formOpen('', 'post') .
     $html->h('1', 'Create') .
     $html->input("text", "title", "title") .
     $html->textarea(5, "post", "post") .
