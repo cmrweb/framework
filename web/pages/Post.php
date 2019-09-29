@@ -62,7 +62,7 @@ echo $html->code('section',
     $html->button('submit', 'success center', 'envoyer', 'send') .
     $html->formClose() .
     $html->p($msg),
-    'dark small formArticle formBall');
+    'dark small formBall');
 echo "<p class='newMsg'>Create <i class=\"far fa-comment-alt\"></i></p>";
 
 if ($Post->getData()) :?>

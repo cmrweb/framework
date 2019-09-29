@@ -13,7 +13,7 @@ if (isset($_POST['send'])) {
     
                 try {
                     $db = new DB;
-                    $db->insert('cmr_user(username,password)', "'{$name}','{$pass}'");
+                    $db->insert('cmr_user',["username"=>$name,"password"=>$pass]);
                     $msg = "Bienvenu(e)!";
                 } catch (Exception $e) {
                     $msg= $e->getMessage();
