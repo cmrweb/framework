@@ -72,6 +72,12 @@ color: #be9b0e;
 small{
     display: block;
 }
+.erreur{
+    text-align: center;
+    padding: 2px;
+    width: 80%;
+    margin: auto;
+}
 .right {
     width: 80%;
     float: right;
@@ -171,9 +177,10 @@ NAV
     justify-content: center;
     flex-direction: column;
     position: fixed;
-    top: 0;
+    top: 75px;
     bottom: 0;
-    padding: 10% 15px;
+    padding: 10% 50px;
+    overflow: auto;
 }
 .sideul td{
     padding: 10px 2px;
@@ -284,6 +291,16 @@ COLOR
 /*****************************************************************************************
 FORM
 *****************************************************************************************/
+.background{
+    display:none;
+    background: #9696968c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
 .formSign,.formLog{
     display: none;
     position: absolute;
@@ -296,6 +313,15 @@ FORM
     top: 75px;
     right: 0;
     width: 30%;
+}
+.formBall{
+    display:none;
+    border-radius: 50%;
+    padding: 60px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 200;
 }
 .form {
     margin-bottom: 10px;
@@ -360,20 +386,20 @@ PC DISPLAY
     .navrad ul:first-child > li:last-child > a{
         border-radius: 0 20px 0 0;
     }
-    .nav ul{
+    .navrad ul{
         display: flex;
         flex-direction: row; 
         position: relative;
         top: -30px;
     }
-    .nav ul ul li{   
+    .navrad ul ul li{   
         display: grid;
         width: 250px;    
     }
-    .nav ul li{   
+    .navrad ul li{   
         display: block;    
     }
-    .nav ul li:hover ul{
+    .navrad ul li:hover ul{
         position: absolute;
         width: 200px;
         margin-top: 10px;

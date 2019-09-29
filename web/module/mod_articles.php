@@ -3,7 +3,7 @@ require_once '../' . ROOT_DIR . MOD_DIR . 'mod_form.php';
 $article = new Article('parent_id=0', true);
 $countCom = new DB;
 $countCom->select("parent_id,COUNT(parent_id) as comm", "cmr_post", null, false);
-//dump($countCom->result);
+dump($countCom->result);
 //dump($article->getData());
 $user=new User();
 
@@ -19,7 +19,7 @@ foreach ($article->getData() as $key => $value) : ?>
 			<?php endif;endforeach;?>
 		<?php foreach ($countCom->result as $k => $v) :
 			if ($v['parent_id'] == $value['post_id']) : ?>
-				<small><?= $v['comm'] ?> Commentaire</small>
+				<small><?= $v['parent_id'] ?> Commentaire</small>
 			<?php endif;endforeach;?>
 
 		<p><?= $value['post']?></p>

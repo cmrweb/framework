@@ -44,25 +44,32 @@ PWA
 
 var erreur = "<div class='erreur danger'><i class='fas fa-exclamation-triangle'></i> </div>";
 var regExEmail = /^[a-z0-9._-]{1,}@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
-var regExName = /^[a-zA-Zâäéèêëîïôöùûüœ\'\s-]{2,}$/;
+var regExName = /^[a-zA-Z0-9âäéèêëîïôöùûüœ\'\s-]{2,}$/;
 var regExPassMax = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+var regExPassLow = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 var regExNum = /^[0-9]{2}$/;
 function passConfirm(){
     $('.passConfirm').blur(function(){
         if($('.pass').val()!=$(this).val()){
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> Les mots de passe ne correspondent pas!");
+        }else{
+            $(this).css({
+                background: "rgb(228, 255, 217)",
+                border: "1px solid rgb(7, 156, 5)"
+            });
+            $(this).next().remove(".erreur");
         }
     })
 
 }
 function focusBlur() {
     $("input:focus").css({
-        background: "#a1eaa3",
+        background: "#fff",
         border: "1px solid royalblue"
     });
     $(":input").focus(function () {
         $(this).css({
-            background: "#a1eaa3",
+            background: "#fff",
             border: "1px solid royalblue"
         });
         $(this).next().remove(".erreur");
@@ -72,32 +79,32 @@ function focusBlur() {
 
     $(":input").blur(function () {
         $(this).css({
-            background: "cornsilk",
+            background: "#fff",
             border: "1px solid #ccc"
         });
     });
 }
 function checkNames() {
-    $(".verifName").on("keyup blur focus", function () {
+    $(".secureName").on("keyup blur focus", function () {
         if ($(this).val() == "") {
             $(this).next().remove(".erreur");
             $(this).css({
-                background: "cornsilk",
+                background: "#fff",
                 border: "1px solid #ccc"
             });
         }
         else if (!regExName.test($(this).val())) {
             $(this).next().remove(".erreur");
             $(this).css({
-                background: "#e8a0a0",
+                background: "#fff",
                 border: "2px solid red"
             });
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> Saisisez au moins deux caractéres et evité les caractéres speciaux");
         }
         else {
             $(this).css({
-                background: "rgb(177, 255, 189)",
-                border: "1px solid #ccc"
+                background: "rgb(228, 255, 217)",
+                border: "1px solid rgb(7, 156, 5)"
             });
             $(this).next().remove(".erreur");
         }
@@ -108,22 +115,46 @@ function checkPassword() {
         if ($(this).val() == "") {
             $(this).next().remove(".erreur");
             $(this).css({
-                background: "cornsilk",
+                background: "#fff",
                 border: "1px solid #ccc"
             });
         }
         else if (!regExPassMax.test($(this).val())) {
             $(this).next().remove(".erreur");
             $(this).css({
-                background: "#e8a0a0",
+                background: "#fff",
                 border: "2px solid red"
             });
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> le mot de passe doit contenir au moins 8 character, une Majuscule et un chiffre");
         }
         else {
             $(this).css({
-                background: "rgb(177, 255, 189)",
+                background: "rgb(228, 255, 217)",
+                border: "1px solid rgb(7, 156, 5)"
+            });
+            $(this).next().remove(".erreur");
+        }
+    });
+    $(".secureLow:password").on("keyup blur focus", function () {
+        if ($(this).val() == "") {
+            $(this).next().remove(".erreur");
+            $(this).css({
+                background: "#fff",
                 border: "1px solid #ccc"
+            });
+        }
+        else if (!regExPassLow.test($(this).val())) {
+            $(this).next().remove(".erreur");
+            $(this).css({
+                background: "#fff",
+                border: "2px solid red"
+            });
+            $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> le mot de passe doit contenir au moins 6 character, une Majuscule et un chiffre");
+        }
+        else {
+            $(this).css({
+                background: "rgb(228, 255, 217)",
+                border: "1px solid rgb(7, 156, 5)"
             });
             $(this).next().remove(".erreur");
         }
@@ -134,36 +165,36 @@ function checkEmail() {
         if ($(this).val() == "") {
             $(this).next().remove(".erreur");
             $(this).css({
-                background: "cornsilk",
+                background: "#fff",
                 border: "1px solid #ccc"
             });
         }
         else if (!regExEmail.test($(this).val())) {
             $(this).next().remove(".erreur");
             $(this).css({
-                background: "#e8a0a0",
+                background: "#fff",
                 border: "2px solid red"
             });
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> Saisisez une adresse mail valide");
         }
         else {
             $(this).css({
-                background: "rgb(177, 255, 189)",
-                border: "1px solid #ccc"
+                background: "rgb(228, 255, 217)",
+                border: "1px solid rgb(7, 156, 5)"
             });
             $(this).next().remove(".erreur");
         }
     });
 }
 function checkAge() {
-    $('[type="number"]').on("keyup change", function () {
+    $('.secureAge:number').on("keyup change", function () {
 
         $(this).next().remove(".erreur");
 
         if (!regExNum.test($(this).val())) {
 
             $(this).css({
-                background: "#e8a0a0",
+                background: "#fff",
                 border: "2px solid red"
             });
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> Saisisez un nombre entre 10 et 80");
@@ -171,7 +202,7 @@ function checkAge() {
         else if ($(this).val() < 18) {
 
             $(this).css({
-                background: "#e8a0a0",
+                background: "#fff",
                 border: "2px solid red"
             });
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> Vous êtes mineur");
@@ -179,8 +210,8 @@ function checkAge() {
         else if ($(this).val() >= 18 && $(this).val() < 60) {
 
             $(this).css({
-                background: "rgb(177, 255, 189)",
-                border: "1px solid #ccc"
+                background: "rgb(228, 255, 217)",
+                border: "1px solid rgb(7, 156, 5)"
             });
             $(this).after(erreur).next().text("Vous êtes majeur").css("color", "blue");
 
@@ -188,8 +219,8 @@ function checkAge() {
         else if ($(this).val() >= 60) {
 
             $(this).css({
-                background: "rgb(177, 255, 189)",
-                border: "1px solid #ccc"
+                background: "rgb(228, 255, 217)",
+                border: "1px solid rgb(7, 156, 5)"
             });
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> Vous êtes retraité");
         }
@@ -199,10 +230,10 @@ function checkAge() {
 function openPopup() {
     $('.formSign').hide()
     $('.formLog').hide()
-    $('.formArticle').hide()
-    $(".newMsg i").click((e) => {
+    $('.formBall,.background').hide()
+    $(".newMsg i,.background").click((e) => {
         e.preventDefault()
-        $('.formArticle').slideToggle('fast')
+        $('.formBall,.background').slideToggle('fast')
     });
     var popupBtn = $('.popupBtn');
     //console.log(popupBtn)

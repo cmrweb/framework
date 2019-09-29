@@ -30,8 +30,8 @@ if (isset($_POST['send'])) {
 
 
 $form = $html->formOpen('', 'post', 'medium dark formLog') .
-    $html->input('text', 'username_Log', 'Nom d\'utilisateur', 'entrer votre nom') .
-    $html->input('password', 'password_Log', 'mot de passe') .
+    $html->input('text', 'username_Log', 'Nom d\'utilisateur',"secureName", 'entrer votre nom') .
+    $html->input('password', 'password_Log', 'mot de passe',"secureName") .
     $html->button('submit', 'primary center', 'se connecter', 'send') .
     $html->p($msg).
     $html->formClose();

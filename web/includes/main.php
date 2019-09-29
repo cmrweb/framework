@@ -22,6 +22,13 @@ switch ($url) {
     require 'web/pages/eshop.php';
     break;
 
+    case $url[0]=='category'AND empty($url[1]):
+    require 'web/pages/Category.php';
+    break;
+    case $url[0]=='post'AND empty($url[1]):
+    require 'web/pages/Post.php';
+    break;
+    
     // case $url[0]==''AND empty($url[1]):
     // require 'web/pages/.php';
     // break;
@@ -36,4 +43,3 @@ switch ($url) {
      echo 'ERREUR 404';
      break;
 }
-?>

@@ -2,7 +2,8 @@
 $html->code('nav',
 $html->menu([
     'Home'=> ROOT_DIR ,
-    'article'=> ROOT_DIR."/article",
+    'Docs'=> ROOT_DIR."/docs",
+    'Article'=> ROOT_DIR."/post",
 ],
 'dark'),
 'nav navrad');

@@ -1,8 +1,5 @@
 <?php
-    if(!isset($_SESSION['user'])){
-        $msg="connexion requise";
-        header('Location: ./');
-    }
+needLog();
 ?> 
 <section class="large light articles">
 <h1>Article <?= isset($id) ? $id  : '' ?></h1>
