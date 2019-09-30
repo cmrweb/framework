@@ -153,4 +153,5 @@ $class .= "
 $pathClass = '../../web/Entity/';
 $classFile = $pathClass . $argv[1] . '.php';
 file_put_contents($classFile, $class);
-echo 'Done!';
+
+echo "Done!";
