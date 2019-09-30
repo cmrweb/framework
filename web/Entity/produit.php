@@ -1,5 +1,5 @@
 <?php
-class produit
+class Produit
 {
     
     private $pdo;

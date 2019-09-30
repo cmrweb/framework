@@ -1,20 +1,22 @@
 <?php
+$argLower=strtolower($argv[1]);
+$argUc=ucfirst($argv[1]);
 $sql = "<?php\n
 /*
 SQL Part
     *launch page and remove the following code
 */\n
 \$db = new DB;
-\$query=\" CREATE TABLE IF NOT EXISTS {$argv[1]}
+\$query=\" CREATE TABLE IF NOT EXISTS {$argLower}
 (
     id INT PRIMARY KEY AUTO_INCREMENT,\n";
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     if (isset($field[2])) {
-        $sql .= "{$field[0]} {$field[1]}({$field[2]}),\n";
+        $sql .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
     } else {
-        $sql .= "{$field[0]} {$field[1]},\n";
+        $sql .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
     }
 }
 $sql = substr($sql, 0, -2);
@@ -27,8 +29,7 @@ Quick test
     *launch page for create table
     *comment or remove the sql part
 */
-\${$argv[1]}=new {$argv[1]}();
-\${$argv[1]}->setData([]);
+\${$argv[1]}=new {$argUc}();
 if (isset(\$_POST['send'])) {\n\${$argv[1]}->setData([";
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
@@ -117,8 +118,9 @@ file_put_contents($sqlFile, $sql);
 /**
  * GENERATE CLASS
  */
+
 $class = "<?php
-class {$argv[1]}
+class {$argUc}
 {\n    
     private \$pdo;
     private \$data;
@@ -132,7 +134,7 @@ $class .= "
     function __construct(\$bool = NULL)
     {
         \$this->pdo = new DB;
-        \$this->pdo->select('*', '{$argv[1]}', \$bool);
+        \$this->pdo->select('*', '{$argLower}', \$bool);
         foreach (\$this->pdo->result as \$value) {
             \$this->data[\$value['id']] = [
                 'id' => \$value['id'],\n";
@@ -160,17 +162,17 @@ $class .= "
     {
 
         \$this->pdo = new DB;
-        \$this->pdo->insert('{$argv[1]}',\$data);
+        \$this->pdo->insert('{$argLower}',\$data);
     }
     public function update(\$data,\$id)
     {
         \$this->pdo = new DB;
-        \$this->pdo->update('{$argv[1]}',\$data,\$id);
+        \$this->pdo->update('{$argLower}',\$data,\$id);
     }
     public function delete(\$data)
     {
         \$this->pdo = new DB;
-        \$this->pdo->delete('{$argv[1]}',\"id=\".\$data);
+        \$this->pdo->delete('{$argLower}',\"id=\".\$data);
     }
 }";
 // echo $class;

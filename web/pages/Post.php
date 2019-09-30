@@ -14,7 +14,7 @@ if (isset($_POST['send'])) {
             $fileDbName = strtolower($target_file . '.' . $ext);
             if (is_uploaded_file($_FILES['img']["tmp_name"]))
                 if (move_uploaded_file($_FILES['img']["tmp_name"],  $target_dir . $uploadName)) {
-                    $Post->setData(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => $fileDbName]);
+                    $Post->setData(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => "$fileDbName"]);
 
                 }
         } else {
@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
             $fileDbName = strtolower($target_file . '.' . $ext);
             if (is_uploaded_file($_FILES['img']["tmp_name"]))
                 if (move_uploaded_file($_FILES['img']["tmp_name"],  $target_dir . $uploadName)) {
-                    $Post->update(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => $fileDbName], "id=" . $_POST['id']);
+                    $Post->update(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => "$fileDbName"], "id=" . $_POST['id']);
                 }
         } else {
             $msg = "image trop lourde";

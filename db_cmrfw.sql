@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `cmr_post` (
 
 DROP TABLE IF EXISTS `cmr_user`;
 CREATE TABLE IF NOT EXISTS `cmr_user` (
-  `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `admin_lvl` int(11) DEFAULT NULL,

@@ -9,11 +9,11 @@ $db = new DB;
 $query=" CREATE TABLE IF NOT EXISTS produit
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
-name varchar(255),
-price int,
-description text,
-livraison varchar(255),
-category int)";
+`name` varchar(255) NOT NULL,
+`price` int NOT NULL,
+`description` text NOT NULL,
+`livraison` varchar(255) NOT NULL,
+`category` int NOT NULL)";
 
 $req=$db->pdo->prepare($query);
 
@@ -25,8 +25,7 @@ Quick test
     *launch page for create table
     *comment or remove the sql part
 */
-$produit=new produit();
-$produit->setData([]);
+$produit=new Produit();
 if (isset($_POST['send'])) {
 $produit->setData(["name" => $_POST['name'],
 "price" => $_POST['price'],
