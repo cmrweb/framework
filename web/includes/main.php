@@ -5,25 +5,25 @@ switch ($url) {
     require 'web/pages/home.php';
     break;
 
-    case $url[0]=='article'AND empty($url[1]):
-    require 'web/pages/article.php';
-    break;
+    // case $url[0]=='article'AND empty($url[1]):
+    // require 'web/pages/article.php';
+    // break;
     
-    case $url[0]=='article' AND !empty($url[1]):
-    $id = $url[1];
-    require "web/pages/article.php";
-    break;
+    // case $url[0]=='article' AND !empty($url[1]):
+    // $id = $url[1];
+    // require "web/pages/article.php";
+    // break;
 
     case $url[0]=='docs'AND empty($url[1]):
     require 'web/pages/docs.php';
     break;
 
-    case $url[0]=='eshop'AND empty($url[1]):
-    require 'web/pages/eshop.php';
-    break;
+    // case $url[0]=='eshop'AND empty($url[1]):
+    // require 'web/pages/eshop.php';
+    // break;
 
-    case $url[0]=='category'AND empty($url[1]):
-    require 'web/pages/Category.php';
+    case $url[0]=='produit'AND empty($url[1]):
+    require 'web/pages/produit.php';
     break;
     case $url[0]=='edit'AND empty($url[1]):
     require 'web/pages/Post.php';

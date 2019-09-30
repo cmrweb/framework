@@ -1,5 +1,5 @@
 <?php
-if ($argc != 3 && in_array($argv[1], array('--help', '-help', '-h', 'help'))) {
+if ($argc != 3 && in_array($argv[2], array('--help', '-help', '-h', 'help'))) {
     ?>
     Utilisation :
     <?php echo $argv[0]."\n";?>
@@ -10,7 +10,7 @@ if ($argc != 3 && in_array($argv[1], array('--help', '-help', '-h', 'help'))) {
 
         
     <?php
-} elseif ($argc != 2 && in_array($argv[1], array('generate','--gen','-gen', '-g','g'))) {
+} elseif ($argc >= 2 && in_array($argv[2], array('generate','--gen','-gen', '-g','g'))) {
     echo'generate '.$argv[2]."\n";
     echo 'Enter|yes|y no|n'."\n";
     echo 'Press Enter to continue: ';
@@ -23,7 +23,7 @@ if ($argc != 3 && in_array($argv[1], array('--help', '-help', '-h', 'help'))) {
 
     }
 
-} elseif ($argc != 2 && in_array($argv[1], array('init','--init','-init', '-i','i'))) {
+} elseif ($argc != 3 && in_array($argv[2], array('init','--init','-init', '-i','i'))) {
     echo'init '.$argv[2]."\n";
     echo 'Enter|yes|y no|n'."\n";
     echo 'Press Enter to continue: ';
@@ -106,7 +106,7 @@ if ($argc != 3 && in_array($argv[1], array('--help', '-help', '-h', 'help'))) {
         echo "Projet $argv[2] Générer";
     }
 
-} elseif ($argc != 3 && in_array($argv[1], array('new','--new','-new', '-n','n'))) {
+} elseif ($argc != 3 && in_array($argv[2], array('new','--new','-new', '-n','n'))) {
     if(in_array($argv[2], array('article'))){
     ?> 
     module_<?php echo $argv[2]."\n"; ?>
@@ -143,6 +143,6 @@ if ($argc != 3 && in_array($argv[1], array('--help', '-help', '-h', 'help'))) {
     }
 
 } else {
-    echo $argv[1];
+    echo $argv[2];
 }
 ?>
