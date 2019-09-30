@@ -60,9 +60,21 @@ echo \$html->h('1', 'Create') .
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
-    $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\") \n.";
+    switch ($field[1]) {
+        case "varchar":
+            $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            break;
+        case "int":
+            $sql .= "\$html->input(\"number\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            break;
+        case "date":
+            $sql .= "\$html->input(\"date\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            break;
+        case "text":
+            $sql .= "\$html->textarea(\"5\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            break;
+    }
 }
-
 $sql .= "
     \$html->button('submit', 'success center', 'envoyer', 'send') .
     \$html->formClose();
@@ -72,13 +84,25 @@ if(\${$argv[1]}->getData()){
     foreach (\${$argv[1]}->getData() as \$key => \$value) :
     echo \$html->formOpen('', 'post', 'small primary') .
             \$html->input(\"hidden\", \"id\", \"\", \"\", \$value['id'],\$value['id']) . ";
-            for ($i = 2; $i < count($argv); $i++) {
-                $field = implode("-", explode(" ", $argv[$i]));
-                $field = explode("-", $field);           
+for ($i = 2; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    switch ($field[1]) {
+        case "varchar":
             $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
-        }
-            $sql .= "
-            \$html->button('submit', 'success center', 'mettre a jour', 'update') .
+            break;
+        case "int":
+            $sql .= "\$html->input(\"number\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
+            break;
+        case "date":
+            $sql .= "\$html->input(\"date\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
+            break;
+        case "text":
+            $sql .= "\$html->textarea(\"5\", \"{$field[0]}\", \"{$field[0]}\").\n";
+            break;
+    }
+}
+$sql .= "\$html->button('submit', 'success center', 'mettre a jour', 'update') .
             \$html->button('delete', 'danger center', 'supprimer', 'delete') .
             \$html->formClose();
     endforeach;
