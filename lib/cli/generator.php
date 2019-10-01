@@ -13,10 +13,28 @@ SQL Part
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
-    if (isset($field[2])) {
-        $sql .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
-    } else {
-        $sql .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
+    switch ($field[1]) {
+        case "char":
+        if (isset($field[2])) {
+            $sql .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+        } else {
+            $sql .= "`{$field[0]}` varchar(255) NOT NULL,\n";
+        }
+        break;
+        case "varchar":
+        if (isset($field[2])) {
+            $sql .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+        } else {
+            $sql .= "`{$field[0]}` varchar(255) NOT NULL,\n";
+        }
+        break;
+        default:
+        if (isset($field[2])) {
+            $sql .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
+        } else {
+            $sql .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
+        }
+        break;
     }
 }
 $sql = substr($sql, 0, -2);

@@ -6,8 +6,8 @@ function needLog(){
     }
 }
 function needAdmin(){
-  if(!isset($admin)){
-      $msg="connexion requise";
-    return  header('Location: ./');
-  }
+  if($_SESSION['user']['admin']!=1){
+    $msg="connexion requise";
+  return  header('Location: ./');
+}
 }

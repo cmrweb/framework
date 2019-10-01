@@ -10,7 +10,7 @@ class DB
     }
     public function select(string $select, string $from, ?string $where = null, ?bool $order = false, ?bool $group = false): array
     {
-        $order = preg_replace('/cmr_/', '', $from);
+        //$order = preg_replace('/cmr_/', '', $from);
         if ($where) {
             if (!$order) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where ORDER BY `id` asc");
@@ -89,7 +89,7 @@ class DB
             $query = substr($query, 0, -1);
             $query .= ")";
 
-            $params=[];
+            $params = [];
             foreach ($value as $key => $val) {
                 $params[$key] = $val;
             }
@@ -137,5 +137,37 @@ class DB
             $req->execute();
             return $this;
         }
+    }
+
+    public function createTable($table, $data)
+    {
+        $query = "CREATE TABLE $table
+        (
+            id INT PRIMARY KEY NOT NULL,";
+for ($i = 0; $i < count($data); $i++) {
+    $field = implode("-", explode(" ", $data[$i]));
+    $field = explode("-", $field);
+    switch ($field[1]) {
+        case "char":
+        if (isset($field[2])) {
+            $query .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+        } else {
+            $query .= "`{$field[0]}` varchar NOT NULL,\n";
+        }
+        break;
+        default:
+        if (isset($field[2])) {
+            $query .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
+        } else {
+            $query .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
+        }
+        break;
+    }
+
+}
+    $query .= " )";
+        $req = $this->pdo->prepare("$query");
+        $req->execute();
+        return $this;
     }
 }

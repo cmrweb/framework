@@ -233,7 +233,11 @@ function openPopup() {
     $('.formBall,.background').hide()
     $(".newMsg ,.background").click((e) => {
         e.preventDefault()
-        $('.formBall,.background').slideToggle('fast')
+        $('.formBall,.background').toggle('fast')
+    });
+    $(".menu").click((e) => {
+        e.preventDefault()
+        $('.nav').slideToggle('fast')
     });
     var popupBtn = $('.popupBtn');
     //console.log(popupBtn)

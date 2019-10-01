@@ -47,11 +47,7 @@ p,span{
     padding: 5px;
 }
 article.docs{
-    margin: 40px 20% 50px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    min-height: 800px;
+width: 100%;
 }
 hr{
     width: 30%;
@@ -80,7 +76,7 @@ small{
 }
 .right {
     width: 80%;
-    float: right;
+    float: center;
 }
 .fixhead{
     position: fixed;
@@ -169,7 +165,16 @@ pre.medium {
 /*****************************************************************************************
 NAV
 *****************************************************************************************/
+.menu{
+    position: fixed;
+    top: 45px;
+    left: 0;
+    right: 0;
+    font-size: 30px;
+    text-align: center;
+}
 .nav{
+    display: none;
     margin: 10px;
 }
 
@@ -186,14 +191,7 @@ NAV
     position: fixed;
 }
 .sideul {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    position: fixed;
-    top: 75px;
-    bottom: 0;
-    padding: 10% 50px;
-    overflow: auto;
+    display: none;
 }
 .sideul td{
     padding: 10px 2px;
@@ -426,9 +424,35 @@ PC DISPLAY
 
 
 @media screen and (min-width: 768px) {
+    article.docs{
+        margin: 40px 20% 50px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        min-height: 800px;
+    }
+    .right {
+        width: 80%;
+        float: right;
+    }
+    .sideul {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: fixed;
+        top: 75px;
+        bottom: 0;
+        padding: 10% 50px;
+        overflow: auto;
+    }
     .Resp {
         flex-direction: row;
     }
+    .nav{
+        display: block;
+        margin: 10px;
+    }
+    
     .navrad ul:first-child > li:first-child > a{
         border-radius: 20px 0 0 0;
     }

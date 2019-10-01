@@ -7,6 +7,9 @@ if(isset($_POST['disc'])){
     $_SESSION['user']=NULL;
     header("Location: index.php");
 }
+?>
+<i class="fas fa-bars menu"></i>
+<?php
 if(!isset($_SESSION['user'])){
 echo 
 $html->code('nav',
