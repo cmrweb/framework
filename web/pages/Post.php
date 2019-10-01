@@ -1,5 +1,6 @@
 <?php
 needLog();
+//needAdmin();
 $msg="";
 $Post = new Post();
 $Post->setData([]);

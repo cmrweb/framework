@@ -5,6 +5,7 @@ class User
     private $user_id;
     private $username;
     private $password;
+    private $admin;
     function __construct($where=NULL)
     {
         $pdo=new DB;
@@ -13,16 +14,19 @@ class User
             $this->data[] = [
                 'user_id' => $value['id'],
                 'username' => $value['username'],
-                'password' => $value["password"]
+                'password' => $value["password"],
+                'admin' => $value["admin_lvl"]
             ];
             if(!$where){
                 $this->user_id[] = $value['id'];
                 $this->username[] = $value['username'];
                 $this->password[] = $value['password'];
+                $this->admin[] = $value['admin_lvl'];
             }else{
                 $this->user_id = $this->data[0]['user_id'];
                 $this->username = $this->data[0]['username'];
                 $this->password = $this->data[0]['password'];
+                $this->admin = $this->data[0]['admin'];
             }
 
         }

@@ -5,3 +5,9 @@ function needLog(){
       return  header('Location: ./');
     }
 }
+function needAdmin(){
+  if(!isset($admin)){
+      $msg="connexion requise";
+    return  header('Location: ./');
+  }
+}

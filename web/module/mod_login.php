@@ -10,10 +10,12 @@ if (isset($_POST['send'])) {
             if($pass){
                 $_SESSION['user'] = [
                     "id" => $value['user_id'],
-                    "name" => $value['username']
+                    "name" => $value['username'],
+                    "admin" => $value['admin']
                 ];
                 $user_id = $_SESSION['user']['id'];
                 $user_name = $_SESSION['user']['name'];
+                $user_admin = $_SESSION['user']['admin'];
                $msg= 'connected'; 
                header("Location: index.php");
             }else{

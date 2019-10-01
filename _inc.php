@@ -29,6 +29,7 @@ if(isset($_GET['url'])){
 if(isset($_SESSION['user']['id'])){
     $username = $_SESSION['user']['name'];
     $userid = $_SESSION['user']['id'];
+    $admin = $_SESSION['user']['admin'];
 }else{
     $username='';$userid ='';
 }
