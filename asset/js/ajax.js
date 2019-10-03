@@ -36,5 +36,5 @@ function ajaxSelect(action, currentdata){
                     }
                 }
             })
-        }, 1000); 
+        }, 5000); 
 }
