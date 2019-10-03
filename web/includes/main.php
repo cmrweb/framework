@@ -9,9 +9,6 @@ switch ($url) {
     require 'web/pages/docs.php';
     break;
 
-    case $url[0]=='produit'AND empty($url[1]):
-    require 'web/pages/produit.php';
-    break;
     case $url[0]=='edit'AND empty($url[1]):
     require 'web/pages/Post.php';
     break;
@@ -22,10 +19,6 @@ switch ($url) {
     case $url[0]=='post'AND !empty($url[1]):
     $id=$url[1];
     require 'web/pages/PostRender.php';
-    break;
- 
-    case $url[0]=='demo'AND empty($url[1]):
-    require 'web/pages/demo.php';
     break;
 
     case $url[0]=='chat'AND empty($url[1]):

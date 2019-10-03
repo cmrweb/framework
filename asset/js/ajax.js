@@ -28,7 +28,6 @@ function ajaxSelect(action, currentdata=null){
                 url: 'traitement/'+ action,
                 type: 'POST',
                 data: { currentdata },
-                dataType: 'html',
                 success: function(currentdata) {
                     if (currentdata !== cacheData) {
                         cacheData = currentdata;

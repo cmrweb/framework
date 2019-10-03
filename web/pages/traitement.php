@@ -24,10 +24,6 @@ if (isset($_POST))
             switch ($url[2]) {
                 case 'chat':
                     $chat = new chat();
-                    //^(\{)+(.*|\s)(\})/
-                    // $file = json_encode($chat->getData());
-                    // preg_match("/^(\{)+(.*|\s)(\})/", $file, $render);
-                    // echo $file;
                     if ($chat->getData()) {
                         echo $html->h('1', 'Read Update Delete');
                         foreach ($chat->getData() as $key => $value) :
