@@ -80,6 +80,9 @@ for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
+        case "char":
+        $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+        break;
         case "varchar":
             $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\") .\n";
             break;
@@ -107,6 +110,9 @@ for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
+        case "char":
+        $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
+        break;
         case "varchar":
             $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
             break;
