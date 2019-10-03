@@ -17,11 +17,6 @@ define('IMG_DIR', '/asset/img/');
 define('MOD_DIR', '/web/module/');
 define('PAGES_DIR', '/web/pages/');
 
-
-function dump($var){
-    echo "<pre>";var_dump($var);echo"</pre>";
-}
-
 $url="";
 if(isset($_GET['url'])){
     $url=explode('/',$_GET['url']);
@@ -31,5 +26,5 @@ if(isset($_SESSION['user']['id'])){
     $userid = $_SESSION['user']['id'];
     $admin = $_SESSION['user']['admin'];
 }else{
-    $username='';$userid ='';
+    $username='';$userid ='';$admin='';
 }
