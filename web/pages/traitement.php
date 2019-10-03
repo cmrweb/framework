@@ -11,8 +11,9 @@ if (isset($_POST))
                     dump($data);
                     $chat = new chat();
                     $chat->setData([
-                        "nom" => $data[0],
-                        "message" => $data[1]
+                        "nom" =>$username,
+                        "message" => addslashes($data[0]),
+                        "date"=>date("Y-m-d")
                     ]);
                     break;
                 default:
@@ -29,9 +30,9 @@ if (isset($_POST))
                         foreach ($chat->getData() as $key => $value) :
                             echo $html->code(
                                 "section",
-                                $html->h(4, $value['nom']) .
+                                $html->h(4, $value['nom']."<span>".date("d/m/Y",strtotime($value['date']))."</span>") .
                                 $html->p($value['message']),
-                                "large"
+                                "large chat"
                             );
 
                         endforeach;

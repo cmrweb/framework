@@ -239,18 +239,21 @@ function openPopup() {
         e.preventDefault()
         $('.nav').slideToggle('fast')
     });
-    var popupBtn = $('.popupBtn');
-    //console.log(popupBtn)
-    popupBtn[0].addEventListener('click', (e) => {
-        e.preventDefault()
-        $('.formSign').toggle('fast')
-        $('.formLog').hide()
-    });
-    popupBtn[1].addEventListener('click', (e) => {
-        e.preventDefault()
-        $('.formLog').toggle('fast')
-        $('.formSign').hide()
-    });
+
+    if($('.popupBtn').length){
+        var popupBtn = $('.popupBtn');
+        popupBtn[0].addEventListener('click', (e) => {
+            e.preventDefault()
+            $('.formSign').toggle('fast')
+            $('.formLog').hide()
+        });
+        popupBtn[1].addEventListener('click', (e) => {
+            e.preventDefault()
+            $('.formLog').toggle('fast')
+            $('.formSign').hide()
+        });        
+    }
+
 
 }
 $(document).ready(function () {

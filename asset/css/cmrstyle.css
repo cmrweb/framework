@@ -417,6 +417,26 @@ POSITION
     margin: auto;
 }
 
+/*****************************************************************************************
+CHAT
+*****************************************************************************************/
+.chat{
+    box-shadow: #ccc 0 2px 3px;
+    margin: 5px auto;
+    width: 50%;
+}
+.chat h4{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background: #a5d8f0;
+}
+
+.chat p{
+    min-height: fit-content;
+    padding: 10px;
+}
 
 /*****************************************************************************************
 PC DISPLAY
