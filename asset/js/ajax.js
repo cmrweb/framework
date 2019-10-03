@@ -15,12 +15,12 @@ function ajaxRequest(action, currentdata = null) {
             type: "post",
             success: function (currentdata) {
                 //console.log(currentdata);
-                $('#resa').html(currentdata);
+                $('#chat').html(currentdata);
             }
         });
     }
 }
-function ajaxSelect(action, currentdata){
+function ajaxSelect(action, currentdata=null){
     var cacheData;
     var auto_refresh = setInterval(
         function() {
@@ -32,7 +32,7 @@ function ajaxSelect(action, currentdata){
                 success: function(currentdata) {
                     if (currentdata !== cacheData) {
                         cacheData = currentdata;
-                        $('#resa').html(currentdata);
+                        $('#chat').html(currentdata);
                     }
                 }
             })

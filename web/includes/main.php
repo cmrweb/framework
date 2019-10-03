@@ -28,8 +28,8 @@ switch ($url) {
     require 'web/pages/demo.php';
     break;
 
-    case $url[0]=='resa'AND empty($url[1]):
-    require 'web/pages/reservation.php';
+    case $url[0]=='chat'AND empty($url[1]):
+    require 'web/pages/chat.php';
     break;
 
     case $url[0]=='traitement':

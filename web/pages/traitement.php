@@ -3,18 +3,16 @@ if (isset($_POST))
     switch ($url) {
         case $url[0] == 'traitement' and $url[1] == "insert":
             switch ($url[2]) {
-                case 'resa':
+                case 'chat':
                     $data = explode(",", preg_replace('/\"/', '', json_encode($_POST['currentdata'])));
                     foreach ($data as $key => $value) {
                         $data[$key] = $value;
                     }
                     dump($data);
-                    $reservation = new Reservation();
-                    $reservation->setData([
-                        "date" => "2019-10-03",
-                        "lieu" => $data[2],
+                    $chat = new chat();
+                    $chat->setData([
                         "nom" => $data[0],
-                        "prix" => $data[1]
+                        "message" => $data[1]
                     ]);
                     break;
                 default:
@@ -24,24 +22,24 @@ if (isset($_POST))
             break;
         case $url[0] == 'traitement' and $url[1] == "select":
             switch ($url[2]) {
-                case 'resa':
-                    $reservation = new Reservation();
+                case 'chat':
+                    $chat = new chat();
                     //^(\{)+(.*|\s)(\})/
-                    // $file = json_encode($reservation->getData());
+                    // $file = json_encode($chat->getData());
                     // preg_match("/^(\{)+(.*|\s)(\})/", $file, $render);
                     // echo $file;
-        if ($reservation->getData())
-         foreach ($reservation->getData() as $key => $value) :
-        echo $html->formOpen('', 'post', 'large dark') .
-                $html->input("hidden", "id", "", "", $value['id'],$value['id']) . 
-                $html->input("date", "date", "date", "", $value['date'],$value['date']) .
-                $html->input("text", "lieu", "lieu", "", $value['lieu'],$value['lieu']) .
-                $html->input("text", "nom", "nom", "", $value['nom'],$value['nom']) .
-                $html->input("number", "prix", "prix", "", $value['prix'],$value['prix']) .
-                $html->button('submit', 'success center', 'mettre a jour', 'update') .
-                $html->button('delete', 'danger center', 'supprimer', 'delete') .
-                $html->formClose();
-        endforeach;
+                    if ($chat->getData()) {
+                        echo $html->h('1', 'Read Update Delete');
+                        foreach ($chat->getData() as $key => $value) :
+                            echo $html->code(
+                                "section",
+                                $html->h(4, $value['nom']) .
+                                $html->p($value['message']),
+                                "large"
+                            );
+
+                        endforeach;
+                    }
                     break;
                 default:
                     break;
