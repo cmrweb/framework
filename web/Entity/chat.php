@@ -8,6 +8,7 @@ class Chat
     private $nom;
     private $message;
     private $date;
+    private $sendto;
 
     function __construct($bool = NULL)
     {
@@ -18,12 +19,14 @@ class Chat
                 'id' => $value['id'],
                 'nom' => $value['nom'],
                 'message' => $value['message'],
-                'date' => $value['date']
+                'date' => $value['date'],
+                'sendto' => $value['sendto']
             ];
             $this->id[] = $value['id'];
             $this->nom[] = $value['nom'];
             $this->message[] = $value['message'];
             $this->date[] = $value['date'];
+            $this->sendto[] = $value['sendto'];
                         
         }
         return $this->data;

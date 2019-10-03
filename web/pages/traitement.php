@@ -13,7 +13,8 @@ if (isset($_POST))
                     $chat->setData([
                         "nom" =>$username,
                         "message" => addslashes($data[0]),
-                        "date"=>date("Y-m-d")
+                        "date"=>date("Y-m-d"),
+                        "sendto" => $data[1]
                     ]);
                     break;
                 default:
@@ -24,9 +25,24 @@ if (isset($_POST))
         case $url[0] == 'traitement' and $url[1] == "select":
             switch ($url[2]) {
                 case 'chat':
-                    $chat = new chat();
+                //global chat
+                    $chat = new chat("sendto=0");
                     if ($chat->getData()) {
-                        echo $html->h('1', 'Read Update Delete');
+                        echo $html->h('2', 'Global');
+                        foreach ($chat->getData() as $key => $value) :
+                            echo $html->code(
+                                "section",
+                                $html->h(4, $value['nom']."<span>".date("d/m/Y",strtotime($value['date']))."</span>") .
+                                $html->p($value['message']),
+                                "large chat"
+                            );
+
+                        endforeach;
+                    }
+                //private chat
+                    $chat = new chat("sendto=$userid");
+                    if ($chat->getData()) {
+                        echo $html->h('2', 'Private');
                         foreach ($chat->getData() as $key => $value) :
                             echo $html->code(
                                 "section",
