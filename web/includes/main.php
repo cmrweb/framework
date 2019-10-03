@@ -25,8 +25,8 @@ switch ($url) {
     require 'web/pages/chat.php';
     break;
 
-    case $url[0]=='traitement':
-    require 'web/pages/traitement.php';
+    case $url[0]=='ajax':
+    require 'web/pages/ajax.php';
     break;
 
     default:

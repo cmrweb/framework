@@ -2,7 +2,7 @@
 function ajaxRequest(action, currentdata = null) {
     if (currentdata) {
         $.ajax({
-            url: "traitement/" + action,
+            url: "ajax/" + action,
             type: "post",
             data: { currentdata },
             success: function (currentdata) {
@@ -11,7 +11,7 @@ function ajaxRequest(action, currentdata = null) {
         });
     } else {
         $.ajax({
-            url: "traitement/" + action,
+            url: "ajax/" + action,
             type: "post",
             success: function (currentdata) {
                 //console.log(currentdata);
@@ -25,7 +25,7 @@ function ajaxSelect(action, currentdata=null){
     var auto_refresh = setInterval(
         function() {
             $.ajax({
-                url: 'traitement/'+ action,
+                url: 'ajax/'+ action,
                 type: 'POST',
                 data: { currentdata },
                 success: function(currentdata) {

@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST))
     switch ($url) {
-        case $url[0] == 'traitement' and $url[1] == "insert":
+        case $url[0] == 'ajax' and $url[1] == "insert":
             switch ($url[2]) {
                 case 'chat':
                     $data = explode(",", preg_replace('/\"/', '', json_encode($_POST['currentdata'])));
@@ -11,9 +11,9 @@ if (isset($_POST))
                     dump($data);
                     $chat = new chat();
                     $chat->setData([
-                        "nom" =>$username,
+                        "nom" => $username,
                         "message" => addslashes($data[0]),
-                        "date"=>date("Y-m-d"),
+                        "date" => date("Y-m-d"),
                         "sendto" => $data[1]
                     ]);
                     break;
@@ -22,37 +22,37 @@ if (isset($_POST))
             }
 
             break;
-        case $url[0] == 'traitement' and $url[1] == "select":
+        case $url[0] == 'ajax' and $url[1] == "select":
             switch ($url[2]) {
                 case 'chat':
-                //global chat
-                    $chat = new chat("sendto=0");
-                    if ($chat->getData()) {
-                        echo $html->h('2', 'Global');
-                        foreach ($chat->getData() as $key => $value) :
-                            echo $html->code(
-                                "section",
-                                $html->h(4, $value['nom']."<span>".date("d/m/Y",strtotime($value['date']))."</span>") .
-                                $html->p($value['message']),
-                                "large chat"
-                            );
-
-                        endforeach;
-                    }
-                //private chat
+                    //private chat
                     $chat = new chat("sendto=$userid");
                     if ($chat->getData()) {
                         echo $html->h('2', 'Private');
                         foreach ($chat->getData() as $key => $value) :
                             echo $html->code(
                                 "section",
-                                $html->h(4, $value['nom']."<span>".date("d/m/Y",strtotime($value['date']))."</span>") .
-                                $html->p($value['message']),
+                                $html->h(4, $value['nom'] . "<span>" . date("d/m/Y", strtotime($value['date'])) . "</span>") .
+                                    $html->p($value['message']),
                                 "large chat"
                             );
 
                         endforeach;
                     }
+                    //global chat
+                    $chat = new chat("sendto=0");
+                    if ($chat->getData()) {
+                        echo $html->h('2', 'Global');
+                        foreach ($chat->getData() as $key => $value) :
+                            echo $html->code(
+                                "section",
+                                $html->h(4, $value['nom'] . "<span>" . date("d/m/Y", strtotime($value['date'])) . "</span>") .
+                                    $html->p($value['message']),
+                                "large chat"
+                            );
+                        endforeach;
+                    }
+
                     break;
                 default:
                     break;
