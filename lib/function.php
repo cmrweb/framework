@@ -5,9 +5,15 @@ function needLog(){
       return  header('Location: ./');
     }
 }
+
 function needAdmin(){
   if($_SESSION['user']['admin']!=1){
     $msg="connexion requise";
   return  header('Location: ./');
 }
+}
+
+
+function dump($var){
+  echo "<pre>";var_dump($var);echo"</pre>";
 }
