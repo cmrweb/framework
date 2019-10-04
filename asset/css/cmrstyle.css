@@ -51,15 +51,25 @@ a {
     text-decoration: none;
     color:inherit;
 }
-p,span{
-    padding: 5px;
-}
+
 article.docs{
 width: 100%;
 }
+    ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #031c1d; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #031c1d; 
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #031c1d; 
+  }
 hr{
-    width: 30%;
-    margin-left: 25%;
+    width: 80%;
 }
 footer{
     display: block;
@@ -428,22 +438,28 @@ POSITION
 /*****************************************************************************************
 CHAT
 *****************************************************************************************/
-.chat{
+#chat{
+    overflow: auto;
+    max-height: 380px;
     box-shadow: #ccc 0 2px 3px;
     margin: 5px auto;
-    width: 50%;
+    width: 100%;
 }
-.chat h4{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 5px 10px;
-    background: #a5d8f0;
+.chat-send h4{
+    text-align: right;
+    padding: 0 6px;
+}
+.chat-receive h4{
+    text-align: left;
+    padding: 0 6px;
 }
 
 .chat p{
     min-height: fit-content;
     padding: 10px;
+}
+.chat small{
+    margin: 0;
 }
 .loader{
 	width: 25px;
@@ -453,6 +469,35 @@ CHAT
 	position: relative;
 	border-radius: 25px;
 	border: 6px solid rgb(138, 138, 138);
+}
+
+.chat-send small{
+    text-align: right
+}
+.chat-send p{
+    min-height: fit-content;
+    padding: 10px;
+    background: #51c56e;
+    text-shadow: #000 1px 1px 3px;
+    color: #fff;
+    width: 50%;
+    border-radius: 0 0 0 50%;
+    position: relative;
+    left: 24%;
+}
+.chat-receive small{
+    text-align: left
+}
+.chat-receive p{
+    min-height: fit-content;
+    padding: 10px;
+    background: #3eaae6;
+    text-shadow: #000 1px 1px 3px;
+    color: #fff;
+    width: 50%;
+    border-radius: 0 0 50% 0;
+    position: relative;
+    right: 24%;
 }
 .loader:after{
 	content: '';
@@ -468,7 +513,18 @@ CHAT
 	animation: spin 2s linear infinite;
 }
 .chatform{
-    margin-bottom: 30px;
+    margin-bottom: 14px;
+}
+.chatInput{    margin: 21px 5px 10px 5px;
+    display: flex;
+}
+.chatInput button{    
+    margin: 21px 5px 10px 5px;
+}
+.messenger{
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
 
 /*****************************************************************************************

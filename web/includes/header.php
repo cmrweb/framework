@@ -24,7 +24,7 @@ $html->menu([
     echo $msg;
 }else{
     $form = $html->formOpen('', 'post') .
-    $html->button('submit', 'primary navConn', 'se deconnecter', 'disc') .
+    $html->button('submit', 'primary navConn', '<i class="fas fa-times-circle"></i>', 'disc') .
     $html->formClose();
     
 echo $form;

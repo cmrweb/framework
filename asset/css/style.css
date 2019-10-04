@@ -1,16 +1,16 @@
 header h1{
     float: left;
-    padding: 20px 5px;
+    padding: 16px 5px;
     text-shadow: #00000061 4px 3px 3px;
 }
 header h1 span{
     padding: 5px;
-    font-size: 18px;
+    font-size: 14px;
     position: relative;
     top: -5px;
 }
 header h1 span:last-child{
-    font-size: 14px;
+    font-size: 12px;
     position: relative;
     left: -50px;
     top: 6px;
@@ -27,4 +27,25 @@ header h1 span:last-child{
     font-size: 25px;
     font-weight: 500;
     cursor: pointer;
+}
+
+
+@media screen and (min-width: 768px) {
+    header h1{
+        float: left;
+        padding: 20px 5px;
+        text-shadow: #00000061 4px 3px 3px;
+    }
+    header h1 span{
+        padding: 5px;
+        font-size: 18px;
+        position: relative;
+        top: -5px;
+    }
+    header h1 span:last-child{
+        font-size: 14px;
+        position: relative;
+        left: -50px;
+        top: 6px;
+    }
 }
