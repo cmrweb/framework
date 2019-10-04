@@ -20,20 +20,25 @@ function ajaxRequest(action, currentdata = null) {
         });
     }
 }
-function ajaxSelect(action, currentdata=null){
-    var cacheData;
+function ajaxSelect(action, currentdata = null) {
+    var cacheData;//(?<name>\<section).*(?<end>\<\/section\>)
     var auto_refresh = setInterval(
-        function() {
+        function () {
             $.ajax({
-                url: 'ajax/'+ action,
+                url: 'ajax/' + action,
                 type: 'POST',
                 data: { currentdata },
-                success: function(currentdata) {
+                success: function (currentdata) {
                     if (currentdata !== cacheData) {
-                        cacheData = currentdata;
-                        $('#chat').html(currentdata);
+                        var regex = /(?<name>\<section).*(?<end>\<\/section\>)/gm;
+                        var found = currentdata.match(regex);
+                        //console.log(found);
+                        cacheData = found;
+                        $('#chat').html(found);
+                        $("#send").prop('disabled', false);
+                        $('#send').html("send");
                     }
                 }
             })
-        }, 5000); 
+        }, 5000);
 }

@@ -1,8 +1,12 @@
 <?php
 needLog();
-$getuser = new User();
+$getuser = new User();?>
+<section id="chat">
+    <h2><span class="loader"></span></h2>
+</section>
+<?php
 echo $html->h('1', 'Create') .
-    $html->formOpen('', 'post', 'large primary'); ?>
+    $html->formOpen('', 'post', 'large primary chatform'); ?>
     <select name="sendTo" id="sendTo">
         <option value="0">Tous</option>
 <?php foreach ($getuser->getData() as $key=>$value) : ?>
@@ -13,14 +17,14 @@ echo $html->h('1', 'Create') .
     $html->button('submit', 'success center', 'envoyer', 'send', 'send') .
     $html->formClose();
 ?>
-<section id="chat">
-    <h2>Chargement !!!</h2>
-</section>
+
 <script>
     $('#send').on('click', (e) => {
         e.preventDefault()
         var data = $('#message').val()+","+$('#sendTo option:selected').val();
         ajaxRequest('insert/chat', data);
+        $("#send").prop('disabled', true);
+        $('#send').html("<span class='loader'></span>");
     })
     $(document).ready(() => {
 

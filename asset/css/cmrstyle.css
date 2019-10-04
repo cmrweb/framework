@@ -9,6 +9,14 @@ COMMUN
     --gold:#dfbc0e;
     --danger:#a00606;
 }
+@-webkit-keyframes spin{
+	0% {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}
+@keyframes spin{
+	0% {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}
 * {
     box-sizing: border-box;
 }
@@ -90,7 +98,7 @@ small{
 }
 
 .large {
-    margin: 0 auto;
+    margin: 5px auto;
     width: 80%;
 }
 .medium {
@@ -436,6 +444,31 @@ CHAT
 .chat p{
     min-height: fit-content;
     padding: 10px;
+}
+.loader{
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	border-radius: 25px;
+	border: 6px solid rgb(138, 138, 138);
+}
+.loader:after{
+	content: '';
+	position: absolute;
+	top: -6px;
+	left: -6px;
+	right: -6px;
+	bottom: -6px;
+	border-radius: 25px;
+	border: 6px solid transparent;
+	border-top-color: rgb(70, 70, 70);
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+.chatform{
+    margin-bottom: 30px;
 }
 
 /*****************************************************************************************
