@@ -38,6 +38,7 @@ function ajaxSelect(action, currentdata = null) {
                         $('#chat').html(found);
                         $("#send").prop('disabled', false);
                         $('#send').html("send");
+                        $('#chat').scrollTop($('#chat')[0].scrollHeight);
                     }
                 }
             })

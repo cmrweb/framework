@@ -5,6 +5,10 @@ if('serviceWorker' in navigator){
     } catch (error) {
         console.log(error);
     }
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        showInstallPromotion(e);
+    });
 }
 /*
 PWA
@@ -13,7 +17,6 @@ PWA
 let deferredPrompt;
 var btnAdd=document.getElementById('AppInstall');
 function showInstallPromotion(deferredPrompt){
-    
     btnAdd.style.display = 'block';
     btnAdd.addEventListener('click', function(e) {
         btnAdd.style.display = 'none';
@@ -28,12 +31,6 @@ function showInstallPromotion(deferredPrompt){
         });
         });
 }
-window.addEventListener('beforeinstallprompt', (e) => {
-e.preventDefault();
-showInstallPromotion(e);
-
-});
- 
 
 window.addEventListener('appinstalled', function() {
   app.logEvent('a2hs', 'installed');
