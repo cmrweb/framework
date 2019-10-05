@@ -1,6 +1,7 @@
 header h1{
     float: left;
-    padding: 16px 5px;
+    padding: 26px 5px;
+    font-size: 20px;
     text-shadow: #00000061 4px 3px 3px;
 }
 header h1 span{
@@ -34,6 +35,7 @@ header h1 span:last-child{
     header h1{
         float: left;
         padding: 20px 5px;
+        font-size: 32px;
         text-shadow: #00000061 4px 3px 3px;
     }
     header h1 span{

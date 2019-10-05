@@ -1,7 +1,6 @@
 const assets=[
-    './index.php',
-    './asset/css/cmrstyle.css'
-
+    '.',
+    './cmrweb/chat'
 ];
 self.addEventListener('install',async event =>{
     const cache = await caches.open('files');

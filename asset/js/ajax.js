@@ -7,6 +7,7 @@ function ajaxRequest(action, currentdata = null) {
             data: { currentdata },
             success: function (currentdata) {
                 //console.log(currentdata);
+                $('#chat').scrollTop($('#chat')[0].scrollHeight);
             }
         });
     } else {

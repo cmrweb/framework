@@ -36,5 +36,6 @@ $getuser = new User("id!=$userid");?>
     })
     $(document).ready(() => {
         ajaxSelect('select/chat');
+        $('#chat').scrollTop($('#chat')[0].scrollHeight);
     })
 </script>

@@ -1,5 +1,5 @@
 
-<header class="fixhead xlarge light">
+<header class="fixhead xlarge light header">
 
 <?php
 echo $html->h('1','CMRWEB<span>Camara</span><span>Enrique</span>');
@@ -31,7 +31,7 @@ echo $form;
 }
 include 'web/module/nav.php';
 ?>
-
+<p id="AppInstall" class="btn-gold">PWA <i class="fas fa-cloud-download-alt"></i></p>
 </header>
 <main class="Mtop">
 

@@ -30,7 +30,16 @@ COMMUN
     font-family: "mukta";
     src: url(../fonts/Mukta-Regular.ttf);
 }
-
+#AppInstall{
+    border: 1px solid #000;
+    border-radius: 25px;
+    padding: 6px;
+    width: 80px;
+    position: fixed;
+    top: 80px;
+    cursor: pointer;
+    right: 5px;
+}
 pre {
     border: 1px solid #fff;
 }
@@ -185,7 +194,7 @@ NAV
 *****************************************************************************************/
 .menu{
     position: fixed;
-    top: 45px;
+    top: 20px;
     left: 0;
     right: 0;
     font-size: 30px;
@@ -434,13 +443,15 @@ POSITION
     text-align:center;
     margin: auto;
 }
-
+.header{
+   position: relative;
+   top: -75px; 
+}
 /*****************************************************************************************
 CHAT
 *****************************************************************************************/
 #chat{
     overflow: auto;
-    max-height: 380px;
     box-shadow: #ccc 0 2px 3px;
     margin: 5px auto;
     width: 100%;
@@ -533,6 +544,10 @@ PC DISPLAY
 
 
 @media screen and (min-width: 768px) {
+    .header{
+        position: relative;
+        top: -10px; 
+     }
     article.docs{
         margin: 40px 20% 50px 0;
         display: flex;
@@ -586,5 +601,16 @@ PC DISPLAY
         width: 200px;
         margin-top: 10px;
            
+    }
+    #chat{
+        overflow: auto;
+        min-height: 300px;
+        max-height: 380px;
+        box-shadow: #ccc 0 2px 3px;
+        margin: 5px auto;
+        width: 100%;
+    }
+    .menu{
+        display: none;
     }
 }

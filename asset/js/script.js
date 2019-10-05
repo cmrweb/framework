@@ -1,46 +1,46 @@
 "use strict";
-// if('serviceWorker' in navigator){
-//     try {
-//         navigator.serviceWorker.register('serviceWorker.js');
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+if('serviceWorker' in navigator){
+    try {
+        navigator.serviceWorker.register('serviceWorker.js');
+    } catch (error) {
+        console.log(error);
+    }
+}
 /*
 PWA
 */
 
-// let deferredPrompt;
-// var btnAdd =document.getElementById('addBtn');
-// window.addEventListener('beforeinstallprompt', (e) => {
-// // Prevent Chrome 67 and earlier from automatically showing the prompt
-// e.preventDefault();
-// // Stash the event so it can be triggered later.
-// deferredPrompt = e;
-// btnAdd.style.display = 'block';
-// });
-// btnAdd.addEventListener('click', function(e) {
-// // hide our user interface that shows our A2HS button
-// btnAdd.style.display = 'none';
-// // Show the prompt
-// deferredPrompt.prompt();
-// // Wait for the user to respond to the prompt
-// deferredPrompt.userChoice.then((choiceResult) => {
-//   if (choiceResult.outcome === 'accepted') {
-//     console.log('User accepted the A2HS prompt');
-//   } else {
-//     console.log('User dismissed the A2HS prompt');
-//   }
-//   deferredPrompt = null;
-// });
-// }); 
+let deferredPrompt;
+var btnAdd=document.getElementById('AppInstall');
+function showInstallPromotion(deferredPrompt){
+    
+    btnAdd.style.display = 'block';
+    btnAdd.addEventListener('click', function(e) {
+        btnAdd.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+        });
+}
+window.addEventListener('beforeinstallprompt', (e) => {
+e.preventDefault();
+showInstallPromotion(e);
 
-// window.addEventListener('appinstalled', function() {
-//   app.logEvent('a2hs', 'installed');
-// });
-// if (window.matchMedia('(display-mode: standalone)').matches) {
-//   console.log('display-mode is standalone');
-// }
+});
+ 
+
+window.addEventListener('appinstalled', function() {
+  app.logEvent('a2hs', 'installed');
+});
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log('display-mode is standalone');
+}
 
 var erreur = "<div class='erreur danger'><i class='fas fa-exclamation-triangle'></i> </div>";
 var regExEmail = /^[a-z0-9._-]{1,}@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
@@ -48,11 +48,11 @@ var regExName = /^[a-zA-Z0-9âäéèêëîïôöùûüœ\'\s-]{2,}$/;
 var regExPassMax = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 var regExPassLow = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 var regExNum = /^[0-9]{2}$/;
-function passConfirm(){
-    $('.passConfirm').blur(function(){
-        if($('.pass').val()!=$(this).val()){
+function passConfirm() {
+    $('.passConfirm').blur(function () {
+        if ($('.pass').val() != $(this).val()) {
             $(this).after(erreur).next().html("<i class='fas fa-exclamation-triangle'></i> Les mots de passe ne correspondent pas!");
-        }else{
+        } else {
             $(this).css({
                 background: "rgb(228, 255, 217)",
                 border: "1px solid rgb(7, 156, 5)"
@@ -227,6 +227,7 @@ function checkAge() {
 
     });
 }
+var showHeader = false;
 function openPopup() {
     $('.formSign').hide()
     $('.formLog').hide()
@@ -238,9 +239,23 @@ function openPopup() {
     $(".menu").click((e) => {
         e.preventDefault()
         $('.nav').slideToggle('fast')
+        if (!showHeader) {
+            $(".header").css({
+                'position': 'relative',
+                'top': '-10px'
+            })
+            showHeader=true;
+        } else {
+            $(".header").css({
+                'position': 'relative',
+                'top': '-75px'
+            })
+            showHeader=false;
+        }
+
     });
 
-    if($('.popupBtn').length){
+    if ($('.popupBtn').length) {
         var popupBtn = $('.popupBtn');
         popupBtn[0].addEventListener('click', (e) => {
             e.preventDefault()
@@ -251,7 +266,7 @@ function openPopup() {
             e.preventDefault()
             $('.formLog').toggle('fast')
             $('.formSign').hide()
-        });        
+        });
     }
 
 
