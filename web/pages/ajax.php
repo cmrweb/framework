@@ -29,7 +29,8 @@ if (isset($_POST))
             switch ($url[2]) {
                 case 'chat':
                     // chat 
-                    $chat = new chat("sendby=$userid OR sendto=$userid");
+                    $data =$_POST['currentdata'];
+                    $chat = new chat("sendby IN ($userid,$data) AND sendto IN ($userid,$data)");
                     if ($chat->getData()) {
                         foreach ($chat->getData() as $key => $value) :
                             echo $value['sendto'] == $userid ?

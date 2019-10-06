@@ -3,19 +3,14 @@ needLog();
 $getuser = new User("id!=$userid");?>
 
 <input autocomplete="off" spellcheck="false" type='text' id='keyword' name="keyword" onkeyup='autocomplet()'>
-<ul id='name_list_id'></ul>
+<ul id='list'></ul>
 <section class="messenger">
 <i data-user="<?=$userid?>" id="delete" class="fas fa-times-circle "></i>
 <section id="chat">
     <h2><span class="loader"></span></h2>
 </section>
 <?= $html->formOpen('', 'post', 'xlarge primary chatform'); ?>
-    <select name="sendTo" id="sendTo">
- 
-<?php foreach ($getuser->getData() as $key=>$value) : ?>
-    <option value="<?= $value['user_id']?>"><?=$value['username']?></option>
-<?php endforeach; ?>
-    </select>
+    <input type="hidden" name="sendTo" id="sendTo">
     <div class="chatInput">
 <?php echo $html->input("text", "message", "message") .
     $html->button('submit', 'success center', 'envoyer', 'send', 'send');?>
@@ -27,7 +22,7 @@ $getuser = new User("id!=$userid");?>
 <script>
     $('#send').on('click', (e) => {
         e.preventDefault()
-        var data = $('#message').val()+","+$('#sendTo option:selected').val()+","+$("#delete").attr('data-user');
+        var data = $('#message').val()+","+$('#sendTo').val()+","+$("#delete").attr('data-user');
         if($('#message').val()!=""){
             ajaxRequest('insert/chat', data);
             $("#send").prop('disabled', true);
@@ -40,13 +35,13 @@ $getuser = new User("id!=$userid");?>
         ajaxRequest('delete/chat', data);
     })
     $(document).ready(() => {
-        ajaxSelect('select/chat');
-        $('#chat').scrollTop($('#chat')[0].scrollHeight);
+        $('.messenger').hide();
     })
     function autocomplet() {
-        var min_length = 1; // min caracters to display the autocomplete
+        var min_length = 1; 
         var keyword = $('#keyword').val();
         if (keyword.length > min_length) {
+            $('.messenger').hide();
             $.ajax({
                 url: 'ajax/search',
                 type: 'POST',
@@ -58,17 +53,22 @@ $getuser = new User("id!=$userid");?>
                         var found = data.match(regex);
                         data = found;
                     //console.log(data)
-                    $('#name_list_id').show();
-                    $('#name_list_id').html(data);
+                    $('#list').show();
+                    $('#list').html(data);
                 }
             });
+
         } else {
-            $('#name_list_id').hide();
+            $('#list').hide();
         }
     }
     function set_item(id, username) {
         console.log(id+","+username)
         $('#keyword').val(username);
-        $('#name_list_id').hide();
+        $('.messenger').show();
+        $('#sendTo').val(id);
+        $('#list').hide();           
+         var data =$('#sendTo').val();
+        ajaxSelect('select/chat',data);
     }
 </script>
