@@ -1,5 +1,5 @@
 "use strict";
-if('serviceWorker' in navigator){
+if ('serviceWorker' in navigator) {
     try {
         navigator.serviceWorker.register('serviceWorker.js');
     } catch (error) {
@@ -15,28 +15,41 @@ PWA
 */
 
 let deferredPrompt;
-var btnAdd=document.getElementById('AppInstall');
-function showInstallPromotion(deferredPrompt){
+var btnAdd = document.getElementById('AppInstall');
+function showInstallPromotion(deferredPrompt) {
     btnAdd.style.display = 'block';
-    btnAdd.addEventListener('click', function(e) {
+    btnAdd.addEventListener('click', function (e) {
         btnAdd.style.display = 'none';
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          deferredPrompt = null;
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
         });
-        });
+    });
 }
 
-window.addEventListener('appinstalled', function() {
-  app.logEvent('a2hs', 'installed');
+window.addEventListener('appinstalled', function () {
+    app.logEvent('a2hs', 'installed');
 });
 if (window.matchMedia('(display-mode: standalone)').matches) {
-  console.log('display-mode is standalone');
+    console.log('display-mode is standalone');
+}
+/**
+ * detect online offline
+ */
+function loaded() {
+    if (navigator.onLine) {
+        $("#footer").attr("class", "ONLINE");
+        console.log("ONLINE");
+    }
+    else {
+        $("#footer").attr("class", "OFFLINE");
+        console.log("OFFLINE");
+    }
 }
 
 var erreur = "<div class='erreur danger'><i class='fas fa-exclamation-triangle'></i> </div>";
@@ -241,13 +254,13 @@ function openPopup() {
                 'position': 'relative',
                 'top': '-10px'
             })
-            showHeader=true;
+            showHeader = true;
         } else {
             $(".header").css({
                 'position': 'relative',
                 'top': '-75px'
             })
-            showHeader=false;
+            showHeader = false;
         }
 
     });

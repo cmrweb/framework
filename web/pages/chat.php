@@ -1,6 +1,11 @@
 <?php
 needLog();
 $getuser = new User("id!=$userid");?>
+
+<div id="online_user">
+
+</div>
+
 <span id="search" class="btn primary">search</span>
 <input placeholder="username" autocomplete="off" spellcheck="false" type='text' id='keyword' name="keyword" onkeyup='autocomplet()'>
 <div id='list'></div>
@@ -45,6 +50,8 @@ $getuser = new User("id!=$userid");?>
     $(document).ready(() => {
         $('.messenger').hide();
         $('#search').hide();
+        var id = <?=$userid?>;
+        onlineUser('user',id)
     })
     function autocomplet() {
         var min_length = 1; 
@@ -81,4 +88,5 @@ $getuser = new User("id!=$userid");?>
          var data =$('#sendTo').val();
         ajaxSelect('select/chat',data);
     }
+
 </script>

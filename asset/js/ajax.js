@@ -7,6 +7,7 @@ function ajaxRequest(action, currentdata = null) {
             data: { currentdata },
             success: function (currentdata) {
                 //console.log(currentdata);
+                if($('#chat'))
                 $('#chat').scrollTop($('#chat')[0].scrollHeight);
             }
         });
@@ -44,6 +45,30 @@ function ajaxSelect(action, currentdata = null) {
                         $("#send").prop('disabled', false);
                         $('#send').html("send");
                         $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                    }
+                }
+            })
+        }, 5000);
+}
+function onlineUser(action, currentdata = null) {
+    var cacheData;
+   var auto_refresh = setInterval(
+        function () {
+            if(xhr && xhr.onreadystatechange  != null){
+                xhr.cancel();
+            }
+           var xhr =  $.ajax({
+                url: 'ajax/' + action,
+                type: 'POST',
+                data: { currentdata },
+                success: function (currentdata) {
+                    if (currentdata !== cacheData) {
+                        var regex = /(?<name>\<section).*(?<end>\<\/section\>)/gm;
+                        var found = currentdata.match(regex);
+                        //console.log(found);
+                        cacheData = found;
+                        $('#online_user').html(found);
+                       
                     }
                 }
             })

@@ -26,6 +26,12 @@ COMMUN
     height:200px; 
     margin:-90px 0 0; 
     }
+.ONLINE{
+    background: var(--dark);
+}
+.OFFLINE{
+    background: var(--danger);
+}
 @font-face {
     font-family: "mukta";
     src: url(../fonts/Mukta-Regular.ttf);
@@ -550,6 +556,12 @@ CHAT
 #list section:hover{
     background: #d3d3d3;
     cursor: pointer;
+}
+.circle{
+    color: #46b700;
+    border: 1px solid #000;
+    border-radius: 50%;
+    font-size: 10px;
 }
 
 /*****************************************************************************************

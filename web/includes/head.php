@@ -23,7 +23,7 @@ include '_inc.php';
 	<script src="<?= ROOT_DIR . JS_DIR ?>ajax.js"></script>
 		
 </head>
-<body>
+<body onload="loaded()">
 
    
 
