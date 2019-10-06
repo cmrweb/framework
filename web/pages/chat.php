@@ -1,6 +1,9 @@
 <?php
 needLog();
 $getuser = new User("id!=$userid");?>
+
+<input autocomplete="off" spellcheck="false" type='text' id='keyword' name="keyword" onkeyup='autocomplet()'>
+<ul id='name_list_id'></ul>
 <section class="messenger">
 <i data-user="<?=$userid?>" id="delete" class="fas fa-times-circle "></i>
 <section id="chat">
@@ -19,6 +22,8 @@ $getuser = new User("id!=$userid");?>
 </div>
 <?= $html->formClose();?>
 </section>
+
+
 <script>
     $('#send').on('click', (e) => {
         e.preventDefault()
@@ -38,4 +43,32 @@ $getuser = new User("id!=$userid");?>
         ajaxSelect('select/chat');
         $('#chat').scrollTop($('#chat')[0].scrollHeight);
     })
+    function autocomplet() {
+        var min_length = 1; // min caracters to display the autocomplete
+        var keyword = $('#keyword').val();
+        if (keyword.length > min_length) {
+            $.ajax({
+                url: 'ajax/search',
+                type: 'POST',
+                data: {
+                    keyword: keyword
+                },
+                success: function(data) {
+                    var regex = /(?<name>\<section)\D*.*(?<end>\<\/section\>)/gm;
+                        var found = data.match(regex);
+                        data = found;
+                    //console.log(data)
+                    $('#name_list_id').show();
+                    $('#name_list_id').html(data);
+                }
+            });
+        } else {
+            $('#name_list_id').hide();
+        }
+    }
+    function set_item(id, username) {
+        console.log(id+","+username)
+        $('#keyword').val(username);
+        $('#name_list_id').hide();
+    }
 </script>

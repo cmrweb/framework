@@ -57,6 +57,6 @@ class Chat
     public function deletePrivate($data)
     {
         $this->pdo = new DB;
-        $this->pdo->delete('chat', "sendto=" . $data);
+        $this->pdo->delete('chat', "sendto={$data} OR sendby={$data}");
     }
 }

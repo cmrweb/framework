@@ -15,7 +15,7 @@ class DB
             if (!$order) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where ORDER BY `id` asc");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where order by id desc");
                 $req->execute();
@@ -128,7 +128,7 @@ class DB
     {
         if ($where) {
             $query = "DELETE FROM $table WHERE $where";
-            echo $query;
+            //echo $query;
             $req = $this->pdo->prepare("$query");
             $req->execute();
             return $this;
