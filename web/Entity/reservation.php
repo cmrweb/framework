@@ -48,6 +48,15 @@ class Reservation
     public function delete($data)
     {
         $this->pdo = new DB;
+<<<<<<< Updated upstream:web/Entity/reservation.php
         $this->pdo->delete('reservation', "id=" . $data);
+=======
+        $this->pdo->delete('chat', "id=" . $data);
+    }
+    public function deletePrivate($data)
+    {
+        $this->pdo = new DB;
+        $this->pdo->delete('chat', "sendto={$data} OR sendby={$data}");
+>>>>>>> Stashed changes:web/Entity/chat.php
     }
 }

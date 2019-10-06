@@ -416,6 +416,48 @@ POSITION
     text-align:center;
     margin: auto;
 }
+<<<<<<< Updated upstream
+=======
+.header{
+   position: relative;
+   top: -75px; 
+}
+/*****************************************************************************************
+CHAT
+*****************************************************************************************/
+#chat{
+    overflow: auto;
+    box-shadow: #ccc 0 2px 3px;
+    margin: 5px auto;
+    max-height: 380px;
+    width: 100%;
+}
+.chat-send h4{
+    text-align: right;
+    padding: 0 6px;
+}
+.chat-receive h4{
+    text-align: left;
+    padding: 0 6px;
+}
+
+.chat p{
+    min-height: fit-content;
+    padding: 10px;
+}
+.chat small{
+    margin: 0;
+}
+.loader{
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	border-radius: 25px;
+	border: 6px solid rgb(138, 138, 138);
+}
+>>>>>>> Stashed changes
 
 
 /*****************************************************************************************
