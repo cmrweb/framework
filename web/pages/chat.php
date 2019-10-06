@@ -38,6 +38,8 @@ $getuser = new User("id!=$userid");?>
     })
     $("#search").on("click",(e)=>{
         document.location.reload(true);
+        // $('#keyword').show();
+        // $('#search').hide();
     })
     $(document).ready(() => {
         $('.messenger').hide();
