@@ -537,6 +537,20 @@ CHAT
     bottom: 0;
     right: 0;
 }
+#keyword{
+    text-align: center;
+}
+#list section{
+    text-align: center;
+    padding: 5px;
+    width: 199px;
+    background: #f2f2f2;
+    border: 1px solid;
+}
+#list section:hover{
+    background: #d3d3d3;
+    cursor: pointer;
+}
 
 /*****************************************************************************************
 PC DISPLAY

@@ -2,8 +2,8 @@
 needLog();
 $getuser = new User("id!=$userid");?>
 <span id="search" class="btn primary">search</span>
-<input autocomplete="off" spellcheck="false" type='text' id='keyword' name="keyword" onkeyup='autocomplet()'>
-<ul id='list'></ul>
+<input placeholder="username" autocomplete="off" spellcheck="false" type='text' id='keyword' name="keyword" onkeyup='autocomplet()'>
+<div id='list'></div>
 <section class="messenger">
 <i data-user="<?=$userid?>" id="delete" class="fas fa-times-circle "></i>
 <section id="chat">
@@ -30,6 +30,7 @@ $getuser = new User("id!=$userid");?>
             var id = +$('#sendTo').val();
             ajaxSelect('select/chat',id)
         }
+        
 
     })
     $("#delete").on("click",(e)=>{

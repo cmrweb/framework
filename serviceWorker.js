@@ -8,7 +8,7 @@ self.addEventListener('install',async event =>{
 self.addEventListener('fetch', event =>{
     const req = event.request;
     event.respondWith(fileCache(req));
-    if ( event.request.url.indexOf( '/chat/' ) !== -1 ) {
+    if ( event.request.url.indexOf( '/chat' ) !== -1 ) {
         return false;
     }
 });

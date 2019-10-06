@@ -10,6 +10,7 @@ function ajaxRequest(action, currentdata = null) {
                 $('#chat').scrollTop($('#chat')[0].scrollHeight);
             }
         });
+        
     } else {
         $.ajax({
             url: "ajax/" + action,
