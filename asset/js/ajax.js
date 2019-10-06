@@ -17,15 +17,19 @@ function ajaxRequest(action, currentdata = null) {
             success: function (currentdata) {
                 //console.log(currentdata);
                 $('#chat').html(currentdata);
+            
             }
         });
     }
 }
 function ajaxSelect(action, currentdata = null) {
-    var cacheData;//(?<name>\<section).*(?<end>\<\/section\>)
-    var auto_refresh = setInterval(
+    var cacheData;
+   var auto_refresh = setInterval(
         function () {
-            $.ajax({
+            if(xhr && xhr.onreadystatechange  != null){
+                xhr.cancel();
+            }
+           var xhr =  $.ajax({
                 url: 'ajax/' + action,
                 type: 'POST',
                 data: { currentdata },

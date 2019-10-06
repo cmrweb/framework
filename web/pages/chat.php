@@ -1,7 +1,7 @@
 <?php
 needLog();
 $getuser = new User("id!=$userid");?>
-
+<span id="search" class="btn primary">search</span>
 <input autocomplete="off" spellcheck="false" type='text' id='keyword' name="keyword" onkeyup='autocomplet()'>
 <ul id='list'></ul>
 <section class="messenger">
@@ -27,6 +27,8 @@ $getuser = new User("id!=$userid");?>
             ajaxRequest('insert/chat', data);
             $("#send").prop('disabled', true);
             $('#send').html("<span class='loader'></span>");
+            var id = +$('#sendTo').val();
+            ajaxSelect('select/chat',id)
         }
 
     })
@@ -34,8 +36,12 @@ $getuser = new User("id!=$userid");?>
         var data = $("#delete").attr('data-user');
         ajaxRequest('delete/chat', data);
     })
+    $("#search").on("click",(e)=>{
+        document.location.reload(true);
+    })
     $(document).ready(() => {
         $('.messenger').hide();
+        $('#search').hide();
     })
     function autocomplet() {
         var min_length = 1; 
@@ -64,7 +70,8 @@ $getuser = new User("id!=$userid");?>
     }
     function set_item(id, username) {
         console.log(id+","+username)
-        $('#keyword').val(username);
+        $('#keyword').hide();
+        $('#search').show();
         $('.messenger').show();
         $('#sendTo').val(id);
         $('#list').hide();           

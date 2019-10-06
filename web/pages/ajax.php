@@ -46,6 +46,7 @@ if (isset($_POST))
                                     "xlarge chat chat-send"
                                 );
                         endforeach;
+                        exit();
                     }
                     break;
                 default:
