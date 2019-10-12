@@ -32,6 +32,11 @@ COMMUN
 .OFFLINE{
     background: var(--danger);
 }
+main section.large.light{
+    display: flex;
+    flex-direction: column;
+
+}
 @font-face {
     font-family: "mukta";
     src: url(../fonts/Mukta-Regular.ttf);
@@ -638,5 +643,9 @@ PC DISPLAY
     }
     .menu{
         display: none;
+    }
+    main section.large.light{
+        display: block;
+    
     }
 }
