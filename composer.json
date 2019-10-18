@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "twig/twig": "^2.0"
+    },
     "version": "0.03",
     "license": "MIT"
 }

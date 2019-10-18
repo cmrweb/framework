@@ -1,5 +1,10 @@
 <?php
 
+$loader = new \Twig\Loader\FilesystemLoader('web/templates');
+$twig = new \Twig\Environment($loader, [
+    'cache' => false//'/tmp',
+]);
+
 switch ($url) {
     case '':
     require 'web/pages/home.php';
