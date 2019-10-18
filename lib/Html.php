@@ -40,10 +40,16 @@ class Html extends Form{
         }
 
 
-    public function a(string $link,string $text,string $class=""){
+    public function a(string $link,string $text,bool $blank=false,string $class=""){
         if($class){
+            if($blank){
+                return  "<a class=\"$class\" href=\"$link\" target='_blank'>$text</a>";
+            }else
             return  "<a class=\"$class\" href=\"$link\">$text</a>";
         }else{
+            if($blank){
+                return  "<a href=\"$link\" target='_blank'>$text</a>";
+            }else
             return  "<a href=\"$link\">$text</a>";
         }
        

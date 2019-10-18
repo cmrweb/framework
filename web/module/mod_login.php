@@ -10,10 +10,12 @@ if (isset($_POST['send'])) {
             if($pass){
                 $_SESSION['user'] = [
                     "id" => $value['user_id'],
-                    "name" => $value['username']
+                    "name" => $value['username'],
+                    "admin" => $value['admin']
                 ];
                 $user_id = $_SESSION['user']['id'];
                 $user_name = $_SESSION['user']['name'];
+                $user_admin = $_SESSION['user']['admin'];
                $msg= 'connected'; 
                header("Location: index.php");
             }else{
@@ -30,8 +32,8 @@ if (isset($_POST['send'])) {
 
 
 $form = $html->formOpen('', 'post', 'medium dark formLog') .
-    $html->input('text', 'username_Log', 'Nom d\'utilisateur', 'entrer votre nom') .
-    $html->input('password', 'password_Log', 'mot de passe') .
+    $html->input('text', 'username_Log', 'Nom d\'utilisateur',"secureName", 'entrer votre nom') .
+    $html->input('password', 'password_Log', 'mot de passe',"secureName") .
     $html->button('submit', 'primary center', 'se connecter', 'send') .
     $html->p($msg).
     $html->formClose();

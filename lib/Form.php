@@ -65,8 +65,13 @@ public function button($type,$color,$label='',$name='',$id=''){
     }
    
 }
-public function textarea($row,$name,$label='',$id=''){
-    
+public function textarea($row,$name,$label='',$id='',$value=NULL){
+    if($value){
+        return  "<div class=\"form\">
+        <label for=\"$id\">$label</label>
+        <textarea rows=\"$row\" name=\"$name\" class=\"textarea\" id=\"$id\">$value</textarea>
+        </div> ";
+    }else
     return  "<div class=\"form\">
     <label for=\"$id\">$label</label>
     <textarea rows=\"$row\" name=\"$name\" class=\"textarea\" id=\"$id\"></textarea>

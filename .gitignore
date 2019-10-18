@@ -1,5 +1,7 @@
 
 test2_sql.php
 Test_sql.php
-
 /vendor/
+/tmp/
+/bin/
+composer.*

@@ -22,11 +22,11 @@ if (isset($_POST['send']) && !isset($file["error"])) {
                     try {
                         if (isset($id)) {
                             $db = new DB;
-                            $db->insert('cmr_post(user_id,parent_id,titre,post,img)', "{$user_id},$id,'{$_POST['title']}','{$_POST['msg']}','$fileDbName'");
+                            $db->insert('cmr_post', ["user_id"=>$user_id,"id"=>$id,"title"=>$_POST['title'],"msg"=>$_POST['msg'],"img"=>$fileDbName]);
                         header('Refresh: 0');
                         } else {
                             $db = new DB;
-                            $db->insert('cmr_post(user_id,titre,post,img)', "{$user_id},'{$_POST['title']}','{$_POST['msg']}','$fileDbName'");
+                            $db->insert('cmr_post', ["user_id"=>$user_id,"title"=>$_POST['title'],"msg"=>$_POST['msg'],"img"=>$fileDbName]);
                         header('Refresh: 0');
                         }
                     } catch (Exception $e) {
@@ -48,11 +48,11 @@ if (isset($_POST['send']) && isset($file["error"])) {
         try {
             $db = new DB;
             if (isset($id)) {
-                $db->insert('cmr_post(user_id,parent_id,titre,post)', "{$user_id},$id,'{$_POST['title']}','{$_POST['msg']}'");
+                $db->insert('cmr_post', ["user_id"=>$user_id,"id"=>$id,"title"=>$_POST['title'],"msg"=>$_POST['msg']]);
                 $msg = "Message envoyer";
             header('Refresh: 0');
             } else {
-                $db->insert('cmr_post(user_id,titre,post)', "{$user_id},'{$_POST['title']}','{$_POST['msg']}'");
+                $db->insert('cmr_post',["user_id"=>$user_id,"title"=>$_POST['title'],"msg"=>$_POST['msg']]);
                 $msg = "Message envoyer";
             header('Refresh: 0');
             }
@@ -67,7 +67,7 @@ if (isset($_POST['send']) && isset($file["error"])) {
 //     dump($_FILES['video']);
 // }
 // dump($_FILES['video']);
-
+echo$html->code("div","","background");
 $form = $html->code('section',
     $html->h('1','Message') .
     $html->formOpen('', 'post', 'large dark') .
@@ -78,7 +78,7 @@ $form = $html->code('section',
     $html->button('submit', 'primary center', 'envoyer', 'send') .
     $html->formClose() .
     $html->p($msg),
-    'dark small formArticle');
+    'dark small formArticle formBall');
 echo "<p class='newMsg'>nouveau message <i class=\"far fa-comment-alt\"></i></p>";
 echo $form;
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
-require 'Autoload.php';
+include 'Autoload.php';
 use cmr\autoload\Autoloader;
 Autoloader::register(); 
 $html = new Html();
