@@ -7,8 +7,7 @@ $twig = new \Twig\Environment($loader, [
 
 switch ($url) {
     case '':
-    echo $twig->render('home.twig', ['id' => $userid, 'name' => $username]);
-    //require 'web/pages/home.php';
+    require 'web/pages/home.php';
     break;
 
     case $url[0]=='article'AND empty($url[1]):
