@@ -1,5 +1,6 @@
 
 <?php
+echo $html->menu( ['Cours/Tuto'.$html->menu(["HTML/CSS"=>"https://formation.cmrweb.fr/","JavaScript"=>"https://formation.cmrweb.fr/javascript/","React"=>"https://react.cmrweb.fr/","angular"=>"https://angular.cmrweb.fr/",])=>"#"]);
 echo $html->h('2', !empty($username) ? 'Welcome Home ' . $username : 'Welcome Home', 'large').
 $html->code("section",
 $html->h('1',"cmrframework").
