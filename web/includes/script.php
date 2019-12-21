@@ -1,6 +1,7 @@
 
     <script src="<?= ROOT_DIR . JS_DIR ?>prism.js"></script>
     <script src="<?= ROOT_DIR . JS_DIR ?>script.js"></script>
+    
     <script>
         $(document).ready(()=>{
             $('.imgpreview').hide();

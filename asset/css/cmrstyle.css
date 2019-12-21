@@ -9,6 +9,14 @@ COMMUN
     --gold:#dfbc0e;
     --danger:#a00606;
 }
+@-webkit-keyframes spin{
+	0% {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}
+@keyframes spin{
+	0% {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+}
 * {
     box-sizing: border-box;
 }
@@ -18,11 +26,31 @@ COMMUN
     height:200px; 
     margin:-90px 0 0; 
     }
+.ONLINE{
+    background: var(--dark);
+}
+.OFFLINE{
+    background: var(--danger);
+}
+main section.large.light{
+    display: flex;
+    flex-direction: column;
+
+}
 @font-face {
     font-family: "mukta";
     src: url(../fonts/Mukta-Regular.ttf);
 }
-
+#AppInstall{
+    border: 1px solid #000;
+    border-radius: 25px;
+    padding: 6px;
+    width: 80px;
+    position: fixed;
+    top: 80px;
+    cursor: pointer;
+    right: 5px;
+}
 pre {
     border: 1px solid #fff;
 }
@@ -43,15 +71,25 @@ a {
     text-decoration: none;
     color:inherit;
 }
-p,span{
-    padding: 5px;
-}
+
 article.docs{
 width: 100%;
 }
+    ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #031c1d; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #031c1d; 
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #031c1d; 
+  }
 hr{
-    width: 30%;
-    margin-left: 25%;
+    width: 80%;
 }
 footer{
     display: block;
@@ -90,7 +128,7 @@ small{
 }
 
 .large {
-    margin: 0 auto;
+    margin: 5px auto;
     width: 80%;
 }
 .medium {
@@ -167,7 +205,7 @@ NAV
 *****************************************************************************************/
 .menu{
     position: fixed;
-    top: 45px;
+    top: 20px;
     left: 0;
     right: 0;
     font-size: 30px;
@@ -416,8 +454,6 @@ POSITION
     text-align:center;
     margin: auto;
 }
-<<<<<<< Updated upstream
-=======
 .header{
    position: relative;
    top: -75px; 
@@ -457,8 +493,82 @@ CHAT
 	border-radius: 25px;
 	border: 6px solid rgb(138, 138, 138);
 }
->>>>>>> Stashed changes
 
+.chat-send small{
+    text-align: right
+}
+.chat-send p{
+    min-height: fit-content;
+    padding: 10px;
+    background: #51c56e;
+    text-shadow: #000 1px 1px 3px;
+    color: #fff;
+    width: 50%;
+    border-radius: 0 0 0 50%;
+    position: relative;
+    left: 24%;
+}
+.chat-receive small{
+    text-align: left
+}
+.chat-receive p{
+    min-height: fit-content;
+    padding: 10px;
+    background: #3eaae6;
+    text-shadow: #000 1px 1px 3px;
+    color: #fff;
+    width: 50%;
+    border-radius: 0 0 50% 0;
+    position: relative;
+    right: 24%;
+}
+.loader:after{
+	content: '';
+	position: absolute;
+	top: -6px;
+	left: -6px;
+	right: -6px;
+	bottom: -6px;
+	border-radius: 25px;
+	border: 6px solid transparent;
+	border-top-color: rgb(70, 70, 70);
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+.chatform{
+    margin-bottom: 14px;
+}
+.chatInput{    margin: 21px 5px 10px 5px;
+    display: flex;
+}
+.chatInput button{    
+    margin: 21px 5px 10px 5px;
+}
+.messenger{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+#keyword{
+    text-align: center;
+}
+#list section{
+    text-align: center;
+    padding: 5px;
+    width: 199px;
+    background: #f2f2f2;
+    border: 1px solid;
+}
+#list section:hover{
+    background: #d3d3d3;
+    cursor: pointer;
+}
+.circle{
+    color: #46b700;
+    border: 1px solid #000;
+    border-radius: 50%;
+    font-size: 10px;
+}
 
 /*****************************************************************************************
 PC DISPLAY
@@ -466,6 +576,10 @@ PC DISPLAY
 
 
 @media screen and (min-width: 768px) {
+    .header{
+        position: relative;
+        top: -10px; 
+     }
     article.docs{
         margin: 40px 20% 50px 0;
         display: flex;
@@ -519,5 +633,20 @@ PC DISPLAY
         width: 200px;
         margin-top: 10px;
            
+    }
+    #chat{
+        overflow: auto;
+        min-height: 300px;
+        max-height: 380px;
+        box-shadow: #ccc 0 2px 3px;
+        margin: 5px auto;
+        width: 100%;
+    }
+    .menu{
+        display: none;
+    }
+    main section.large.light{
+        display: block;
+    
     }
 }
