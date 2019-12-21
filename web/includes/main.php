@@ -33,6 +33,8 @@ switch ($url) {
         require 'web/pages/ajax.php';
         break;
 
+    
+
     default:
         echo 'ERREUR 404';
         break;
