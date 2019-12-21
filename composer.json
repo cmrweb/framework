@@ -9,7 +9,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "twig/twig": "^2.0",
+        "sendinblue/api-v3-sdk": "^6.1.0"
+    },
     "version": "0.03",
     "license": "MIT"
 }

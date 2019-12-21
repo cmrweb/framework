@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
-require 'Autoload.php';
+include 'Autoload.php';
 use cmr\autoload\Autoloader;
 Autoloader::register(); 
 $html = new Html();
@@ -10,7 +10,7 @@ include 'lib/function.php';
 $dotenv = Dotenv\Dotenv::create(__DIR__);;
 $dotenv->overload();
 //dump($_ENV);
-define('ROOT_DIR',$_ENV['ROOT_PATH']);
+define('ROOT_DIR', '/'.$_ENV['ROOT_PATH']);
 define('CSS_DIR', '/asset/css/');
 define('JS_DIR', '/asset/js/');
 define('IMG_DIR', '/asset/img/');

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 16 juin 2019 à 21:11
--- Version du serveur :  5.7.19
--- Version de PHP :  7.1.9
+-- Généré le :  sam. 05 oct. 2019 à 12:11
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,6 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `owner` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat`
+--
+
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE IF NOT EXISTS `chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) NOT NULL,
+  `message` text NOT NULL,
+  `date` datetime NOT NULL DEFAULT '2019-10-03 00:00:00',
+  `sendby` int(11) NOT NULL,
+  `sendto` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `cmr_code`
 --
 
@@ -36,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `cmr_code` (
   `code` varchar(255) NOT NULL,
   `demo` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `cmr_code`
@@ -67,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `cmr_code_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `cmr_code_category`
@@ -104,33 +135,7 @@ CREATE TABLE IF NOT EXISTS `cmr_hashtag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tag` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `cmr_hashtag`
---
-
-INSERT INTO `cmr_hashtag` (`id`, `tag`) VALUES
-(1, '#test'),
-(2, '#beta');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `cmr_post`
---
-
-DROP TABLE IF EXISTS `cmr_post`;
-CREATE TABLE IF NOT EXISTS `cmr_post` (
-  `post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) DEFAULT '0',
-  `user_id` int(11) NOT NULL,
-  `titre` varchar(128) NOT NULL,
-  `post` text NOT NULL,
-  `img` varchar(20) DEFAULT NULL,
-  `like_count` int(11) DEFAULT '0',
-  PRIMARY KEY (`post_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -144,8 +149,55 @@ CREATE TABLE IF NOT EXISTS `cmr_user` (
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `admin_lvl` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `post`
+--
+
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE IF NOT EXISTS `post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `post` text,
+  `img` varchar(50) DEFAULT NULL,
+  `category` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `post`
+--
+
+INSERT INTO `post` (`id`, `parent_id`, `user_id`, `title`, `post`, `img`, `category`) VALUES
+(9, NULL, 2, 'ad', 'adad', NULL, NULL),
+(10, NULL, 2, 'banner', 'jsbrjs', '71873a51ba.jpg', NULL),
+(5, NULL, 2, 'scsc', 'test 33', '80fc8bbbfe.jpg', NULL),
+(6, NULL, 1, 'plus', 'test', '6eddb6b141.png', NULL),
+(11, NULL, 2, 'test', 'test', 'be2e858ffa.jpg', NULL),
+(8, NULL, 1, 'cmrweb logo', 'ceci est le nouveau logo cmrweb', '7976c121cf.png', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produit`
+--
+
+DROP TABLE IF EXISTS `produit`;
+CREATE TABLE IF NOT EXISTS `produit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `description` text,
+  `livraison` varchar(255) DEFAULT NULL,
+  `category` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
