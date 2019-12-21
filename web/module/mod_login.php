@@ -19,7 +19,7 @@ if (isset($_POST['send'])) {
                $msg= 'connected'; 
                header("Location: index.php");
             }else{
-                $msg='error mp ou pseudo';
+                $msg='erreur mdp ou pseudo';
             }
             }
         } else {
