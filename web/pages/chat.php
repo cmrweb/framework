@@ -51,22 +51,7 @@ $getuser = new User("id!=$userid");?>
         ajaxRequest('delete/chat', data);
     })
 
-    function autocomplet() {
-        var min_length = 1; // min caracters to display the autocomplete
-        var keyword = $('#keyword').val();
-        if (keyword.length > min_length) {
 
-    $("#search").on("click",(e)=>{
-        document.location.reload(true);
-        // $('#keyword').show();
-        // $('#search').hide();
-    })
-    $(document).ready(() => {
-        $('.messenger').hide();
-        $('#search').hide();
-        var id = <?=$userid?>;
-        onlineUser('user',id)
-    })
     function autocomplet() {
         var min_length = 1; 
         var keyword = $('#keyword').val();
