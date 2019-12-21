@@ -3,7 +3,7 @@
  
  
 
- [doc video](https://www.youtube.com/watch?v=Lm_Fg96LNuI&feature=youtu.be)
+ [doc video](https://www.youtube.com/watch?v=kbLOpv2vWo4&t=563s)
 
  
   * Install
