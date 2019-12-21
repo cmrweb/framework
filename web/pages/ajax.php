@@ -29,6 +29,7 @@ if (isset($_POST))
             switch ($url[2]) {
                 case 'chat':
                     // chat 
+
                     $data =$_POST['currentdata'];
                     $chat = new chat("sendby IN ($userid,$data) AND sendto IN ($userid,$data)");
                     if ($chat->getData()) {
@@ -74,6 +75,7 @@ if (isset($_POST))
             //echo "<section>". json_encode($search->result)."</section>";
             foreach ($search->result as $key => $value) :?>
               <section onclick="set_item('<?=$value['id']?>','<?=$value['username']?>')"><?=$value['username']?></section> 
+
         <?php endforeach;
          break;
 

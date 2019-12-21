@@ -465,6 +465,7 @@ CHAT
     overflow: auto;
     box-shadow: #ccc 0 2px 3px;
     margin: 5px auto;
+    max-height: 380px;
     width: 100%;
 }
 .chat-send h4{

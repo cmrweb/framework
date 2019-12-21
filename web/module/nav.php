@@ -24,7 +24,9 @@ $html->menu([
     'Home'=> ROOT_DIR ,
     'Docs'=> ROOT_DIR."/docs",
     'Article'=> ROOT_DIR."/post",
-    'Chat'=> ROOT_DIR."/chat"
+
+    'Article Editor'=> ROOT_DIR."/edit"
+
 ],
 'dark'),
 'nav navrad');
