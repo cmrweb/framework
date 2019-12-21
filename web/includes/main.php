@@ -32,6 +32,8 @@ switch ($url) {
     require 'web/pages/traitement.php';
     break;
 
+    
+
     default:
      echo 'ERREUR 404';
      break;
