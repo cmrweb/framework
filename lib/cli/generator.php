@@ -1,7 +1,8 @@
 <?php
 $argLower=strtolower($argv[1]);
 $argUc=ucfirst($argv[1]);
-$sql = "<?php\n
+$sql = "
+<?php\n
 /*
 SQL Part
     *launch page and remove the following code
