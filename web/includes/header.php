@@ -34,5 +34,5 @@ include 'web/module/nav.php';
 <p id="AppInstall" class="btn-gold">PWA <i class="fas fa-cloud-download-alt"></i></p>
 </header>
 
-<main class="Mtop">
+<main>
 

@@ -213,7 +213,6 @@ NAV
 }
 .nav{
     display: none;
-    margin: 10px;
 }
 
 .navrad ul:first-child > li:first-child > a{
@@ -606,7 +605,6 @@ PC DISPLAY
     }
     .nav{
         display: block;
-        margin: 10px;
     }
     
     .navrad ul:first-child > li:first-child > a{

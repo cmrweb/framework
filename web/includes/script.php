@@ -28,8 +28,9 @@
         });
         
         slideContent(".home",2000,500,2);
-        slideContent(".title",-500,200,2);
-       // slideContent(".card",2000,1000,1);
+        slideContent(".title",-500,500,2);
+        slideTopContent(".header",-1000,200,2);
+        slideTopContent(".card",-1000,1000,1);
     </script>
     </body>
 
