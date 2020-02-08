@@ -105,6 +105,7 @@ color: #be9b0e;
 }
 small{
     display: block;
+    padding: 5px 0;
 }
 .erreur{
     text-align: center;

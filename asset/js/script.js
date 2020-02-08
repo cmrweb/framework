@@ -41,16 +41,21 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
 /**
  * detect online offline
  */
-function loaded() {
-    if (navigator.onLine) {
-        $("#footer").attr("class", "ONLINE");
-        console.log("ONLINE");
-    }
-    else {
-        $("#footer").attr("class", "OFFLINE");
-        console.log("OFFLINE");
-    }
-}
+function updateOnlineStatus(msg) {
+    var status = document.getElementById("footer");
+    var condition = navigator.onLine ? "ONLINE" : "OFFLINE";
+    status.setAttribute("class", condition);
+    log.appendChild(document.createTextNode("Évènement : " + msg + " ; état=" + condition + "\n"));
+  }
+  function loaded() {
+    updateOnlineStatus("load");
+    document.body.addEventListener("offline", function () {
+      updateOnlineStatus("offline")
+    }, false);
+    document.body.addEventListener("online", function () {
+      updateOnlineStatus("online")
+    }, false);
+  }
 
 var erreur = "<div class='erreur danger'><i class='fas fa-exclamation-triangle'></i> </div>";
 var regExEmail = /^[a-z0-9._-]{1,}@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
