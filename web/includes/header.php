@@ -14,8 +14,8 @@ if(!isset($_SESSION['user'])){
 echo 
 $html->code('nav',
 $html->menu([
-    'Sign in' => '',
-    'Login'=> '' 
+    'Inscription' => '',
+    'Connexion'=> '' 
 ],
 'primary popupBtn'),
 'nav navConn');

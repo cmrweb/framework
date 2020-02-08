@@ -21,7 +21,7 @@
 <script src="<?= ROOT_DIR . JS_DIR ?>card3D.js"></script>
 
 <?= $html->code("section", $html->menu(['<h2>Cours/Tuto</h2>' . $html->menu(["HTML/CSS" => "https://formation.cmrweb.fr/", "JavaScript" => "https://formation.cmrweb.fr/javascript/", "React" => "https://react.cmrweb.fr/", "angular" => "https://angular.cmrweb.fr/",]) => "#"]), "tuto") .
-    $html->h('2', !empty($username) ? 'Welcome Home ' . $username : 'Welcome Home', 'large') .
+    $html->h('2', !empty($username) ? 'Bienvenu(e) ' . $username : 'Bienvenu(e)', 'large') .
     $html->code(
         "section",
         $html->h('1', "cmrframework") .
@@ -31,15 +31,16 @@
             $html->menu(['<h2>Installation</h2>' . $html->menu([
                     "installer composer" => "https://getcomposer.org/download/",
                     $html->p("Dans l'invite de commande taper : ").
-                    "composer create-project cmrweb/cmrframework:dev-master" => "#"]) => "#"]) .
+                    "composer create-project cmrweb/cmrframework:dev-master nom_du_projet" => ""]) => "#"]) .
             $html->menu(['<h2>Utilisation</h2>' . $html->menu([
-                "cd lib/cli" => "#", 
-                "php generator.php Voiture nom-varchar-150 couleur-varchar-100 porte-int" => "#", 
-                "change .env info" => "#", "add route in web\includes\main.php" => "#", 
-                "launch page for create table" => "#", 
-                "comment or remove the sql part" => "#", 
-                "uncomment the PHP code" => "#", 
-                "replace 'name' by your input name" => "#"]) => "#"]) .
+                "Dans le dossier cmrframework :" => "#", 
+                "cd lib" => "#", 
+                "cli/cmrgen Table field1-varchar-150 field2-char-100 field3-int" => "#", 
+                "chager les valeur du <strong>.env</strong>" => "#", 
+                "ajouter votre route dans : web\includes\main.php" => "#", 
+                "rendez vous sur l'url pour créer la table" => "#", 
+                "supprimer du code la partie SQL" => "#", 
+                "passer votre route à chaque header(Location)" => "#"]) => "#"]) .
             $html->a("https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing", "docs pdf", true),
-        "large  tuto home"
+        "large tuto home"
     );

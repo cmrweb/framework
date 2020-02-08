@@ -5,8 +5,8 @@ $html->menu([
     'Docs'=> ROOT_DIR."/docs",
     'Article'=> ROOT_DIR."/post"
 ],
-'dark'),
-'nav navrad');
+''),
+'nav navClassic');
 elseif($admin):
     echo $html->code('nav',
     $html->menu([
@@ -16,8 +16,8 @@ elseif($admin):
         'Article Editor'=> ROOT_DIR."/edit",
         'Chat'=> ROOT_DIR."/chat"
     ],
-    'dark'),
-    'nav navrad');
+    ''),
+    'nav navClassic');
 elseif($userid&&!$admin):
 echo $html->code('nav',
 $html->menu([
@@ -28,6 +28,6 @@ $html->menu([
     'Article Editor'=> ROOT_DIR."/edit"
 
 ],
-'dark'),
-'nav navrad');
+''),
+'nav navClassic');
 endif;

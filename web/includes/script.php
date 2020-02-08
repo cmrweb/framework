@@ -28,6 +28,7 @@
         });
         
         slideContent(".home",2000,500,2);
+        slideContent(".tuto",-2000,500,2);
         slideContent(".title",-500,500,2);
         slideTopContent(".header",-1000,200,2);
         slideTopContent(".card3D",-1000,1000,1);

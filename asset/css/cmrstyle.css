@@ -224,6 +224,7 @@ NAV
 .navrad ul ul li:last-child a{
     border-radius: 0 0 20px 20px;
 }
+
 .sidenav{
     position: fixed;
 }
@@ -263,7 +264,16 @@ NAV
     padding: 5px 30px 5px 30px;
     width: 100%;                
 }
-
+.navClassic ul{
+    flex-direction: row;
+    position: relative;
+    top: -50px;
+}
+.navClassic ul li a{
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+}
 /*****************************************************************************************
 COLOR
 *****************************************************************************************/

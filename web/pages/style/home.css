@@ -9,9 +9,9 @@
     transition: all linear 1s;
     border-radius: 25px;
     box-shadow: #78787859 2px 2px 3px;
-    background: #3e8486e0;
-    color: #f5f5f5;
-    text-shadow: #000 1px 1px 3px;
+    background: #dedfe4b5;
+    color: #262626;
+    text-shadow: #ffffff 1px 1px 3px;
     z-index: 800;
 }
 
@@ -102,7 +102,7 @@
     text-align: center;
     border: 1px solid #000;
     border-radius: 25px;
-    background: #3e8486e0;
+    background: #dedfe4;
     color: #f5f5f5;
     text-shadow: #000 1px 1px 3px;
 }
@@ -119,6 +119,12 @@
 }
 .home.tuto ul li ul li,.home.tuto p {
     text-align: left;
+    color:#000;
+    text-shadow: #ffffff 1px 1px 3px;
+}
+a{
+    color:#000;
+    text-shadow: #ffffff 1px 1px 3px;
 }
 @media(min-width: 1024px) {
     .card3D {
