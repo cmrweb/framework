@@ -1,5 +1,5 @@
 <style>
-    .card {
+    .card3D {
         perspective: 800px;
         position: relative;
         width: 80%;
@@ -16,17 +16,17 @@
         z-index: 800;
     }
 
-    .card img {
+    .card3D img {
         width: 150px;
         border-radius: 40px;
     }
 
-    .card section {
+    .card3D section {
         display: flex;
 
     }
 
-    .card section div {
+    .card3D section div {
         width: 100%;
         text-align: center;
     }
@@ -120,12 +120,12 @@
     }
 
     @media(min-width: 1024px) {
-        .card {
+        .card3D {
             width: 40%;
         }
     }
 </style>
-<div class="card">
+<div class="card3D">
     <div id="topright"></div>
     <div id="top"></div>
     <div id="topleft"></div>
@@ -151,30 +151,60 @@
         En <strong>freelance</strong> depuis <strong>décembre 2017.</strong><br>Disponible par contact mail.</p>
 </div>
 <script>
-    document.getElementById("top").addEventListener("mouseover", e => {
-        document.querySelector('.card').style.transform = "rotate3d(-77, -2, 0, 45deg)";
-        document.querySelector('.card').style.boxShadow = "#78787859 2px 15px 3px";
+    function card3D(id) {
+        const card = document.querySelector('.card3D');
+        element = [
+            card.querySelector("#top"),
+            card.querySelector("#bottom"),
+            card.querySelector("#topright"),
+            card.querySelector("#topleft"),
+            card.querySelector("#bottomright"),
+            card.querySelector("#bottomleft")
+        ];
+        for (let i = 0; i < element.length; i++) {
+            console.log(element[i])
+        }
+    
+        let transform, shadow;
+        switch (id) {
+            case "top":
+                transform = "rotate3d(-77, -2, 0, 45deg)";
+                shadow = "#78787859 2px 15px 3px";
+                break;
+            case "bottom":
+                transform = "rotate3d(0, 0, 0, 45deg)";
+                shadow = "#78787859 2px 2px 3px";
+                break;
+            case "topright":
+                transform = "rotate3d(-9, -38, 2, 45deg)";
+                shadow = "#78787859 -15px 10px 3px";
+                break;
+            case "topleft":
+                transform = "rotate3d(-9, 22, 2, 45deg)";
+                shadow = "#78787859 15px 10px 3px";
+                break;
+            case "bottomright":
+                transform = "rotate3d(-7, 60, 0, -45deg)";
+                shadow = "#78787859 -15px -10px 3px";
+                break;
+            case "bottomleft":
+                transform = "rotate3d(7, 15, 0, 45deg)";
+                shadow = "#78787859 15px -10px 3px";
+                break;
+            default:
+                break;
+        }
+        document.getElementById(id).addEventListener("mouseover", e => {
+        card.style.transform = transform;
+        card.style.boxShadow = shadow;
     })
-    document.getElementById("bottom").addEventListener("mouseover", e => {
-        document.querySelector('.card').style.transform = "rotate3d(0, 0, 0, 45deg)";
-        document.querySelector('.card').style.boxShadow = "#78787859 2px 2px 3px";
-    })
-    document.getElementById("topright").addEventListener("mouseover", e => {
-        document.querySelector('.card').style.transform = "rotate3d(-9, -38, 2, 45deg)";
-        document.querySelector('.card').style.boxShadow = "#78787859 -15px 10px 3px";
-    })
-    document.getElementById("topleft").addEventListener("mouseover", e => {
-        document.querySelector('.card').style.transform = "rotate3d(-9, 22, 2, 45deg)";
-        document.querySelector('.card').style.boxShadow = "#78787859 15px 10px 3px";
-    })
-    document.getElementById("bottomright").addEventListener("mouseover", e => {
-        document.querySelector('.card').style.transform = "rotate3d(-7, 60, 0, -45deg)";
-        document.querySelector('.card').style.boxShadow = "#78787859 -15px -10px 3px";
-    })
-    document.getElementById("bottomleft").addEventListener("mouseover", e => {
-        document.querySelector('.card').style.transform = "rotate3d(7, 15, 0, 45deg)";
-        document.querySelector('.card').style.boxShadow = "#78787859 15px -10px 3px";
-    })
+    }
+    card3D("top");
+    card3D("bottom");
+    card3D("topright");
+    card3D("topleft");
+    card3D("bottomright");
+    card3D("bottomleft");
 </script>
 
 <?=
