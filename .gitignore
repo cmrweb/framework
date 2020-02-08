@@ -5,3 +5,5 @@ Test_sql.php
 /tmp/
 /bin/
 composer.*
+favicon.ico
+manifest.json
