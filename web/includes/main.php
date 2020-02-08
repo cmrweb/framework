@@ -32,8 +32,13 @@ switch ($url) {
     case $url[0] == 'ajax':
         require 'web/pages/ajax.php';
         break;
+    case $url[0] == 'entretien':
+        require 'web/pages/entretien.php';
+        break;
 
-    
+        case $url[0] == 'animal':
+            require 'web/pages/Animal.php';
+            break;
 
     default:
         echo 'ERREUR 404';

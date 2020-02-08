@@ -17,6 +17,7 @@ include '_inc.php';
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR.CSS_DIR?>prism.css">
 	<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR.CSS_DIR?>normalize.css">
+	<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR.CSS_DIR?>cmrSlide.css">
 	<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR.CSS_DIR?>cmrstyle.css">
 	<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR.CSS_DIR?>style.css">
 	<script src="<?= ROOT_DIR . JS_DIR ?>jquery-3.2.1.min.js"></script>

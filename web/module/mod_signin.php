@@ -33,8 +33,8 @@ if (isset($_POST['send'])) {
 
 
 $form = $html->formOpen('', 'post', 'medium dark formSign') .
-    $html->input('text', 'username_Sign', 'Nom d\'utilisateur','secureName') .
-    $html->input('password', 'password_Sign', 'mot de passe','pass secureMax') .
+    $html->input('text', 'username_Sign', 'Nom d\'utilisateur','nameSecure') .
+    $html->input('password', 'password_Sign', 'mot de passe','pass passSecure') .
     $html->input('password', 'password_Verif','confirmer mot de passe','passConfirm') .
     $html->button('submit', 'primary center', 's\'inscrire', 'send') .
     $html->p($msg).

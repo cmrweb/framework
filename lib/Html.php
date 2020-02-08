@@ -13,8 +13,13 @@ class Html extends Form{
         }
         
     }
-    public function h($num,$text){
-        return  "<h$num>$text</h$num>";
+    public function h($num,$text,$class=null){
+        if($class){
+            return  "<h$num class='$class'>$text</h$num>";
+        }else{
+            return  "<h$num>$text</h$num>";
+        }
+        
     }
     public function p($text){
         return  "<p>$text</p>";

@@ -35,7 +35,7 @@ COMMUN
 main section.large.light{
     display: flex;
     flex-direction: column;
-
+    padding: 40px;
 }
 @font-face {
     font-family: "mukta";
@@ -197,8 +197,8 @@ pre.medium {
   
 } */
 .articles{
-    display: inline-block;
-    width: 20%;
+    display: inline-block!important;
+    width: 33%;
 }
 /*****************************************************************************************
 NAV

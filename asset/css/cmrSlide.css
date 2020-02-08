@@ -1,0 +1,19 @@
+.slideContainer img
+{
+    height: 300px;
+    width: 100vw;
+}
+.slideContainer
+{
+    height: 300px;
+    width: 100vw;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.slideContainer div
+{
+    display: flex;
+    position: relative;
+    left: 0;
+    transition: all 1s ease 0s;
+}
