@@ -164,7 +164,7 @@
         for (let i = 0; i < element.length; i++) {
             console.log(element[i])
         }
-    
+
         let transform, shadow;
         switch (id) {
             case "top":
@@ -195,9 +195,9 @@
                 break;
         }
         document.getElementById(id).addEventListener("mouseover", e => {
-        card.style.transform = transform;
-        card.style.boxShadow = shadow;
-    })
+            card.style.transform = transform;
+            card.style.boxShadow = shadow;
+        })
     }
     card3D("top");
     card3D("bottom");
