@@ -8,11 +8,7 @@
             "email": "33638879+cmrweb@users.noreply.github.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {
-        "twig/twig": "^2.0",
-        "sendinblue/api-v3-sdk": "^6.1.0"
-    },
+    "require": {},
     "version": "0.03",
     "license": "MIT"
 }
