@@ -9,7 +9,17 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "3.4.0",
+        "symfony/polyfill-mbstring":"dev-master",
+        "symfony/polyfill-ctype":"1.11.0",
+        "ralouphie/getallheaders":"3.0.3",
+        "psr/http-message":"dev-master",
+        "phpoption/phpoption":"1.5.0",
+        "guzzlehttp/psr7":"1.x-dev",
+        "guzzlehttp/promises":"dev-master",
+        "guzzlehttp/guzzle":"dev-master"
+    },
     "version": "dev-master",
     "license": "MIT"
 }
