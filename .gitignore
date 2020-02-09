@@ -1,4 +1,5 @@
 .env
+/vendor/
 /tmp/
 /bin/
 composer.*
