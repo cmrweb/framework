@@ -1,7 +1,11 @@
 <?php
 switch ($url) {
     case '':
-        require 'web/pages/init.php';
+        if(!empty($_SESSION['init'])){
+            require 'web/pages/home.php';
+        }else{
+            require 'web/pages/init.php';
+        }
         break;
 
     case $url[0] == 'home' and empty($url[1]):

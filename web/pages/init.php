@@ -8,21 +8,23 @@ $dbPASS = $_ENV['DB_PASS'];
 
 if(isset($_POST['send'])){
     //réecrire .env
-    if(!empty($_POST['dbHost']) && !empty($_POST['dbName']) && !empty($_POST['dbUser'])){
+    if(!empty($_POST['dbHost']) && !empty($_POST['dbName']) && !empty($_POST['dbUser']) && !empty($_POST['username']) && !empty($_POST['pwd'])){
+        $user = $_POST['username'];
+        $pwd = password_hash($_POST['pwd'],PASSWORD_BCRYPT);
         $dbHOST = $_POST['dbHost'];
         $dbNAME = $_POST['dbName'];
         $dbUSER = $_POST['dbUser'];
         $dbPASS = $_POST['dbPwd'];
-        $envContent = "APP_ENV=\"dev\"
+        $envContent = "
+        APP_ENV=\"dev\"
         DB_HOST=\"{$dbHOST}\"
         DB_NAME=\"{$dbNAME}\"
         DB_USER=\"{$dbUSER}\"
         DB_PASS=\"{$dbPASS}\"
         ROOT_PATH=\"/{$_POST['projectName']}\"";
-        dump($envContent);
-        file_put_contents(".env",$envContent); 
-        header("Location: ./");  
-    }
+        //dump($envContent);
+        file_put_contents(".env",$envContent);   
+    
     //create database if not exist
     $pdo = new PDO("mysql:host={$dbHOST};","{$dbUSER}","{$dbPASS}");
     $createDB = $pdo->prepare("CREATE DATABASE IF NOT EXISTS {$dbNAME}");
@@ -38,17 +40,20 @@ if(isset($_POST['send'])){
       `admin_lvl` int(11) DEFAULT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-    
-    DROP TABLE IF EXISTS `cmr_post`;
-    CREATE TABLE IF NOT EXISTS `cmr_post` (
-      `post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-      `parent_id` int(11) DEFAULT '0',
-      `user_id` int(11) NOT NULL,
-      `titre` varchar(128) NOT NULL,
-      `post` text NOT NULL,
-      `img` varchar(20) DEFAULT NULL,
-      `like_count` int(11) DEFAULT '0',
-      PRIMARY KEY (`post_id`)
+
+    INSERT INTO `cmr_user` (`username`, `password`, `admin_lvl`) 
+    VALUES('{$user}','{$pwd}',1);
+
+    DROP TABLE IF EXISTS `post`;
+    CREATE TABLE IF NOT EXISTS `post` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `parent_id` int(11) DEFAULT NULL,
+      `user_id` int(11) DEFAULT NULL,
+      `title` varchar(255) DEFAULT NULL,
+      `post` text,
+      `img` varchar(50) DEFAULT NULL,
+      `category` int(11) DEFAULT NULL,
+      PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
     
     DROP TABLE IF EXISTS `online_user`;
@@ -59,6 +64,9 @@ if(isset($_POST['send'])){
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;COMMIT;");  
     $tableUser->execute();
+
+    $_SESSION['init']=true;
+}
 }
 
 
@@ -68,17 +76,42 @@ label {
     display: block
 }
 </style>
-<form method="post">
-    <label for="projectName">Nom du projet</label>
-    <input type="text" id="projectName" name="projectName" value="<?=$projectName?>">
+<form method="post" class='large primary formContainer'>
+<h1>Initialiation du projet</h1>
+    <div class="form">
+       <label for="projectName">Nom du projet</label>
+    <input class="input" type="text" id="projectName" name="projectName" value="<?=$projectName?>"> 
+    </div>
+    
+    <div class="form">
     <label for="dbHost">Hote de la Base de données</label>
-    <input type="text" id="dbHost" name="dbHost" value="<?=$dbHOST?>">
-    <label for="dbName">Nom de la Base de données</label>
-    <input type="text" id="dbName" name="dbName" value="<?=$dbNAME?>">
-    <label for="dbUser">Nom d'utilisateur de la Base de données'</label>
-    <input type="text" id="dbUser" name="dbUser" value="<?=$dbUSER?>">
-    <label for="dbPwd">Mot de passe de la Base de données</label>
-    <input type="text" id="dbPwd" name="dbPwd" value="<?=$dbPASS?>">
+    <input class="input" type="text" id="dbHost" name="dbHost" value="<?=$dbHOST?>">
+    </div>
 
-    <button name="send">Valider</button>
+    <div class="form">
+    <label for="dbName">Nom de la Base de données</label>
+    <input class="input" type="text" id="dbName" name="dbName" value="<?=$dbNAME?>">
+    </div>
+
+    <div class="form">
+    <label for="dbUser">Nom d'utilisateur de la Base de données</label>
+    <input class="input" type="text" id="dbUser" name="dbUser" value="<?=$dbUSER?>">
+    </div>
+
+    <div class="form">
+    <label for="dbPwd">Mot de passe de la Base de données</label>
+    <input class="input" type="text" id="dbPwd" name="dbPwd" value="<?=$dbPASS?>">
+    </div>
+
+    <div class="form">
+    <label for="username">Nom d'utilisateur</label>
+    <input class="input" type="text" id="username" name="username">
+    </div>
+
+    <div class="form">
+    <label for="pwd">Mot de passe</label>
+    <input class="input" type="text" id="pwd" name="pwd">
+    </div>
+
+    <button class="btn success large center m4" name="send">Valider</button>
 </form>
