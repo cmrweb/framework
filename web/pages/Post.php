@@ -1,4 +1,5 @@
 <?php
+//controller
 needLog();
 needAdmin();
 $msg = "";
@@ -49,6 +50,8 @@ if (isset($_POST['delete'])) {
     $Post->delete($_POST['id']);
     header("Location: ./edit");
 }
+
+//vue
 
 echo $html->code("div", "", "background");
 echo $html->code(
