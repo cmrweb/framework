@@ -1,6 +1,4 @@
 .env
-/vendor/
 /tmp/
 /bin/
-composer.*
 /asset/img/
