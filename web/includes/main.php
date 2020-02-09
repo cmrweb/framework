@@ -1,9 +1,12 @@
 <?php
 switch ($url) {
     case '':
-        require 'web/pages/home.php';
+        require 'web/pages/init.php';
         break;
 
+    case $url[0] == 'home' and empty($url[1]):
+        require 'web/pages/home.php';
+        break;
     case $url[0] == 'docs' and empty($url[1]):
         require 'web/pages/docs.php';
         break;
@@ -36,9 +39,9 @@ switch ($url) {
         require 'web/pages/entretien.php';
         break;
 
-        case $url[0] == 'animal':
-            require 'web/pages/Animal.php';
-            break;
+    case $url[0] == 'animal':
+        require 'web/pages/Animal.php';
+        break;
 
     default:
         echo 'ERREUR 404';

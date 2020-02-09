@@ -25,9 +25,9 @@
     $html->code(
         "section",
         $html->h('1', "cmrframework") .
-            $html->a("https://github.com/cmrweb/cmrweb", "lien GitHub", true) .
+            $html->a("https://github.com/cmrweb/cmrweb",$html->img(ROOT_DIR.IMG_DIR."github.png","lien github cmrweb","logo"), true) .
             $html->h('4', "cmrframework inBulid") .
-            $html->a("https://www.youtube.com/watch?v=kbLOpv2vWo4&t=563s", "docs video", true) .
+            $html->iframe("https://www.youtube.com/embed/kbLOpv2vWo4") .
             $html->menu(['<h2>Installation</h2>' . $html->menu([
                     "installer composer" => "https://getcomposer.org/download/",
                     $html->p("Dans l'invite de commande taper : ").

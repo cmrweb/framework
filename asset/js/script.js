@@ -45,7 +45,6 @@ function updateOnlineStatus(msg) {
     var status = document.getElementById("footer");
     var condition = navigator.onLine ? "ONLINE" : "OFFLINE";
     status.setAttribute("class", condition);
-    log.appendChild(document.createTextNode("Évènement : " + msg + " ; état=" + condition + "\n"));
   }
   function loaded() {
     updateOnlineStatus("load");
