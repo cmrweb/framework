@@ -1,9 +1,12 @@
 <?php
 switch ($url) {
     case '':
-        require 'web/pages/home.php';
+        require 'web/pages/init.php';
         break;
 
+    case $url[0] == 'home' and empty($url[1]):
+        require 'web/pages/home.php';
+        break;
     case $url[0] == 'docs' and empty($url[1]):
         require 'web/pages/docs.php';
         break;
@@ -30,17 +33,24 @@ switch ($url) {
         break;
 
     case $url[0] == 'ajax':
-        require 'web/pages/ajax.php';
-        break;
-    case $url[0] == 'entretien':
-        require 'web/pages/entretien.php';
+        require 'web/pages/controller/ajax.php';
         break;
 
-        case $url[0] == 'animal':
-            require 'web/pages/Animal.php';
-            break;
+   
+
+case $url[0] == 'test' and empty($url[1]):
+    require 'web/pages/controller/test.php';
+    require 'web/pages/test.php';
+    break;
+
+   
+
+case $url[0] == 'test' and empty($url[1]):
+    require 'web/pages/controller/test.php';
+    require 'web/pages/test.php';
+    break;
 
     default:
-        echo 'ERREUR 404';
-        break;
+    echo 'ERREUR 404';
+    break;
 }

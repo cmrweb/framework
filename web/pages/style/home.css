@@ -13,11 +13,11 @@
     color: #262626;
     text-shadow: #ffffff 1px 1px 3px;
     z-index: 800;
+    max-width: 500px;
 }
 
 .card3D img {
-    width: 150px;
-    border-radius: 40px;
+    display: none;
 }
 
 .card3D section {
@@ -122,12 +122,35 @@
     color:#000;
     text-shadow: #ffffff 1px 1px 3px;
 }
+img.logo{
+    width: 150px;
+    height: 150px;
+    transition: all .5s linear;
+}
+img.logo:hover{
+    width: 160px;
+    height: 160px;
+}
 a{
     color:#000;
     text-shadow: #ffffff 1px 1px 3px;
 }
+@media(min-width: 1200px) {
+    .card3D {
+        width: 25%;
+    }    
+}
 @media(min-width: 1024px) {
     .card3D {
         width: 40%;
+    }    
+}
+@media(min-width: 768px) {
+    .card3D img {
+        display: block;
+        width: 150px;
+        height: 180px;
+        border-radius: 40px;
     }
+    
 }

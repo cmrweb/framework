@@ -66,7 +66,11 @@ class Html extends Form{
      * @param string $alt
      * @return void
      */
-    public function img($src,$alt='',$class=''){
+    public function img($src,$alt='image',$class=''){
         return  "<img class=\"$class\" src=\"$src\" alt=\"$alt\" id=\"$alt\">";
+    }
+
+    public function iframe($src){
+        return "<iframe src='$src'  width='560' height='315' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
     }
 }

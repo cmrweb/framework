@@ -1,32 +1,29 @@
 <?php
-class Entretien
+class Test
 {
     
     private $pdo;
     private $data;
     private $id;
-private $num;
-private $question;
-private $reponse;
-private $page;
+private $nom;
+private $prenom;
+private $age;
 
     function __construct($bool = NULL)
     {
         $this->pdo = new DB;
-        $this->pdo->select('*', 'entretien', $bool);
+        $this->pdo->select('*', 'test', $bool);
         foreach ($this->pdo->result as $value) {
             $this->data[$value['id']] = [
                 'id' => $value['id'],
-'num'=>$value['num'],
-'question'=>$value['question'],
-'reponse'=>$value['reponse'],
-'page'=>$value['page'],
+'nom'=>$value['nom'],
+'prenom'=>$value['prenom'],
+'age'=>$value['age'],
   ];
  $this->id[] = $value['id'];
-$this->num[] = $value['num'];
-$this->question[] = $value['question'];
-$this->reponse[] = $value['reponse'];
-$this->page[] = $value['page'];
+$this->nom[] = $value['nom'];
+$this->prenom[] = $value['prenom'];
+$this->age[] = $value['age'];
 
         }
         return $this->data;
@@ -39,16 +36,16 @@ $this->page[] = $value['page'];
     {
 
         $this->pdo = new DB;
-        $this->pdo->insert('entretien',$data);
+        $this->pdo->insert('test',$data);
     }
     public function update($data,$id)
     {
         $this->pdo = new DB;
-        $this->pdo->update('entretien',$data,$id);
+        $this->pdo->update('test',$data,$id);
     }
     public function delete($data)
     {
         $this->pdo = new DB;
-        $this->pdo->delete('entretien',"id=".$data);
+        $this->pdo->delete('test',"id=".$data);
     }
 }
