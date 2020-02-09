@@ -8,6 +8,7 @@
             "email": "33638879+cmrweb@users.noreply.github.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {},
     "version": "dev-master",
     "license": "MIT"
