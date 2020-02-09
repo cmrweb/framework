@@ -15,7 +15,7 @@ private $category;
     function __construct($bool = NULL)
     {
         $this->pdo = new DB;
-        $this->pdo->select('*', 'Post', $bool);
+        $this->pdo->select('*', 'post', $bool);
         foreach ($this->pdo->result as $value) {
             $this->data[$value['id']] = [
                 'id' => $value['id'],
@@ -45,16 +45,16 @@ $this->category[] = $value['category'];
     {
 
         $this->pdo = new DB;
-        $this->pdo->insert('Post',$data);
+        $this->pdo->insert('post',$data);
     }
     public function update($data,$id)
     {
         $this->pdo = new DB;
-        $this->pdo->update('Post',$data,$id);
+        $this->pdo->update('post',$data,$id);
     }
     public function delete($data)
     {
         $this->pdo = new DB;
-        $this->pdo->delete('Post',"id=".$data);
+        $this->pdo->delete('post',"id=".$data);
     }
 }

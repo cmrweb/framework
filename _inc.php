@@ -16,7 +16,6 @@ define('JS_DIR', '/asset/js/');
 define('IMG_DIR', '/asset/img/');
 define('MOD_DIR', '/web/module/');
 define('PAGES_DIR', '/web/pages/');
-
 $url="";
 if(isset($_GET['url'])){
     $url=explode('/',$_GET['url']);
