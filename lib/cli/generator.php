@@ -1,14 +1,13 @@
 <?php
 $argLower=strtolower($argv[1]);
 $argUc=ucfirst($argv[1]);
-$sql = "
-<?php\n
+$controller = "<?php\n
 /*
-SQL Part
-    *launch page and remove the following code
+Partie SQL
+    *supprimer le code ci dessous apres le lancement de la page
 */\n
 \$db = new DB;
-\$query=\" CREATE TABLE IF NOT EXISTS {$argLower}
+\$query=\"CREATE TABLE IF NOT EXISTS {$argLower}
 (
     id INT PRIMARY KEY AUTO_INCREMENT,\n";
 for ($i = 2; $i < count($argv); $i++) {
@@ -17,133 +16,156 @@ for ($i = 2; $i < count($argv); $i++) {
     switch ($field[1]) {
         case "char":
         if (isset($field[2])) {
-            $sql .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+            $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
         } else {
-            $sql .= "`{$field[0]}` varchar(255) NOT NULL,\n";
+            $controller .= "`{$field[0]}` varchar(255) NOT NULL,\n";
         }
         break;
         case "varchar":
         if (isset($field[2])) {
-            $sql .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+            $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
         } else {
-            $sql .= "`{$field[0]}` varchar(255) NOT NULL,\n";
+            $controller .= "`{$field[0]}` varchar(255) NOT NULL,\n";
         }
         break;
         default:
         if (isset($field[2])) {
-            $sql .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
+            $controller .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
         } else {
-            $sql .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
+            $controller .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
         }
         break;
     }
 }
-$sql = substr($sql, 0, -2);
-$sql .= ")\";\n
+$controller = substr($controller, 0, -2);
+$controller .= ")\";\n
 \$req=\$db->pdo->prepare(\$query);\n
 \$req->execute();\n
 /*
-Quick test 
-    *add route in web\includes\main.php
-    *launch page for create table
-    *comment or remove the sql part
+    Fin de la partie SQL
 */
 \${$argv[1]}=new {$argUc}();
 if (isset(\$_POST['send'])) {\n\${$argv[1]}->setData([";
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
-    $sql .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
+    $controller .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
 }
-$sql = substr($sql, 0, -2);
-$sql .= "]); \n
-header(\"Location: ./\");
+$controller = substr($controller, 0, -2);
+$controller .= "]); \n
+header(\"Location: $argLower\");
 }
 if (isset(\$_POST['update'])) {\${$argv[1]}->update([";
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
-    $sql .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
+    $controller .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
 }
-$sql = substr($sql, 0, -2);
+$controller = substr($controller, 0, -2);
 
-$sql .= "],\"id=\".\$_POST['id']);\n
-header(\"Location: ./\");
+$controller .= "],\"id=\".\$_POST['id']);\n
+header(\"Location: $argLower\");
 }
 if (isset(\$_POST['delete'])) {
     \${$argv[1]}->delete(\$_POST['id']);
-    header(\"Location: ./\");
+    header(\"Location: $argLower\");
 }
+?>";
 
-echo \$html->h('1', 'Create') .
-    \$html->formOpen('', 'post', 'large primary') .";
+//echo $controller;
+
+$pathctrl = '../../web/pages/controller/';
+$controllerFile = $pathctrl . "c_".$argLower . '.php';
+file_put_contents($controllerFile, $controller);
+/**
+ *  GENERATE ROUTE
+ */
+$route = substr(file_get_contents("../../web/module/route.php"), 0, -48);
+$newRoute = $route."
+
+case \$url[0] == '$argLower' and empty(\$url[1]):
+    require 'web/pages/controller/c_$argLower.php';
+    require 'web/pages/$argLower.php';
+    break;
+
+    default:
+    echo 'ERREUR 404';
+    break;
+}";
+file_put_contents("../../web/module/route.php", $newRoute);
+/**
+ *  GENERATE VUE
+ */
+
+$vue ="
+<!-- Ajouter $argLower à l'url. -->
+<link rel='stylesheet' href=\"<?= ROOT_DIR . PAGES_DIR ?>style/{$argLower}.css\">
+<form method='post' class='large primary'>\n<h1>Create</h1>\n";
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
         case "char":
-        $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+        $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"text\" class='input' name=\"{$field[0]}\"  id=\"{$field[0]}\">\n</div>\n";
         break;
         case "varchar":
-            $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"text\" class='input' name=\"{$field[0]}\"  id=\"{$field[0]}\">\n</div>\n";
             break;
         case "int":
-            $sql .= "\$html->input(\"number\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"number\" class='input' name=\"{$field[0]}\" id=\"{$field[0]}\">\n</div>\n";
             break;
         case "date":
-            $sql .= "\$html->input(\"date\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"date\" class='input' name=\"{$field[0]}\" id=\"{$field[0]}\">\n</div>\n";
             break;
         case "text":
-            $sql .= "\$html->textarea(\"5\", \"{$field[0]}\", \"{$field[0]}\") .\n";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<textarea rows=\"5\" class='input' name=\"{$field[0]}\" id\"{$field[0]}\">\n</div>\n";
             break;
     }
 }
-$sql .= "
-    \$html->button('submit', 'success center', 'envoyer', 'send') .
-    \$html->formClose();
-
-if(\${$argv[1]}->getData()){
-    echo \$html->h('1', 'Read Update Delete');
-    foreach (\${$argv[1]}->getData() as \$key => \$value) :
-    echo \$html->formOpen('', 'post', 'small primary') .
-            \$html->input(\"hidden\", \"id\", \"\", \"\", \$value['id'],\$value['id']) . ";
+$vue .= "<button type='submit' class='success center' name='send'>envoyer</button>
+    </form>
+<?php if(\${$argv[1]}->getData()): ?>
+    <h1>Read Update Delete</h1>
+<?php  foreach (\${$argv[1]}->getData() as \$key => \$value) : ?>
+    <form method='post' class='small primary'>
+            <input type=\"hidden\" name=\"id\" label=\"\" class=\"\" placeholder=\"<?=\$value['id']?>\"  value=\"<?=\$value['id']?>\">\n";
 for ($i = 2; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
         case "char":
-        $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
+        $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"text\" name=\"{$field[0]}\"  id=\"{$field[0]}\" class=\"input\" placeholder=\"<?=\$value['{$field[0]}']?>\" value=\"<?=\$value['{$field[0]}']?>\"> \n</div>\n";
         break;
         case "varchar":
-            $sql .= "\$html->input(\"text\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"text\" name=\"{$field[0]}\"  id=\"{$field[0]}\" class=\"input\" placeholder=\"<?=\$value['{$field[0]}']?>\" value=\"<?=\$value['{$field[0]}']?>\"> \n</div>\n";
             break;
         case "int":
-            $sql .= "\$html->input(\"number\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"number\" name=\"{$field[0]}\" id=\"{$field[0]}\" class=\"input\" placeholder=\"<?=\$value['{$field[0]}']?>\" value=\"<?=\$value['{$field[0]}']?>\"> \n</div>\n";
             break;
         case "date":
-            $sql .= "\$html->input(\"date\", \"{$field[0]}\", \"{$field[0]}\", \"\", \$value['{$field[0]}'],\$value['{$field[0]}']) .\n ";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"date\"name=\"{$field[0]}\" class=\"input\" id=\"{$field[0]}\" placeholder=\"<?=\$value['{$field[0]}']?>\" value=\"<?=\$value['{$field[0]}']?>\"> \n</div>\n";
             break;
         case "text":
-            $sql .= "\$html->textarea(\"5\", \"{$field[0]}\", \"{$field[0]}\").\n";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<textarea rows=\"5\" name=\"{$field[0]}\" class=\"input\" id=\"{$field[0]}\"><?=\$value['{$field[0]}']?></textarea>\n</div>\n";
             break;
     }
 }
-$sql .= "\$html->button('submit', 'success center', 'mettre a jour', 'update') .
-            \$html->button('delete', 'danger center', 'supprimer', 'delete') .
-            \$html->formClose();
-    endforeach;
-}
+$vue .= "<button type='submit' class='success center' name='update'>mettre a jour</button>
+        <button type='delete' class='danger center'  name='delete'>supprimer</button>
+        </form>
+<?php endforeach;
+endif;
 ";
-//echo $sql;
+$pathvue = '../../web/pages/';
+$vueFile = $pathvue . $argLower . '.php';
+file_put_contents($vueFile, $vue);
 
-$pathsql = '../../web/pages/';
-$sqlFile = $pathsql . $argv[1] . '.php';
-file_put_contents($sqlFile, $sql);
-
+$pathcss = '../../web/pages/style/';
+$cssFile = $pathcss . $argLower . '.css';
+file_put_contents($cssFile, "");
 /**
  * GENERATE CLASS
  */
-
 $class = "<?php
 class {$argUc}
 {\n    
@@ -202,7 +224,7 @@ $class .= "
 }";
 // echo $class;
 $pathClass = '../../web/Entity/';
-$classFile = $pathClass . $argv[1] . '.php';
+$classFile = $pathClass . $argUc . '.php';
 file_put_contents($classFile, $class);
 
-echo "Done!";
+echo "Generation des fichiers : \n->".$pathClass . $argUc . ".php \n-> ".$pathvue . $argLower . ".php \n-> ".$pathctrl . "c_".$argLower . ".php \n-> ".$pathcss . $argLower . '.css';

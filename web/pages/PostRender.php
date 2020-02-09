@@ -1,10 +1,4 @@
 <?php
-if(isset($id)){
-    $Post = new Post("id=".$id);    
-}else{
-    $Post = new Post();
-}
-
 if ($Post->getData()) : ?>
     <section class="large light">
         <?= $html->h('1', 'Read');

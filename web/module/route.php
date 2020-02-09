@@ -4,7 +4,7 @@ switch ($url) {
         if(!empty($_SESSION['init'])){
             require 'web/pages/home.php';
         }else{
-            require 'web/pages/init.php';
+            require 'web/module/init.php';
         }
         break;
 
@@ -12,19 +12,23 @@ switch ($url) {
         require 'web/pages/home.php';
         break;
     case $url[0] == 'docs' and empty($url[1]):
+        require 'web/pages/controller/c_docs.php';
         require 'web/pages/docs.php';
         break;
 
     case $url[0] == 'edit' and empty($url[1]):
-        require 'web/pages/Post.php';
+        require 'web/pages/controller/c_post.php';
+        require 'web/pages/post.php';
         break;
 
     case $url[0] == 'post' and empty($url[1]):
-        require 'web/pages/PostRender.php';
+        require 'web/pages/controller/c_postRender.php';
+        require 'web/pages/postRender.php';
         break;
     case $url[0] == 'post' and !empty($url[1]):
         $id = $url[1];
-        require 'web/pages/PostRender.php';
+        require 'web/pages/controller/c_postRender.php';
+        require 'web/pages/postRender.php';
         break;
 
     case $url[0] == 'chat' and empty($url[1]):
@@ -37,20 +41,11 @@ switch ($url) {
         break;
 
     case $url[0] == 'ajax':
-        require 'web/pages/controller/ajax.php';
+        require 'web/pages/controller/c_ajax.php';
         break;
 
-   
-
 case $url[0] == 'test' and empty($url[1]):
-    require 'web/pages/controller/test.php';
-    require 'web/pages/test.php';
-    break;
-
-   
-
-case $url[0] == 'test' and empty($url[1]):
-    require 'web/pages/controller/test.php';
+    require 'web/pages/controller/c_test.php';
     require 'web/pages/test.php';
     break;
 

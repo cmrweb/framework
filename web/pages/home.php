@@ -1,3 +1,4 @@
+<?php $_SESSION['init']=true?>
 <link rel="stylesheet" href="<?= ROOT_DIR . PAGES_DIR ?>style/home.css">
 <div class="card3D">
     <section>

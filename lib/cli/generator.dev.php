@@ -72,7 +72,7 @@ if (isset(\$_POST['delete'])) {
 //echo $controller;
 
 $pathctrl = '../../web/pages/controller/';
-$controllerFile = $pathctrl . $argLower . '.php';
+$controllerFile = $pathctrl . "c_".$argLower . '.php';
 file_put_contents($controllerFile, $controller);
 /**
  *  GENERATE ROUTE
@@ -81,7 +81,7 @@ $route = substr(file_get_contents("../../web/includes/main.php"), 0, -48);
 $newRoute = $route."
 
 case \$url[0] == '$argLower' and empty(\$url[1]):
-    require 'web/pages/controller/$argLower.php';
+    require 'web/pages/controller/c_$argLower.php';
     require 'web/pages/$argLower.php';
     break;
 
@@ -224,4 +224,4 @@ $pathClass = '../../web/Entity/';
 $classFile = $pathClass . $argUc . '.php';
 file_put_contents($classFile, $class);
 
-echo "Generation des fichiers : \n->".$pathClass . $argUc . ".php \n-> ".$pathvue . $argLower . ".php \n-> ".$pathctrl . $argLower . ".php \n-> ".$pathcss . $argLower . '.css';
+echo "Generation des fichiers : \n->".$pathClass . $argUc . ".php \n-> ".$pathvue . $argLower . ".php \n-> ".$pathctrl . "c_".$argLower . ".php \n-> ".$pathcss . $argLower . '.css';
