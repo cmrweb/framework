@@ -7,6 +7,7 @@
 
  
   * Install
+    -  [WAMPServer](https://wampserver.com)
     -  [composer](https://getcomposer.org/download/)
     - composer create-project cmrweb/cmrframework:dev-master nom_du_projet 
 
