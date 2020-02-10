@@ -1,4 +1,4 @@
-# composer create-project cmrweb/cmrframework:dev-master nom_du_projet
+# cmrweb/cmrframework
 **[cmrframework](http://cmrweb.fr) inBulid**
  
  
