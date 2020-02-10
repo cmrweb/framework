@@ -18,10 +18,7 @@ $html->menu([
     'Connexion'=> '' 
 ],
 'primary popupBtn'),
-'nav navConn');
-    require_once '../'.ROOT_DIR.MOD_DIR.'mod_signin.php';
-    require_once '../'.ROOT_DIR.MOD_DIR.'mod_login.php';  
-    echo $msg;
+'nav navConn'); 
 }else{
     $form = $html->formOpen('', 'post') .
     $html->button('submit', 'primary navConn', '<i class="fas fa-times-circle"></i>', 'disc') .
@@ -29,6 +26,8 @@ $html->menu([
     
 echo $form;
 }
+require 'web/pages/controller/c_user.php';
+require 'web/pages/user.php';
 include 'web/module/nav.php';
 ?>
 <p id="AppInstall" class="btn-gold">PWA <i class="fas fa-cloud-download-alt"></i></p>

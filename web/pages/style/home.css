@@ -12,7 +12,7 @@
     background: #dedfe4b5;
     color: #262626;
     text-shadow: #ffffff 1px 1px 3px;
-    z-index: 800;
+    z-index: 10;
     max-width: 500px;
 }
 
@@ -116,6 +116,11 @@
     margin: 0;
     padding: 5px;
     transition: all linear 1s;
+}
+.tuto input{
+    display: block;
+    width: 80%;
+    margin: auto;
 }
 .home.tuto ul li ul li,.home.tuto p {
     text-align: left;

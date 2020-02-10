@@ -2,12 +2,15 @@
 switch ($url) {
     case '':
         require 'web/pages/controller/c_home.php';
-        require 'web/module/init.php';
+        require 'web/pages/home.php';
         break;
 
     case $url[0] == 'home' and empty($url[1]):
         require 'web/pages/controller/c_home.php';
         require 'web/pages/home.php';
+        break;
+    case $url[0] == 'dev' and empty($url[1]):
+        require 'web/pages/dev.php';
         break;
     case $url[0] == 'docs' and empty($url[1]):
         require 'web/pages/controller/c_docs.php';
@@ -41,6 +44,11 @@ switch ($url) {
     case $url[0] == 'ajax':
         require 'web/pages/controller/c_ajax.php';
         break;
+
+case $url[0] == 'user' and empty($url[1]):
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    break;
 
     default:
     echo 'ERREUR 404';

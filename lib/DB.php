@@ -3,10 +3,17 @@ class DB
 {
     public $pdo;
     public $result;
-    function __construct()
+    function __construct($newDB = null)
     {
-        $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
-        return $this->pdo;
+        if ($newDB) {
+            $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
+            $createDB = $this->pdo->prepare("CREATE DATABASE IF NOT EXISTS {$newDB}");
+            $createDB->execute();
+            return $this->pdo;
+        } else {
+            $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
+            return $this->pdo;
+        }
     }
     public function select(string $select, string $from, ?string $where = null, ?bool $order = false, ?bool $group = false): array
     {
@@ -144,28 +151,27 @@ class DB
         $query = "CREATE TABLE $table
         (
             id INT PRIMARY KEY NOT NULL,";
-for ($i = 0; $i < count($data); $i++) {
-    $field = implode("-", explode(" ", $data[$i]));
-    $field = explode("-", $field);
-    switch ($field[1]) {
-        case "char":
-        if (isset($field[2])) {
-            $query .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
-        } else {
-            $query .= "`{$field[0]}` varchar NOT NULL,\n";
+        for ($i = 0; $i < count($data); $i++) {
+            $field = implode("-", explode(" ", $data[$i]));
+            $field = explode("-", $field);
+            switch ($field[1]) {
+                case "char":
+                    if (isset($field[2])) {
+                        $query .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+                    } else {
+                        $query .= "`{$field[0]}` varchar NOT NULL,\n";
+                    }
+                    break;
+                default:
+                    if (isset($field[2])) {
+                        $query .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
+                    } else {
+                        $query .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
+                    }
+                    break;
+            }
         }
-        break;
-        default:
-        if (isset($field[2])) {
-            $query .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
-        } else {
-            $query .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
-        }
-        break;
-    }
-
-}
-    $query .= " )";
+        $query .= " )";
         $req = $this->pdo->prepare("$query");
         $req->execute();
         return $this;
