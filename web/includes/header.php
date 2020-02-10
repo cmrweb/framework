@@ -26,6 +26,8 @@ $html->menu([
     
 echo $form;
 }
+require 'web/pages/controller/c_user.php';
+require 'web/pages/user.php';
 include 'web/module/nav.php';
 ?>
 <p id="AppInstall" class="btn-gold">PWA <i class="fas fa-cloud-download-alt"></i></p>

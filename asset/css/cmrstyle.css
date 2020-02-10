@@ -94,6 +94,12 @@ width: 100%;
 hr{
     width: 80%;
 }
+header{
+    position: inherit;
+    z-index: -10;
+    top: 0px;
+    transition: all 2s linear 0s;
+}
 footer{
     display: block;
     text-align: center;
@@ -396,7 +402,12 @@ FORM
     position: absolute;
     top: 75px;
     right: 0;
+    width: 50%;
     z-index: 100;
+    padding: 10px;
+}
+.formSign h1,.formLog h1{
+    float: none;
 }
 .formtop{
     position: fixed;

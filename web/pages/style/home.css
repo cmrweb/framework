@@ -12,7 +12,7 @@
     background: #dedfe4b5;
     color: #262626;
     text-shadow: #ffffff 1px 1px 3px;
-    z-index: 800;
+    z-index: 10;
     max-width: 500px;
 }
 
