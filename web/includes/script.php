@@ -3,7 +3,7 @@
     <script src="<?= ROOT_DIR . JS_DIR ?>script.js"></script>
     <script src="<?= ROOT_DIR . JS_DIR ?>secureForm.js"></script>
     <!-- <script src="<?= ROOT_DIR . JS_DIR ?>cmrSlide.js"></script> -->
-    <script src="<?= ROOT_DIR . JS_DIR ?>slideContent.js"></script>
+    
     <script>
         $(document).ready(()=>{
             $('.imgpreview').hide();
@@ -26,12 +26,7 @@
             $('.imgpreview').show();
             readURL(this);
         });
-        
-        slideContent(".home",2000,500,2);
-        slideContent(".tuto",-2000,500,2);
-        slideContent(".title",-500,500,2);
-        slideTopContent(".header",-1000,200,2);
-        slideTopContent(".card3D",-1000,1000,1);
+
     </script>
     </body>
 

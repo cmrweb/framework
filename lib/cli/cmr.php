@@ -40,6 +40,17 @@ if (in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-
         
         exit");
     }
+} elseif ($argc != 3 && in_array($argv[1], array("connect","-connect","co","-co"))) {
+    echo 'Entree|oui|o non|n'."\n";
+    echo 'Generer le module de connexion ?';
+    $handle = fopen ('php://stdin','r');
+    $line = fgets($handle);
+    if(preg_match('/non|n/',trim($line))){
+        echo 'Annulé!';
+        exit;
+    }else if(preg_match('/oui|o|/',trim($line))){
+        require_once "user.module.php";
+    }
 } else {
     echo "Commande inconnue essayer help";
 }

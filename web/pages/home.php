@@ -26,7 +26,7 @@
     </form>
 
 <?php endif;
-require_once 'web/module/cmr.bot.php'; ?>
+// require_once 'web/module/cmr.bot.php'; ?>
 <?= $html->code("section", $html->menu(['<h2>Cours/Tuto</h2>' . $html->menu(["HTML/CSS" => "https://formation.cmrweb.fr/", "JavaScript" => "https://formation.cmrweb.fr/javascript/", "React" => "https://react.cmrweb.fr/", "angular" => "https://angular.cmrweb.fr/",]) => "#"]), "tuto") .
     $html->h('2', !empty($username) ? 'Bienvenu(e) ' . $username : 'Bienvenu(e)', 'large');
 ?>
@@ -64,3 +64,11 @@ require_once 'web/module/cmr.bot.php'; ?>
 
 
 </section>
+<script src="<?= ROOT_DIR . JS_DIR ?>slideContent.js"></script>
+<script>
+        slideContent(".home",2000,500,2);
+        slideContent(".tuto",-2000,500,2);
+        slideContent(".title",-500,500,2);
+        slideTopContent(".header",-1000,200,2);
+        slideTopContent(".card3D",-1000,1000,1);   
+</script>

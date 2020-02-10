@@ -18,10 +18,7 @@ $html->menu([
     'Connexion'=> '' 
 ],
 'primary popupBtn'),
-'nav navConn');
-    require_once '../'.ROOT_DIR.MOD_DIR.'mod_signin.php';
-    require_once '../'.ROOT_DIR.MOD_DIR.'mod_login.php';  
-    echo $msg;
+'nav navConn'); 
 }else{
     $form = $html->formOpen('', 'post') .
     $html->button('submit', 'primary navConn', '<i class="fas fa-times-circle"></i>', 'disc') .

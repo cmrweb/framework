@@ -56,7 +56,7 @@
 </style>
 <div id="bot">
 </div>
-<div id="bgCover" class="hide" onclick="openModal()"></div>
+
 <form method="post" id="contactModal" class="hide">
     <h1>Contact</h1>
     <div class="form">
@@ -95,17 +95,7 @@
         console.log(path);
     };
     nextStep(0);
-    //add step Contact add contact modal
-    let openModal = (id=null) => {
-        if(id){
-            document.getElementById(id).classList.toggle("hide");
-            document.getElementById("bgCover").classList.toggle("hide");
-        }else{
-            document.getElementById("contactModal").classList.toggle("hide");
-            document.getElementById("bgCover").classList.toggle("hide");
-        }
 
-    }
     //add dev 
     //add formation
     //add aide FAQ

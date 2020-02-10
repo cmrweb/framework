@@ -10,4 +10,6 @@ if ($Post->getData()) : ?>
                     (isset($id))?"article large light":"articles large light");
             endforeach; ?>
     </section>
+<?php else : ?>
+<h2>Connecter vous en administrateur pour ajouter des articles</h2>
 <?php endif;
