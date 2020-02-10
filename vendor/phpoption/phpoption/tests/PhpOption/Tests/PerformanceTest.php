@@ -2,10 +2,14 @@
 
 namespace PhpOption\Tests;
 
+use PhpOption\None;
+use PhpOption\Some;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group performance
  */
-class PerformanceTest extends \PHPUnit_Framework_TestCase
+class PerformanceTest extends TestCase
 {
     private $traditionalRepo;
     private $phpOptionRepo;
@@ -13,7 +17,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
     public function testSomeCase()
     {
         $traditionalTime = microtime(true);
-        for ($i=0; $i<10000; $i++) {
+        for ($i = 0; $i < 10000; $i++) {
             if (null === $rs = $this->traditionalRepo->findMaybe(true)) {
                 $rs = new \stdClass();
             }
@@ -21,8 +25,8 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
         $traditionalTime = microtime(true) - $traditionalTime;
 
         $phpOptionTime = microtime(true);
-        for ($i=0; $i<10000; $i++) {
-            $rs = $this->phpOptionRepo->findMaybe(true)->getOrElse(new \stdClass);
+        for ($i = 0; $i < 10000; $i++) {
+            $rs = $this->phpOptionRepo->findMaybe(true)->getOrElse(new \stdClass());
         }
         $phpOptionTime = microtime(true) - $phpOptionTime;
 
@@ -33,7 +37,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
     public function testNoneCase()
     {
         $traditionalTime = microtime(true);
-        for ($i=0; $i<10000; $i++) {
+        for ($i = 0; $i < 10000; $i++) {
             if (null === $rs = $this->traditionalRepo->findMaybe(false)) {
                 $rs = new \stdClass();
             }
@@ -41,8 +45,8 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
         $traditionalTime = microtime(true) - $traditionalTime;
 
         $phpOptionTime = microtime(true);
-        for ($i=0; $i<10000; $i++) {
-            $rs = $this->phpOptionRepo->findMaybe(false)->getOrElse(new \stdClass);
+        for ($i = 0; $i < 10000; $i++) {
+            $rs = $this->phpOptionRepo->findMaybe(false)->getOrElse(new \stdClass());
         }
         $phpOptionTime = microtime(true) - $phpOptionTime;
 
@@ -62,10 +66,8 @@ class TraditionalRepo
     public function findMaybe($success)
     {
         if ($success) {
-            return new \stdClass;
+            return new \stdClass();
         }
-
-        return null;
     }
 }
 
@@ -74,9 +76,9 @@ class PhpOptionRepo
     public function findMaybe($success)
     {
         if ($success) {
-            return new \PhpOption\Some(new \stdClass);
+            return new Some(new \stdClass());
         }
 
-        return \PhpOption\None::create();
+        return None::create();
     }
 }
