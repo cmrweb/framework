@@ -1,4 +1,4 @@
-# cmrframework
+# cmrweb/cmrframework
 **[cmrframework](http://cmrweb.fr) inBulid**
  
  
@@ -7,19 +7,21 @@
 
  
   * Install
+    -  [WAMPServer](https://wampserver.com)
     -  [composer](https://getcomposer.org/download/)
-    - composer create-project cmrweb/cmrframework:dev-master 
+    - composer create-project cmrweb/cmrframework:dev-master nom_du_projet 
 
   * Usage
-    - cd lib/cli
-    - php generator.php Voiture nom-varchar-150 couleur-varchar-100 porte-int 
-   
-    - change .env info
-    - add route in web\includes\main.php
-    - launch page for create table
-    - comment or remove the sql part
-    - uncomment the PHP code
-    - replace "name" by your input name
+    - cd lib
+    - cli/cmr
+    - cmr help
+    - cmr generate table nom-type-valeur nom-type-valeur-table.field
+ 
+    Créer une table utilisateur avec les champs nom, prenom, age.    
+    - cmr generate utilisateur nom-char-255 prenom-char-255 age-int-3
+    
+    Créer une table actif avec la clé étrangère de la table utilisateur et un champ date
+    - cmr generate actif user_id-int-11-utilisateur.id is_actif-date
  
 
  [docs pdf](https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing)
