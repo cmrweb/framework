@@ -15,22 +15,31 @@ for ($i = 3; $i < count($argv); $i++) {
     $field = explode("-", $field);
     switch ($field[1]) {
         case "char":
-        if (isset($field[2])) {
+        if (isset($field[2])&&!isset($field[3])) {
             $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
-        } else {
+        }elseif(isset($field[2])&&isset($field[3])) {
+            $foreignKey = preg_replace("/\./","(",$field[3]).")";
+            $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,FOREIGN KEY (`{$field[0]}`) REFERENCES {$foreignKey},\n";
+        }else {
             $controller .= "`{$field[0]}` varchar(255) NOT NULL,\n";
         }
         break;
         case "varchar":
-        if (isset($field[2])) {
+        if (isset($field[2])&&!isset($field[3])) {
             $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+        } elseif(isset($field[2])&&isset($field[3])) {
+            $foreignKey = preg_replace("/\./","(",$field[3]).")";
+            $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,FOREIGN KEY (`{$field[0]}`) REFERENCES {$foreignKey},\n";
         } else {
             $controller .= "`{$field[0]}` varchar(255) NOT NULL,\n";
         }
         break;
         default:
-        if (isset($field[2])) {
+        if (isset($field[2])&&!isset($field[3])) {
             $controller .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
+        } elseif(isset($field[2])&&isset($field[3])) {
+            $foreignKey = preg_replace("/\./","(",$field[3]).")";
+            $controller .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,FOREIGN KEY (`{$field[0]}`) REFERENCES {$foreignKey},\n";
         } else {
             $controller .= "`{$field[0]}` {$field[1]} NOT NULL,\n";
         }

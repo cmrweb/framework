@@ -10,7 +10,7 @@ if(isset($_POST['disc'])){
 ?>
 <i class="fas fa-bars menu"></i>
 <?php
-if(!isset($_SESSION['user'])){
+if(empty($_SESSION['user'])){
 echo 
 $html->code('nav',
 $html->menu([

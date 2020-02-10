@@ -43,6 +43,6 @@ switch ($url) {
         break;
 
     default:
-        echo 'ERREUR 404';
-        break;
+    echo 'ERREUR 404';
+    break;
 }
