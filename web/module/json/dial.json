@@ -1,18 +1,95 @@
 {
     "0": {
-        "question": "",
-        "reponse": [
+        "question": "Bonjour et bienvenu(e) !",
+        "reponses": [
             {
-                "text": "",
+                "text": "Bonjour",
+                "next": "vous"
+            },
+            {
+                "text": "Salut",
+                "next": "tu"
+            }
+        ]
+    },
+    "vous": {
+        "question": "Comment puis-je vous renseignez ?",
+        "reponses": [
+            {
+                "text": "Je chercher à vous contacter",
+                "next": "vous_contact"
+            },
+            {
+                "text": "Je chercher un Développeur",
                 "next": 0
             },
             {
-                "text": "",
+                "text": "Je chercher un Formateur",
                 "next": 0
             },
             {
-                "text": "",
+                "text": "j'ai besoin d'aide",
                 "next": 0
+            }
+        ]
+    },
+    "tu": {
+        "question": "Je peu t'aider ?",
+        "reponses": [
+            {
+                "text": "Je te contact comment ?",
+                "next": "tu_contact"
+            },
+            {
+                "text": "Je cherche un Dev",
+                "next": 0
+            },
+            {
+                "text": "Je cherche un Prof",
+                "next": 0
+            },
+            {
+                "text": "Aide moi please",
+                "next": 0
+            }
+        ]
+    },
+    "vous_contact":{
+        "question":"C'est tres simple, il vous suffit de cliquez sur le lien si dessous",
+        "reponses":[
+            {
+                "text":"Contactez moi !",
+                "id":"contactModal"
+            },
+            {
+                "text":"Retour",
+                "next":"vous"
+            }
+        ]
+    },
+    "tu_contact":{
+        "question":"Easy, tu clique juste là",
+        "reponses":[
+            {
+                "text":"Ici !",
+                "id":"contactModal"
+            },
+            {
+                "text":"Oups, Laisse tomber!",
+                "next":"vous"
+            }
+        ]
+    },
+    "copy":{
+        "question":"",
+        "reponses":[
+            {
+                "text":"",
+                "next":0
+            },
+            {
+                "text":"",
+                "next":0
             }
         ]
     }

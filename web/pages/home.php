@@ -1,5 +1,5 @@
-<?php $_SESSION['init']=true?>
 <link rel="stylesheet" href="<?= ROOT_DIR . PAGES_DIR ?>style/home.css">
+
 <div class="card3D">
     <section>
         <img src="<?= ROOT_DIR . IMG_DIR ?>photo.png" alt="photo enrique camara">
@@ -20,28 +20,38 @@
         En <strong>freelance</strong> depuis <strong>décembre 2017.</strong><br>Disponible par contact mail.</p>
 </div>
 <script src="<?= ROOT_DIR . JS_DIR ?>card3D.js"></script>
+<?php if($dev):?>
+    <form method="post">
+    <button class='btn dark' name='init'>Réinitialiser</button>
+    </form>
 
+<?php endif; 
+require_once 'web/module/cmr.bot.php';?>
 <?= $html->code("section", $html->menu(['<h2>Cours/Tuto</h2>' . $html->menu(["HTML/CSS" => "https://formation.cmrweb.fr/", "JavaScript" => "https://formation.cmrweb.fr/javascript/", "React" => "https://react.cmrweb.fr/", "angular" => "https://angular.cmrweb.fr/",]) => "#"]), "tuto") .
     $html->h('2', !empty($username) ? 'Bienvenu(e) ' . $username : 'Bienvenu(e)', 'large') .
     $html->code(
         "section",
         $html->h('1', "cmrframework") .
-            $html->a("https://github.com/cmrweb/cmrweb",$html->img(ROOT_DIR.IMG_DIR."github.png","lien github cmrweb","logo"), true) .
+            $html->a("https://github.com/cmrweb/cmrweb", $html->img(ROOT_DIR . IMG_DIR . "github.png", "lien github cmrweb", "logo"), true) .
             $html->h('4', "cmrframework inBulid") .
             $html->iframe("https://www.youtube.com/embed/kbLOpv2vWo4") .
             $html->menu(['<h2>Installation</h2>' . $html->menu([
-                    "installer composer" => "https://getcomposer.org/download/",
-                    $html->p("Dans l'invite de commande taper : ").
-                    "composer create-project cmrweb/cmrframework:dev-master nom_du_projet" => ""]) => "#"]) .
+                "installer WampServer" => "http://www.wampserver.com/en/download-wampserver-64bits/",
+                "installer composer" => "https://getcomposer.org/download/",
+                $html->p("Dans l'invite de commande : ") .
+                    "composer create-project cmrweb/cmrframework:dev-master nom_du_projet" => ""
+            ]) => "#"]) .
+
             $html->menu(['<h2>Utilisation</h2>' . $html->menu([
-                "Dans le dossier cmrframework :" => "#", 
-                "cd lib" => "#", 
-                "cli/cmrgen Table field1-varchar-150 field2-char-100 field3-int" => "#", 
-                "chager les valeur du <strong>.env</strong>" => "#", 
-                "ajouter votre route dans : web\includes\main.php" => "#", 
-                "rendez vous sur l'url pour créer la table" => "#", 
-                "supprimer du code la partie SQL" => "#", 
-                "passer votre route à chaque header(Location)" => "#"]) => "#"]) .
+                $html->p("Remplissez le formulaire d'initialisation du projet") .
+                    "Dans l'invite de commande :" => "#",
+                "cd lib" => "#",
+                "cli/cmr" => "#",
+                "cmr help" => "#",
+                "cmr generate table nom-type-valeur field1-varchar-150 field3-int" => "#"
+            ]) => "#"]) .
             $html->a("https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing", "docs pdf", true),
         "large tuto home"
     );
+
+    require_once 'web/module/cmr.bot.php';

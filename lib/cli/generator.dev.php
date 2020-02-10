@@ -1,6 +1,6 @@
 <?php
-$argLower=strtolower($argv[1]);
-$argUc=ucfirst($argv[1]);
+$argLower=strtolower($argv[2]);
+$argUc=ucfirst($argv[2]);
 $controller = "<?php\n
 /*
 Partie SQL
@@ -10,7 +10,7 @@ Partie SQL
 \$query=\"CREATE TABLE IF NOT EXISTS {$argLower}
 (
     id INT PRIMARY KEY AUTO_INCREMENT,\n";
-for ($i = 2; $i < count($argv); $i++) {
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
@@ -41,9 +41,9 @@ $controller = substr($controller, 0, -2);
 $controller .= ")\";\n
 \$req=\$db->pdo->prepare(\$query);\n
 \$req->execute();\n
-\${$argv[1]}=new {$argUc}();
-if (isset(\$_POST['send'])) {\n\${$argv[1]}->setData([";
-for ($i = 2; $i < count($argv); $i++) {
+\${$argv[2]}=new {$argUc}();
+if (isset(\$_POST['send'])) {\n\${$argv[2]}->setData([";
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     $controller .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
@@ -52,8 +52,8 @@ $controller = substr($controller, 0, -2);
 $controller .= "]); \n
 header(\"Location: $argLower\");
 }
-if (isset(\$_POST['update'])) {\${$argv[1]}->update([";
-for ($i = 2; $i < count($argv); $i++) {
+if (isset(\$_POST['update'])) {\${$argv[2]}->update([";
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     $controller .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
@@ -64,7 +64,7 @@ $controller .= "],\"id=\".\$_POST['id']);\n
 header(\"Location: $argLower\");
 }
 if (isset(\$_POST['delete'])) {
-    \${$argv[1]}->delete(\$_POST['id']);
+    \${$argv[2]}->delete(\$_POST['id']);
     header(\"Location: $argLower\");
 }
 ?>";
@@ -77,7 +77,7 @@ file_put_contents($controllerFile, $controller);
 /**
  *  GENERATE ROUTE
  */
-$route = substr(file_get_contents("../../web/includes/main.php"), 0, -48);
+$route = substr(file_get_contents("../../web/module/route.php"), 0, -48);
 $newRoute = $route."
 
 case \$url[0] == '$argLower' and empty(\$url[1]):
@@ -89,7 +89,7 @@ case \$url[0] == '$argLower' and empty(\$url[1]):
     echo 'ERREUR 404';
     break;
 }";
-file_put_contents("../../web/includes/main.php", $newRoute);
+file_put_contents("../../web/module/route.php", $newRoute);
 /**
  *  GENERATE VUE
  */
@@ -98,7 +98,7 @@ $vue ="
 <!-- Ajouter $argLower à l'url. -->
 <link rel='stylesheet' href=\"<?= ROOT_DIR . PAGES_DIR ?>style/{$argLower}.css\">
 <form method='post' class='large primary'>\n<h1>Create</h1>\n";
-for ($i = 2; $i < count($argv); $i++) {
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
@@ -121,12 +121,12 @@ for ($i = 2; $i < count($argv); $i++) {
 }
 $vue .= "<button type='submit' class='success center' name='send'>envoyer</button>
     </form>
-<?php if(\${$argv[1]}->getData()): ?>
+<?php if(\${$argv[2]}->getData()): ?>
     <h1>Read Update Delete</h1>
-<?php  foreach (\${$argv[1]}->getData() as \$key => \$value) : ?>
+<?php  foreach (\${$argv[2]}->getData() as \$key => \$value) : ?>
     <form method='post' class='small primary'>
             <input type=\"hidden\" name=\"id\" label=\"\" class=\"\" placeholder=\"<?=\$value['id']?>\"  value=\"<?=\$value['id']?>\">\n";
-for ($i = 2; $i < count($argv); $i++) {
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
@@ -169,7 +169,7 @@ class {$argUc}
     private \$pdo;
     private \$data;
     private \$id;\n";
-for ($i = 2; $i < count($argv); $i++) {
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     $class .= "private \${$field[0]};\n";
@@ -182,14 +182,14 @@ $class .= "
         foreach (\$this->pdo->result as \$value) {
             \$this->data[\$value['id']] = [
                 'id' => \$value['id'],\n";
-for ($i = 2; $i < count($argv); $i++) {
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     $class .= "'{$field[0]}'=>\$value['{$field[0]}'],\n";
 }
 $class .= "  ];\n";
 $class .= " \$this->id[] = \$value['id'];\n";
-for ($i = 2; $i < count($argv); $i++) {
+for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     $class .= "\$this->{$field[0]}[] = \$value['{$field[0]}'];\n";
@@ -224,4 +224,4 @@ $pathClass = '../../web/Entity/';
 $classFile = $pathClass . $argUc . '.php';
 file_put_contents($classFile, $class);
 
-echo "Generation des fichiers : \n->".$pathClass . $argUc . ".php \n-> ".$pathvue . $argLower . ".php \n-> ".$pathctrl . "c_".$argLower . ".php \n-> ".$pathcss . $argLower . '.css';
+echo "Generation des fichiers : \n->".$pathClass . $argUc . ".php \n-> ".$pathvue . $argLower . ".php \n-> ".$pathctrl . "c_".$argLower . ".php \n-> ".$pathcss . $argLower . ".css \nRoute $argLower ajouter";

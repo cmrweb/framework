@@ -112,7 +112,7 @@
 }
 
 .tuto ul li ul li {
-    display: none;
+    /* display: none; */
     margin: 0;
     padding: 5px;
     transition: all linear 1s;

@@ -32,6 +32,9 @@ COMMUN
 .OFFLINE{
     background: var(--danger);
 }
+.hide{
+    display: none;
+}
 main section.large.light{
     display: flex;
     flex-direction: column;
@@ -671,6 +674,16 @@ PC DISPLAY
         width: 200px;
         margin-top: 10px;
            
+    }
+    .navClassic ul{
+        flex-direction: row;
+        position: relative;
+        top: -50px;
+    }
+    .navClassic ul li a{
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
     }
     #chat{
         overflow: auto;

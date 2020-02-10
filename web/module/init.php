@@ -65,7 +65,10 @@ if(isset($_POST['send'])){
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;COMMIT;");  
     $tableUser->execute();
 
-    $_SESSION['init']=true;
+    //reecriture des routes
+    $route = preg_replace("/module\/init/","pages/home",file_get_contents("web/module/route.php"));
+    //dump($route);
+    file_put_contents("web/module/route.php", $route);
 }
 }
 
@@ -105,12 +108,12 @@ label {
 
     <div class="form">
     <label for="username">Nom d'utilisateur</label>
-    <input class="input" type="text" id="username" name="username">
+    <input class="input nameSecure" type="text" id="username" name="username">
     </div>
 
     <div class="form">
     <label for="pwd">Mot de passe</label>
-    <input class="input" type="text" id="pwd" name="pwd">
+    <input class="input passSecure" type="password" id="pwd" name="pwd">
     </div>
 
     <button class="btn success large center m4" name="send">Valider</button>

@@ -1,4 +1,4 @@
-
+<!-- old doc
 <section>
     <table class='sidenav'>
 
@@ -47,3 +47,4 @@
         <hr>
     <?php endforeach ?>
 </section>
+            -->

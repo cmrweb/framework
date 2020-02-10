@@ -1,12 +1,10 @@
 <?php
 switch ($url) {
     case '':
-        require 'web/pages/controller/c_home.php';
-        require 'web/pages/home.php';
+        require 'web/module/init.php';
         break;
 
     case $url[0] == 'home' and empty($url[1]):
-        require 'web/pages/controller/c_home.php';
         require 'web/pages/home.php';
         break;
     case $url[0] == 'docs' and empty($url[1]):
@@ -43,6 +41,6 @@ switch ($url) {
         break;
 
     default:
-        echo 'ERREUR 404';
-        break;
+    echo 'ERREUR 404';
+    break;
 }
