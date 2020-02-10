@@ -31,17 +31,17 @@ if (isset($_POST['send'])) {
     $createDB->execute();
     echo "La base de donnée {$dbNAME} à été créer.";
     //init required tables
-    $db = new DB;
-    $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `cmr_user`;
-    CREATE TABLE IF NOT EXISTS `cmr_user` (
+    $db = new DB($dbNAME);
+    $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `user`;
+    CREATE TABLE IF NOT EXISTS `user` (
       `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-      `username` varchar(30) NOT NULL,
+      `email` varchar(30) NOT NULL,
       `password` varchar(255) NOT NULL,
       `admin_lvl` int(11) DEFAULT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-    INSERT INTO `cmr_user` (`username`, `password`, `admin_lvl`) 
+    INSERT INTO `user` (`email`, `password`, `admin_lvl`) 
     VALUES('{$user}','{$pwd}',1);
 
     DROP TABLE IF EXISTS `post`;
@@ -127,7 +127,7 @@ if (isset($_POST['send'])) {
 
   <div class="form">
     <label for="username">Nom d'utilisateur</label>
-    <input class="input nameSecure" type="text" id="username" name="username">
+    <input class="input mailSecure" type="email" id="username" name="username">
   </div>
 
   <div class="form">

@@ -6,12 +6,14 @@ Partie SQL
 */
 
 \$db = new DB;
-\$query=\"CREATE TABLE IF NOT EXISTS `user`
-(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-`email` varchar(255) NOT NULL,
-`password` varchar(255) NOT NULL,
-`admin_lvl` INT)\";
+\$query=\"
+CREATE TABLE IF NOT EXISTS `user` (
+    `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `email` varchar(30) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `admin_lvl` int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;\";
 
 /*
 * READ
@@ -29,7 +31,7 @@ if (isset(\$_POST['send'])) {
         \"email\" => \$_POST['email'],
         \"password\" => password_hash(\$_POST['password'],PASSWORD_BCRYPT)
         ]); 
-    header(\"Location: user\");
+    header(\"Location: ./\");
 }
 }
 /*
@@ -42,7 +44,7 @@ if (isset(\$_POST['update'])) {
         \"password\" => password_hash(\$_POST['password'],PASSWORD_BCRYPT)
         ],
         \"id=\".\$_POST['id']);
-        header(\"Location: user\");
+        header(\"Location: ./\");
 }
 }
 /*
@@ -51,7 +53,7 @@ if (isset(\$_POST['update'])) {
 if (isset(\$_POST['delete'])) {
     if(!empty(\$_POST[\"email\"]) &&!empty(\$_POST[\"password\"]) ){
     \$user->delete(\$_POST['id']);
-    header(\"Location: user\");
+    header(\"Location: ./\");
     }
 }
 /**
@@ -72,7 +74,7 @@ if(isset(\$_POST['conn'])){
                 }
             }
         }
-        header(\"Location: user\");
+        header(\"Location: ./\");
         }
 }
 ";

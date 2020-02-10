@@ -7,7 +7,7 @@ switch ($url) {
 
     case $url[0] == 'home' and empty($url[1]):
         require 'web/pages/controller/c_home.php';
-        require 'web/pages/home.php';
+        require 'web/module/init.php';
         break;
     case $url[0] == 'dev' and empty($url[1]):
         require 'web/pages/dev.php';
