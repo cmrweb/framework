@@ -1,6 +1,4 @@
 .env
 /tmp/
-/vendor/
-composer.*
 /asset/img/
 favicon.ico
