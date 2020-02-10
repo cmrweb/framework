@@ -15,7 +15,7 @@
     - cd lib
     - cli/cmr
     - cmr help
-    - cmr generate <table> <nom-type-valeur> <nom-type-valeur-table.field>  
+    - cmr generate table nom-type-valeur nom-type-valeur-table.field
  
     Créer une table utilisateur avec les champs nom, prenom, age.    
     - cmr generate utilisateur nom-char-255 prenom-char-255 age-int-3
