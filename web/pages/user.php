@@ -25,7 +25,7 @@
     </div>
     <button type='submit' class='success center' name='send'>inscription</button>
 </form>
-<?php $user=new User("id=".$userid); if ($user->getData()) : ?>
+<!-- <?php $user=new User("id=".$userid); if ($user->getData()) : ?>
     <h1>Update</h1>
     <?php foreach ($user->getData() as $key => $value) : ?>
         <form method='post' class='small primary'>
@@ -42,4 +42,4 @@
             <button type='delete' class='danger center' name='delete'>supprimer</button>
         </form>
 <?php endforeach;
-endif;
+endif; ?>-->
