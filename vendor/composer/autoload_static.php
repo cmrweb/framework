@@ -16,19 +16,15 @@ class ComposerStaticInit79f8b1e7668a36f95848abf2bbee97b8
     );
 
     public static $prefixLengthsPsr4 = array (
-        'T' => 
-        array (
-            'Twig\\' => 5,
-        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
-            'SendinBlue\\Client\\' => 18,
         ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
         ),
         'G' => 
         array (
@@ -43,10 +39,6 @@ class ComposerStaticInit79f8b1e7668a36f95848abf2bbee97b8
     );
 
     public static $prefixDirsPsr4 = array (
-        'Twig\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/twig/twig/src',
-        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -55,13 +47,13 @@ class ComposerStaticInit79f8b1e7668a36f95848abf2bbee97b8
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'SendinBlue\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sendinblue/api-v3-sdk/lib',
-        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -82,13 +74,6 @@ class ComposerStaticInit79f8b1e7668a36f95848abf2bbee97b8
     );
 
     public static $prefixesPsr0 = array (
-        'T' => 
-        array (
-            'Twig_' => 
-            array (
-                0 => __DIR__ . '/..' . '/twig/twig/lib',
-            ),
-        ),
         'P' => 
         array (
             'PhpOption\\' => 
