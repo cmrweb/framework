@@ -20,38 +20,47 @@
         En <strong>freelance</strong> depuis <strong>décembre 2017.</strong><br>Disponible par contact mail.</p>
 </div>
 <script src="<?= ROOT_DIR . JS_DIR ?>card3D.js"></script>
-<?php if($dev):?>
+<?php if ($dev) : ?>
     <form method="post">
-    <button class='btn dark' name='init'>Réinitialiser</button>
+        <button class='btn dark' name='init'>Réinitialiser</button>
     </form>
 
-<?php endif; 
-require_once 'web/module/cmr.bot.php';?>
+<?php endif;
+require_once 'web/module/cmr.bot.php'; ?>
 <?= $html->code("section", $html->menu(['<h2>Cours/Tuto</h2>' . $html->menu(["HTML/CSS" => "https://formation.cmrweb.fr/", "JavaScript" => "https://formation.cmrweb.fr/javascript/", "React" => "https://react.cmrweb.fr/", "angular" => "https://angular.cmrweb.fr/",]) => "#"]), "tuto") .
-    $html->h('2', !empty($username) ? 'Bienvenu(e) ' . $username : 'Bienvenu(e)', 'large') .
-    $html->code(
-        "section",
-        $html->h('1', "cmrframework") .
-            $html->a("https://github.com/cmrweb/cmrweb", $html->img(ROOT_DIR . IMG_DIR . "github.png", "lien github cmrweb", "logo"), true) .
-            $html->h('4', "cmrframework inBulid") .
-            $html->iframe("https://www.youtube.com/embed/kbLOpv2vWo4") .
-            $html->menu(['<h2>Installation</h2>' . $html->menu([
-                "installer WampServer" => "http://www.wampserver.com/en/download-wampserver-64bits/",
-                "installer composer" => "https://getcomposer.org/download/",
-                $html->p("Dans l'invite de commande : ") .
-                    "composer create-project cmrweb/cmrframework:dev-master nom_du_projet" => ""
-            ]) => "#"]) .
+    $html->h('2', !empty($username) ? 'Bienvenu(e) ' . $username : 'Bienvenu(e)', 'large');
+?>
 
-            $html->menu(['<h2>Utilisation</h2>' . $html->menu([
-                $html->p("Remplissez le formulaire d'initialisation du projet") .
-                    "Dans l'invite de commande :" => "#",
-                "cd lib" => "#",
-                "cli/cmr" => "#",
-                "cmr help" => "#",
-                "cmr generate table nom-type-valeur field1-varchar-150 field3-int" => "#"
-            ]) => "#"]) .
-            $html->a("https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing", "docs pdf", true),
-        "large tuto home"
-    );
+<section class="large tuto home">
+    <?= $html->h('1', "cmrframework") .
+        $html->a("https://github.com/cmrweb/cmrweb", $html->img(ROOT_DIR . IMG_DIR . "github.png", "lien github cmrweb", "logo"), true) .
+        $html->h('4', "cmrframework inBulid") .
+        $html->iframe("https://www.youtube.com/embed/kbLOpv2vWo4") .
+        $html->menu(['<h2>Installation</h2>' . $html->menu([
+            "installer WampServer" => "http://www.wampserver.com/en/download-wampserver-64bits/",
+            "installer composer" => "https://getcomposer.org/download/",
+            $html->p("Dans l'invite de commande : ") .
+                "composer create-project cmrweb/cmrframework:dev-master nom_du_projet" => ""
+        ]) => "#"]); ?>
+    <ul>
+        <li>
+            <input type="text" readonly value="cd lib">
+            <input type="text" readonly value="cli/cmr">
+            <input type="text" readonly value="help">
+        </li>
+        <li>
+        <input type="text" readonly value="generate table nom-type-valeur nom-type-valeur-table.field">
+        </li>
+        <li>
+            <p>Créer une table utilisateur avec les champs nom, prenom, age.</p>
+            <input type="text" readonly value="generate utilisateur nom-char-255 prenom-char-255 age-int-3">
+        </li>
+        <li>
+            <p>Créer une table actif avec la clé étrangère de la table utilisateur et un champ date</p>
+            <input type="text" readonly value="generate actif user_id-int-11-utilisateur.id is_actif-date">
+        </li>
 
-    require_once 'web/module/cmr.bot.php';
+    </ul>
+
+
+</section>
