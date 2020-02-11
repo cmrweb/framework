@@ -14,13 +14,13 @@ CREATE TABLE IF NOT EXISTS `user` (
     `admin_lvl` int(11) DEFAULT NULL,
     PRIMARY KEY (`id`)
   ) ENGINE=MyISAM DEFAULT CHARSET=utf8;\";
-
+\$req=\$db->pdo->prepare(\$query);
+\$req->execute();
 /*
 * READ
 */
-\$req=\$db->pdo->prepare(\$query);
-\$req->execute();
 \$user=new User();
+//dump(\$user->getData());
 /*
 * CREATE
 */
@@ -68,7 +68,7 @@ if(isset(\$_POST['conn'])){
                 if(password_verify(\$_POST['password'],\$value['password'])){
                     \$_SESSION['user']['name'] = \$value['email'];
                     \$_SESSION['user']['id'] = \$value['id'];
-                    \$_SESSION['user']['admin'] = 0;
+                    \$_SESSION['user']['admin'] = \$value['admin_lvl'];
                 }else{
                     \$_SESSION['message'] = \"mot de passe ou email incorrect\";
                 }

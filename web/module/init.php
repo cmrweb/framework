@@ -31,7 +31,7 @@ if (isset($_POST['send'])) {
     $createDB->execute();
     echo "La base de donnée {$dbNAME} à été créer.";
     //init required tables
-    $db = new DB($dbNAME);
+    $db = new DB();
     $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `user`;
     CREATE TABLE IF NOT EXISTS `user` (
       `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,

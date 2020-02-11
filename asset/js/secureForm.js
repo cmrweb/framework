@@ -3,7 +3,7 @@ var regAge = /^[0-9]{1,2}$/;
 var emailExp = /^[a-z0-9._-]{1,}@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
 var passExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
-var erreur = `<div class="d-block bg-danger text-light text-center p-2"></div>`;
+var erreur = `<div class="large bg-danger center p2"></div>`;
 
 var isVisible = false;
 function showPassword() {
