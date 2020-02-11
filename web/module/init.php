@@ -88,7 +88,7 @@ if (isset($_POST['send'])) {
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
     //dump($route);
     file_put_contents("web/module/route.php", $route);
-    header('Locaction: /home');
+    header('Locaction: ./home');
   }
 }
 
@@ -127,7 +127,7 @@ if (isset($_POST['send'])) {
   </div>
 
   <div class="form">
-    <label for="username">Nom d'utilisateur</label>
+    <label for="username">Email d'utilisateur</label>
     <input class="input mailSecure" type="email" id="username" name="username">
   </div>
 
