@@ -83,7 +83,9 @@ if (isset($_POST['send'])) {
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;COMMIT;");
     $tableUser->execute();
-
+    //reecriture du path cli
+    $cli = preg_replace("/cmrweb/", $_POST['projectName'], file_get_contents("lib/cli/cmr.bat"));
+    file_put_contents("lib/cli/cmr.bat", $cli);
     //reecriture des routes
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
     //dump($route);
