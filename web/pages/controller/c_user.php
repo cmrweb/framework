@@ -4,7 +4,7 @@ $user=new User();
 /*
 * CREATE
 */
-if (isset($_POST['send'])) {
+if (isset($_POST['insc'])) {
 
     if(!empty($_POST["email"]) &&!empty($_POST["password"]) ){
     $user->setData([

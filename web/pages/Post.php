@@ -10,7 +10,7 @@ echo $html->code(
         $html->textarea(5, "post", "post") .
         $html->input("file", "img", "img") .
         $html->img("", "preview", "imgpreview small center") .
-        $html->button('submit', 'success center', 'envoyer', 'send') .
+        $html->button('submit', 'success center', 'envoyer', 'addPost') .
         $html->formClose() .
         $html->p($msg),
     'dark small formBall'

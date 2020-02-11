@@ -4,7 +4,7 @@ needLog();
 needAdmin();
 $msg = "";
 $Post = new Post();
-if (isset($_POST['send'])) {
+if (isset($_POST['addPost'])) {
     if (!empty($_FILES['img']["size"])) {
         if ($_FILES['img']["size"] <= 500000) {
             $target_dir =  "../" . ROOT_DIR . IMG_DIR;
