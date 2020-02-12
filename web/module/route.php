@@ -2,7 +2,7 @@
 switch ($url) {
     case '':
         require 'web/pages/controller/c_home.php';
-        require 'web/pages/home.php';
+        require 'web/module/init.php';
         break;
 
     case $url[0] == 'home' and empty($url[1]):
@@ -48,6 +48,13 @@ switch ($url) {
 case $url[0] == 'user' and empty($url[1]):
     require 'web/pages/controller/c_user.php';
     require 'web/pages/user.php';
+    break;
+
+   
+
+case $url[0] == 'demo' and empty($url[1]):
+    require 'web/pages/controller/c_demo.php';
+    require 'web/pages/demo.php';
     break;
 
     default:

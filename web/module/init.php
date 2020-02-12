@@ -1,11 +1,18 @@
 <?php
-
-$projectName = preg_replace("/\//", "", $_ENV['ROOT_PATH']);
+$projectName = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
 $dbHOST = $_ENV['DB_HOST'];
-$dbNAME = $_ENV['DB_NAME'];
+$dbNAME = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
 $dbUSER = $_ENV['DB_USER'];
 $dbPASS = $_ENV['DB_PASS'];
-
+$envContent = "
+APP_ENV=\"dev\"
+DB_HOST=\"{$dbHOST}\"
+DB_NAME=\"{$dbNAME}\"
+DB_USER=\"{$dbUSER}\"
+DB_PASS=\"{$dbPASS}\"
+ROOT_PATH=\"/{$projectName}\"";
+//dump($envContent);
+file_put_contents(".env", $envContent);
 if (isset($_POST['send'])) {
   //réecrire .env
   if (!empty($_POST['dbHost']) && !empty($_POST['dbName']) && !empty($_POST['dbUser']) && !empty($_POST['username']) && !empty($_POST['pwd'])) {
