@@ -91,6 +91,14 @@ if (isset($_POST['send'])) {
     //reecriture du path cli
     $cli = preg_replace("/cmrweb/", $_POST['projectName'], file_get_contents("lib/cli/cmr.bat"));
     file_put_contents("lib/cli/cmr.bat", $cli);
+
+    $header = file_get_contents("web/includes/header.php");
+    $newHeader = $header."<?php
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    ?>";
+    file_put_contents($header,$newHeader);
+    
     //reecriture des routes
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
     //dump($route);

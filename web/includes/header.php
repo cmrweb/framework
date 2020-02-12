@@ -30,7 +30,3 @@ include 'web/module/nav.php';
 </header>
 
 <main>
-<?php
-require 'web/pages/controller/c_user.php';
-require 'web/pages/user.php';
-?>
