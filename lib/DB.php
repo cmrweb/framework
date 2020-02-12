@@ -9,6 +9,7 @@ class DB
             $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
             $createDB = $this->pdo->prepare("CREATE DATABASE IF NOT EXISTS {$newDB}");
             $createDB->execute();
+            $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};dbname={$newDB};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
             return $this->pdo;
         } else {
             $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);

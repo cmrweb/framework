@@ -93,7 +93,7 @@ if (isset($_POST['send'])) {
     file_put_contents("lib/cli/cmr.bat", $cli);
 
     $header = file_get_contents("web/includes/header.php");
-    $newHeader = $header."<?php
+    $newHeader = "$header<?php
     require 'web/pages/controller/c_user.php';
     require 'web/pages/user.php';
     ?>";
