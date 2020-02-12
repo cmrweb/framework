@@ -1,11 +1,19 @@
 <?php
-
-$projectName = preg_replace("/\//", "", $_ENV['ROOT_PATH']);
+$projectName = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
 $dbHOST = $_ENV['DB_HOST'];
-$dbNAME = $_ENV['DB_NAME'];
+$dbNAME = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
 $dbUSER = $_ENV['DB_USER'];
 $dbPASS = $_ENV['DB_PASS'];
-
+$envContent = "
+APP_ENV=\"dev\"
+DB_HOST=\"{$dbHOST}\"
+DB_NAME=\"{$dbNAME}\"
+DB_USER=\"{$dbUSER}\"
+DB_PASS=\"{$dbPASS}\"
+ROOT_PATH=\"/{$projectName}\"";
+$db = new DB($dbNAME);
+//dump($envContent);
+file_put_contents(".env", $envContent);
 if (isset($_POST['send'])) {
   //réecrire .env
   if (!empty($_POST['dbHost']) && !empty($_POST['dbName']) && !empty($_POST['dbUser']) && !empty($_POST['username']) && !empty($_POST['pwd'])) {
@@ -25,15 +33,12 @@ if (isset($_POST['send'])) {
     //dump($envContent);
     file_put_contents(".env", $envContent);
 
-    //create database if not exist
-    $pdo = new PDO("mysql:host={$dbHOST};", "{$dbUSER}", "{$dbPASS}");
-    $createDB = $pdo->prepare("CREATE DATABASE IF NOT EXISTS {$dbNAME}");
-    $createDB->execute();
-    echo "La base de donnée {$dbNAME} à été créer.";
-    //init required tables
-    $db = new DB();
-    $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `user`;
-    CREATE TABLE IF NOT EXISTS `user` (
+    $db = new DB($dbNAME);
+        //init required tables
+    $db = new DB;
+    $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `cmr_user`;
+    CREATE TABLE IF NOT EXISTS `cmr_user` (
+
       `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
       `email` varchar(30) NOT NULL,
       `password` varchar(255) NOT NULL,
@@ -90,7 +95,7 @@ if (isset($_POST['send'])) {
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
     //dump($route);
     file_put_contents("web/module/route.php", $route);
-    header('Locaction: ./home');
+    header("Location: home");
   }
 }
 

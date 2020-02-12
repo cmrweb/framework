@@ -36,11 +36,6 @@ switch ($url) {
         require 'web/pages/chat.php';
         break;
 
-
-    case $url[0] == 'users' and empty($url[1]):
-        require 'web/pages/utilisateur.php';
-        break;
-
     case $url[0] == 'ajax':
         require 'web/pages/controller/c_ajax.php';
         break;
@@ -48,13 +43,6 @@ switch ($url) {
 case $url[0] == 'user' and empty($url[1]):
     require 'web/pages/controller/c_user.php';
     require 'web/pages/user.php';
-    break;
-
-   
-
-case $url[0] == 'test' and empty($url[1]):
-    require 'web/pages/controller/c_test.php';
-    require 'web/pages/test.php';
     break;
 
     default:
