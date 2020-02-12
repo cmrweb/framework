@@ -1,34 +1,17 @@
 <?php
-/*
-Partie SQL
-    *supprimer le code ci dessous apres le lancement de la page
-*/
 
-$db = new DB;
-$query="CREATE TABLE IF NOT EXISTS `user`
-(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-`email` varchar(255) NOT NULL,
-`password` varchar(255) NOT NULL,
-`admin_lvl` INT)";
-
-/*
-* READ
-*/
-$req=$db->pdo->prepare($query);
-$req->execute();
 $user=new User();
 /*
 * CREATE
 */
-if (isset($_POST['send'])) {
+if (isset($_POST['insc'])) {
 
     if(!empty($_POST["email"]) &&!empty($_POST["password"]) ){
     $user->setData([
         "email" => $_POST['email'],
         "password" => password_hash($_POST['password'],PASSWORD_BCRYPT)
         ]); 
-    header("Location: user");
+    header("Location: ./");
 }
 }
 /*
@@ -41,7 +24,7 @@ if (isset($_POST['update'])) {
         "password" => password_hash($_POST['password'],PASSWORD_BCRYPT)
         ],
         "id=".$_POST['id']);
-        header("Location: user");
+        header("Location: ./");
 }
 }
 /*
@@ -50,7 +33,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST['delete'])) {
     if(!empty($_POST["email"]) &&!empty($_POST["password"]) ){
     $user->delete($_POST['id']);
-    header("Location: user");
+    header("Location: ./");
     }
 }
 /**
@@ -65,12 +48,12 @@ if(isset($_POST['conn'])){
                 if(password_verify($_POST['password'],$value['password'])){
                     $_SESSION['user']['name'] = $value['email'];
                     $_SESSION['user']['id'] = $value['id'];
-                    $_SESSION['user']['admin'] = 0;
+                    $_SESSION['user']['admin'] = $value['admin_lvl'];
                 }else{
                     $_SESSION['message'] = "mot de passe ou email incorrect";
                 }
             }
         }
-        header("Location: user");
+        header("Location: ./");
         }
 }

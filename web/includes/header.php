@@ -1,6 +1,4 @@
-
 <header class="fixhead xlarge light header">
-
 <?php
 echo $html->h('1','CMRWEB<span>Camara</span><span>Enrique</span>','title');
 if(isset($_POST['disc'])){
@@ -26,12 +24,13 @@ $html->menu([
     
 echo $form;
 }
-require 'web/pages/controller/c_user.php';
-require 'web/pages/user.php';
 include 'web/module/nav.php';
 ?>
 <p id="AppInstall" class="btn-gold">PWA <i class="fas fa-cloud-download-alt"></i></p>
 </header>
 
 <main>
-
+<?php
+require 'web/pages/controller/c_user.php';
+require 'web/pages/user.php';
+?>

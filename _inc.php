@@ -25,5 +25,5 @@ if(isset($_SESSION['user']['id'])){
     $userid = $_SESSION['user']['id'];
     $admin = $_SESSION['user']['admin'];
 }else{
-    $username='';$userid ='';$admin='';
+    $username=false;$userid =false;$admin=false;
 }

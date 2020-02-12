@@ -6,30 +6,32 @@ Partie SQL
 */
 
 \$db = new DB;
-\$query=\"CREATE TABLE IF NOT EXISTS `user`
-(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-`email` varchar(255) NOT NULL,
-`password` varchar(255) NOT NULL,
-`admin_lvl` INT)\";
-
+\$query=\"
+CREATE TABLE IF NOT EXISTS `user` (
+    `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `email` varchar(30) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `admin_lvl` int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;\";
+\$req=\$db->pdo->prepare(\$query);
+\$req->execute();
 /*
 * READ
 */
-\$req=\$db->pdo->prepare(\$query);
-\$req->execute();
 \$user=new User();
+//dump(\$user->getData());
 /*
 * CREATE
 */
-if (isset(\$_POST['send'])) {
+if (isset(\$_POST['insc'])) {
 
     if(!empty(\$_POST[\"email\"]) &&!empty(\$_POST[\"password\"]) ){
     \$user->setData([
         \"email\" => \$_POST['email'],
         \"password\" => password_hash(\$_POST['password'],PASSWORD_BCRYPT)
         ]); 
-    header(\"Location: user\");
+    header(\"Location: ./\");
 }
 }
 /*
@@ -42,7 +44,7 @@ if (isset(\$_POST['update'])) {
         \"password\" => password_hash(\$_POST['password'],PASSWORD_BCRYPT)
         ],
         \"id=\".\$_POST['id']);
-        header(\"Location: user\");
+        header(\"Location: ./\");
 }
 }
 /*
@@ -51,7 +53,7 @@ if (isset(\$_POST['update'])) {
 if (isset(\$_POST['delete'])) {
     if(!empty(\$_POST[\"email\"]) &&!empty(\$_POST[\"password\"]) ){
     \$user->delete(\$_POST['id']);
-    header(\"Location: user\");
+    header(\"Location: ./\");
     }
 }
 /**
@@ -66,13 +68,13 @@ if(isset(\$_POST['conn'])){
                 if(password_verify(\$_POST['password'],\$value['password'])){
                     \$_SESSION['user']['name'] = \$value['email'];
                     \$_SESSION['user']['id'] = \$value['id'];
-                    \$_SESSION['user']['admin'] = 0;
+                    \$_SESSION['user']['admin'] = \$value['admin_lvl'];
                 }else{
                     \$_SESSION['message'] = \"mot de passe ou email incorrect\";
                 }
             }
         }
-        header(\"Location: user\");
+        header(\"Location: ./\");
         }
 }
 ";
@@ -125,27 +127,8 @@ $vue = "
         <label for='password'>password</label>
         <input type=\"password\" class='input passSecure' name=\"password\" id=\"password\">
     </div>
-    <button type='submit' class='success center' name='send'>inscription</button>
-</form>
-<?php \$user=new User(\"id=\".\$userid); if (\$user->getData()) : ?>
-    <h1>Update</h1>
-    <?php foreach (\$user->getData() as \$key => \$value) : ?>
-        <form method='post' class='small primary'>
-            <input type=\"hidden\" name=\"id\" placeholder=\"<?= \$value['id'] ?>\" value=\"<?= \$value['id'] ?>\">
-            <div class='form'>
-                <label for='email'>email</label>
-                <input type=\"email\" name=\"email\" id=\"email\" class=\"input\" placeholder=\"<?= \$value['email'] ?>\" value=\"<?= \$value['email'] ?>\">
-            </div>
-            <div class='form'>
-                <label for='password'>password</label>
-                <input type=\"password\" name=\"password\" id=\"password\" class=\"input\" placeholder=\"<?= \$value['password'] ?>\" value=\"<?= \$value['password'] ?>\">
-            </div>
-            <button type='submit' class='success center' name='update'>mettre a jour</button>
-            <button type='delete' class='danger center' name='delete'>supprimer</button>
-        </form>
-<?php endforeach;
-endif;
-";
+    <button type='submit' class='success center' name='insc'>inscription</button>
+</form>";
 $pathvue = '../../web/pages/';
 $vueFile = $pathvue .'user.php';
 file_put_contents($vueFile, $vue);

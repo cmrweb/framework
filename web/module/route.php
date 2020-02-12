@@ -45,7 +45,6 @@ case $url[0] == 'user' and empty($url[1]):
     require 'web/pages/user.php';
     break;
 
-
     default:
     echo 'ERREUR 404';
     break;
