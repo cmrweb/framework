@@ -11,6 +11,7 @@ DB_NAME=\"{$dbNAME}\"
 DB_USER=\"{$dbUSER}\"
 DB_PASS=\"{$dbPASS}\"
 ROOT_PATH=\"/{$projectName}\"";
+$db = new DB($dbNAME);
 //dump($envContent);
 file_put_contents(".env", $envContent);
 if (isset($_POST['send'])) {
@@ -31,13 +32,8 @@ if (isset($_POST['send'])) {
         ROOT_PATH=\"/{$_POST['projectName']}\"";
     //dump($envContent);
     file_put_contents(".env", $envContent);
-
-    //create database if not exist
-    $pdo = new PDO("mysql:host={$dbHOST};", "{$dbUSER}", "{$dbPASS}");
-    $createDB = $pdo->prepare("CREATE DATABASE IF NOT EXISTS {$dbNAME}");
-    $createDB->execute();
-    echo "La base de donnée {$dbNAME} à été créer.";
-    //init required tables
+    $db = new DB($dbNAME);
+        //init required tables
     $db = new DB;
     $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `cmr_user`;
     CREATE TABLE IF NOT EXISTS `cmr_user` (

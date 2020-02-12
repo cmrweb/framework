@@ -11,7 +11,9 @@ class DB
             $createDB->execute();
             return $this->pdo;
         } else {
-            $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
+            $this->pdo = new PDO("mysql:host={$_ENV['DB_HOST']};", "{$_ENV['DB_USER']}", "{$_ENV['DB_PASS']}", [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
+            $req = $this->pdo->prepare("CREATE DATABASE IF NOT EXISTS `$newDB`");
+            $req->execute();
             return $this->pdo;
         }
     }
