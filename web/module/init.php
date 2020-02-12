@@ -36,8 +36,8 @@ if (isset($_POST['send'])) {
     $db = new DB($dbNAME);
         //init required tables
     $db = new DB;
-    $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `cmr_user`;
-    CREATE TABLE IF NOT EXISTS `cmr_user` (
+    $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `user`;
+    CREATE TABLE IF NOT EXISTS `user` (
 
       `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
       `email` varchar(30) NOT NULL,
