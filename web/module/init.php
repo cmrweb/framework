@@ -97,7 +97,7 @@ if (isset($_POST['send'])) {
     require 'web/pages/controller/c_user.php';
     require 'web/pages/user.php';
     ?>";
-    file_put_contents($header,$newHeader);
+    file_put_contents("web/includes/header.php",$newHeader);
     
     //reecriture des routes
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
