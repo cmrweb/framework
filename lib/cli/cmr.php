@@ -23,7 +23,7 @@ if (in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-
         require_once "generator.dev.php";
     }
 
-} elseif ($argc != 3 && in_array($argv[1], array("-serve","-start","-s","start","s","serve"))) {
+} elseif ($argc != 4 && in_array($argv[1], array("-serve","-start","-s","start","s","serve"))) {
     echo 'Entree|oui|o non|n'."\n";
     echo 'Demmarer le server local ?';
     $handle = fopen ('php://stdin','r');
@@ -32,13 +32,7 @@ if (in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-
         echo 'Annulé!';
         exit;
     }else if(preg_match('/oui|o|/',trim($line))){
-        exec("@echo off
-
-        start c:\wamp64\wampmanager.exe -wait
-        REM
-        start http://localhost/
-        
-        exit");
+        echo "http://localhost/{$argv[2]}";
     }
 } elseif ($argc != 3 && in_array($argv[1], array("connect","-connect","co","-co"))) {
     echo 'Entree|oui|o non|n'."\n";
