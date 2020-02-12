@@ -95,6 +95,7 @@ if (isset($_POST['send'])) {
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
     //dump($route);
     file_put_contents("web/module/route.php", $route);
+    header("Location: /home");
   }
 }
 
