@@ -2,3 +2,6 @@
 /tmp/
 /asset/img/
 favicon.ico
+/web/module/route.php
+/vendor/
+composer*
