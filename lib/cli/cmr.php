@@ -1,16 +1,13 @@
 <?php
-if (in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-a'))) {
+if (empty($argv[1])||in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-a'))) {
     ?>
     Utilisation :
-    Aide :
-    cmr -help|-h|help|h|aide|-aide|a|-a 
-    Generer ORM + CRUD :               
-    cmr -generate|-gen|generate|gen|g <table> <nom-type-valeur> <nom-type-valeur-table.field>  
-    Generer le module de connexion :
-    cmr connect|co|-connect|-co
-    Demarrer server Wamp :       
-    cmr -start|-serve|-s|start|serve|s <project-name>       
-                                                         
+   ================================================================================================================================
+    Aide                            | cmr | -help|-h|-aide|-a|help|h|aide|a                                                       
+    Generer un composant            | cmr | -generate|-gen|generate|gen|g <table> <nom-type-valeur> <nom-type-valeur-table.field> 
+    Generer le module utilisateur   | cmr | -module|-mod|module|mod <-user|-u|user|u>                                                               
+    Demarrer server Wamp            | cmr | -start|-serve|-s|start|serve|s <project-name>                                         
+   ================================================================================================================================                                                      
 <?php
 } elseif ($argc >= 1 && in_array($argv[1], array('generate','-generate','-gen','gen', '-g','g'))) {
     echo'generer le composant '.$argv[2]." ?\n";
@@ -25,7 +22,7 @@ if (in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-
         require_once "generator.dev.php";
     }
 
-} elseif ($argc != 4 && in_array($argv[1], array("-serve","-start","-s","start","s","serve"))) {
+} elseif ($argc != 3 && in_array($argv[1], array("-serve","-start","-s","start","s","serve"))) {
     echo 'Entree|oui|o non|n'."\n";
     echo 'Demmarer le server local ?';
     $handle = fopen ('php://stdin','r');
@@ -36,18 +33,23 @@ if (in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-
     }else if(preg_match('/oui|o|/',trim($line))){
         echo "http://localhost/{$argv[2]}";
     }
-} elseif ($argc != 3 && in_array($argv[1], array("connect","-connect","co","-co"))) {
-    echo 'Entree|oui|o non|n'."\n";
-    echo 'Generer le module de connexion ?';
-    $handle = fopen ('php://stdin','r');
-    $line = fgets($handle);
-    if(preg_match('/non|n/',trim($line))){
-        echo 'Annulé!';
-        exit;
-    }else if(preg_match('/oui|o|/',trim($line))){
-        require_once "user.module.php";
+} elseif (!empty($argv[2])&&in_array($argv[1], array("module","-module","mod","-mod"))) {
+    if(in_array($argv[2], array("user","-user","u","-u"))){
+        echo 'Entree|oui|o non|n'."\n";
+        echo 'Generer le module Utilisateur ?';
+        $handle = fopen ('php://stdin','r');
+        $line = fgets($handle);
+        if(preg_match('/non|n/',trim($line))){
+            echo 'Annulé!';
+            exit;
+        }else if(preg_match('/oui|o|/',trim($line))){
+            require_once "user.module.php";
+        }
+    }else{
+        echo "module inconnu";
     }
+    
 } else {
-    echo "Commande inconnue essayer help";
+    echo "Commande inconnue essayer : -help";
 }
 ?>
