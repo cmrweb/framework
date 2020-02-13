@@ -22,7 +22,7 @@ if (empty($argv[1])||in_array($argv[1], array('-help', '-h', 'help','h', '','aid
         require_once "generator.dev.php";
     }
 
-} elseif (!empty($argv[2]) && in_array($argv[1], array("-serve","-start","-s","start","s","serve"))) {
+} elseif (!empty($argv[1]) && in_array($argv[1], array("-serve","-start","-s","start","s","serve"))) {
     echo 'Entree|oui|o non|n'."\n";
     echo 'Demmarer le server local ?';
     $handle = fopen ('php://stdin','r');
@@ -31,7 +31,8 @@ if (empty($argv[1])||in_array($argv[1], array('-help', '-h', 'help','h', '','aid
         echo 'Annulé!';
         exit;
     }else if(preg_match('/oui|o|/',trim($line))){
-        exec("start http://localhost/{$argv[2]}");
+        $path = preg_replace("/[\w|\W]*www\W|\Wlib\Wcli/","",__DIR__);
+        exec("start http://localhost/{$path}");
     }
 } elseif (!empty($argv[2])&&in_array($argv[1], array("module","-module","mod","-mod"))) {
     if(in_array($argv[2], array("user","-user","u","-u"))){
