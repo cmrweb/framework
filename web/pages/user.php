@@ -5,11 +5,11 @@
     <h1>Connexion</h1>
     <div class='form'>
         <label for='email'>email</label>
-        <input type="email" class='input' name="email" id="email">
+        <input type="email" class='input mailSecure' name="email" id="email">
     </div>
     <div class='form'>
         <label for='password'>password</label>
-        <input type="password" class='input' name="password" id="password">
+        <input type="password" class='input passSecure' name="password" id="password">
     </div>
     <button type='submit' class='success center' name='conn'>connexion</button>
 </form>
