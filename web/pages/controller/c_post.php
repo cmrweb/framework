@@ -7,7 +7,7 @@ $Post = new Post();
 if (isset($_POST['addPost'])) {
     if (!empty($_FILES['img']["size"])) {
         if ($_FILES['img']["size"] <= 500000) {
-            $target_dir =  "../" . ROOT_DIR . IMG_DIR;
+            $target_dir =  "../" . ROOT_DIR . IMG_DIR."upload/";
             $bytes = random_bytes(5);
             $ext = pathinfo(basename($_FILES['img']["name"]), PATHINFO_EXTENSION);
             $target_file = bin2hex($bytes);
@@ -28,7 +28,7 @@ if (isset($_POST['addPost'])) {
 if (isset($_POST['update'])) {
     if (!empty($_FILES['img']["size"])) {
         if ($_FILES['img']["size"] <= 500000) {
-            $target_dir =  "../" . ROOT_DIR . IMG_DIR;
+            $target_dir =  "../" . ROOT_DIR . IMG_DIR."upload/";
             $bytes = random_bytes(5);
             $ext = pathinfo(basename($_FILES['img']["name"]), PATHINFO_EXTENSION);
             $target_file = bin2hex($bytes);

@@ -1,6 +1,4 @@
 <?php
-//vue
-
 echo $html->code("div", "", "background");
 echo $html->code(
     'section',
@@ -23,7 +21,7 @@ if ($Post->getData()) : ?>
             foreach ($Post->getData() as $key => $value) :
                 echo $html->formOpen('', 'post', 'large light articles') .
                     $html->input("hidden", "id", "", "", $value['id'], $value['id']) .
-                    $html->img(ROOT_DIR . IMG_DIR . $value['img'], $value['img'], "medium center") .
+                    $html->img(ROOT_DIR . IMG_DIR."upload/" . $value['img'], $value['img'], "medium center") .
                     $html->input("text", "title", "title", "", $value['title'], $value['title']) .
                     $html->textarea(5, "post", "post", "", $value['post']) .
                     $html->input("file", "img", "img", "") .
@@ -32,4 +30,28 @@ if ($Post->getData()) : ?>
                     $html->formClose();
             endforeach; ?>
     </section>
-<?php endif;
+<?php endif;?>
+<script>
+        $(document).ready(()=>{
+            $('.imgpreview').hide();
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('.imgpreview').attr('src', e.target.result);
+                }
+                if (input.files[0]) {
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        }
+
+        $("#img:file").change(function() {
+            $('.imgpreview').show();
+            readURL(this);
+        });
+
+    </script>
