@@ -193,4 +193,7 @@ $pathClass = '../../web/Entity/';
 $classFile = $pathClass .'User.php';
 file_put_contents($classFile, $class);
 
+$module = preg_replace("/userModule\=false\;/", "userModule=true;", file_get_contents("../../web/includes/header.php"));
+file_put_contents("../../web/includes/header.php", $module);
+
 echo "Generation des fichiers : \n->" . $pathClass ."User.php \n-> " . $pathvue ."user.php \n-> " . $pathctrl . "c_user.php \n-> " . $pathcss ."user.css \nRoute user ajouter";
