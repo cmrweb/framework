@@ -4,10 +4,12 @@ if (in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-
     Utilisation :
     Aide :
     cmr -help|-h|help|h|aide|-aide|a|-a 
-    Generer ORM + CRUD                  
+    Generer ORM + CRUD :               
     cmr -generate|-gen|generate|gen|g <table> <nom-type-valeur> <nom-type-valeur-table.field>  
-    Demarrer server Wamp          
-    cmr -start|-serve|-s|start|serve|s           
+    Generer le module de connexion :
+    cmr connect|co|-connect|-co
+    Demarrer server Wamp :       
+    cmr -start|-serve|-s|start|serve|s <project-name>       
                                                          
 <?php
 } elseif ($argc >= 1 && in_array($argv[1], array('generate','-generate','-gen','gen', '-g','g'))) {
