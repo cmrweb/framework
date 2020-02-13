@@ -5,7 +5,6 @@ require 'Autoload.php';
 use cmr\autoload\Autoloader;
 Autoloader::register(); 
 $html = new Html();
-include 'lib/version.php';
 include 'lib/function.php';
 $dotenv = Dotenv\Dotenv::create(__DIR__);;
 $dotenv->overload();
