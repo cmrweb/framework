@@ -14,3 +14,6 @@ ROOT_PATH=\"/{$projectName}\"";
 file_put_contents(".env", $envContent);
 echo ".env generer";
 echo $envContent;
+$cli = preg_replace("/cmrweb/", $projectName, file_get_contents("lib/cli/cmr.bat"));
+    file_put_contents("lib/cli/cmr.bat", $cli);
+echo "init cli";
