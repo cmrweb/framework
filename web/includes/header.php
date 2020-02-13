@@ -1,5 +1,6 @@
 <header class="fixhead xlarge light header">
 <?php
+$userModule=false;
 echo $html->h('1','CMRWEB<span>Camara</span><span>Enrique</span>','title');
 if(isset($_POST['disc'])){
     $_SESSION['user']=NULL;
@@ -8,7 +9,7 @@ if(isset($_POST['disc'])){
 ?>
 <i class="fas fa-bars menu"></i>
 <?php
-if(empty($_SESSION['user'])){
+if(empty($_SESSION['user'])&&$userModule){
 echo 
 $html->code('nav',
 $html->menu([
@@ -17,7 +18,7 @@ $html->menu([
 ],
 'primary popupBtn'),
 'nav navConn'); 
-}else{
+}elseif(!empty($_SESSION['user'])){
     $form = $html->formOpen('', 'post') .
     $html->button('submit', 'primary navConn', '<i class="fas fa-times-circle"></i>', 'disc') .
     $html->formClose();
@@ -30,3 +31,7 @@ include 'web/module/nav.php';
 </header>
 
 <main>
+<?php
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    ?>
