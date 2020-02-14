@@ -8,3 +8,4 @@ web/includes/header.php
 images/icons/
 manifest.json
 composer*
+*.png
