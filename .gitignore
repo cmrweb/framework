@@ -6,4 +6,5 @@ web/module/route.php
 web/includes/header.php
 /vendor/
 images/icons/
-#composer*
+manifest.json
+composer*
