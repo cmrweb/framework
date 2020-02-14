@@ -101,7 +101,7 @@ if (isset($_POST['send'])) {
  
 }
 
- //require "web/module/init.manifest.php";
+ require "web/module/init.manifest.php";
 ?>
 <style>
   label {
