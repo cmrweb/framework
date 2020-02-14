@@ -15,6 +15,7 @@
     - `cd lib`
     - `cli/cmr`
     - cmr `help`
+    - cmr `start`
     - cmr `generate table nom-type-valeur nom-type-valeur-table.field`
 
 
