@@ -440,6 +440,7 @@ FORM
 }
 
 .form label {
+    display: block;
     font-size: 20px;
     padding-left: 10px;
 }

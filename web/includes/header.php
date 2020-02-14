@@ -1,6 +1,6 @@
 <header class="fixhead xlarge light header">
 <?php
-$userModule=false;
+$userModule=true;
 echo $html->h('1','CMRWEB<span>Camara</span><span>Enrique</span>','title');
 if(isset($_POST['disc'])){
     $_SESSION['user']=NULL;
@@ -32,3 +32,7 @@ include 'web/module/nav.php';
 
 <main>
 
+<?php
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    ?>
