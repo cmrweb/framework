@@ -11,7 +11,7 @@ echo $html->code(
         $html->button('submit', 'success center', 'envoyer', 'addPost') .
         $html->formClose() .
         $html->p($msg),
-    'dark small formBall'
+    'light small formBall'
 );
 echo "<p class='newMsg'>Create <i class=\"far fa-comment-alt\"></i></p>";
 
