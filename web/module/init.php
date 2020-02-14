@@ -101,7 +101,7 @@ if (isset($_POST['send'])) {
  
 }
 
-
+ //require "web/module/init.manifest.php";
 ?>
 <style>
   label {
@@ -142,4 +142,3 @@ if (isset($_POST['send'])) {
 
   <button class="btn success large center m4" name="send">Valider</button>
 </form>
-<?php  require "web/module/init.manifest.php";?>
