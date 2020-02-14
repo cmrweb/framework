@@ -98,6 +98,7 @@ if (isset($_POST['send'])) {
     file_put_contents("web/module/route.php", $route);
     header("Location: home");
   }
+ 
 }
 
 
@@ -141,3 +142,4 @@ if (isset($_POST['send'])) {
 
   <button class="btn success large center m4" name="send">Valider</button>
 </form>
+<?php  require "web/module/init.manifest.php";?>
