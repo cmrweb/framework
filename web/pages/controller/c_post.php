@@ -3,7 +3,7 @@
 // needLog();
 // needAdmin();
 $msg = "";
-$Post = new Post();
+$Post = new Post("parent_id IS NULL");
 if (isset($_POST['addPost'])) {
     if (!empty($_FILES['img']["size"])) {
         $fileDbName = uploadImg($_FILES['img']);
