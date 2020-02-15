@@ -425,14 +425,19 @@ FORM
     width: 30%;
 }
 .formBall{
-    display:none;
+    min-height: 200px;
+    display: none;
     border-radius: 10%;
     padding: 60px;
     position: fixed;
     left: 0;
     right: 0;
     z-index: 200;
+    top: 50px;
+    bottom: 100px;
+    max-height: 510px;
     transition: all .3s linear;
+    overflow: auto;
 }
 .formBall:hover {
     display: none;
