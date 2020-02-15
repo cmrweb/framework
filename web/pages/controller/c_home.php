@@ -1,5 +1,4 @@
 <?php
-$dev = $_ENV['APP_ENV']=="dev"?true:false;
 
 if(isset($_POST['init'])){
         //reecriture des routes

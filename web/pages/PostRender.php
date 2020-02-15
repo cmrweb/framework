@@ -1,4 +1,5 @@
 <?php
+dump($Post->getData());
 if ($Post->getData()) : ?>
     <section class="large light">
         <?= $html->h('1', 'Read');
@@ -8,6 +9,14 @@ if ($Post->getData()) : ?>
                     $html->a((isset($id))?"":"post/". $value['id'],$html->h(2, $value['title'])).
                     $html->p($value['post']),
                     (isset($id))?"article large light":"articles large light");
+                    if(isset($id)):?>
+                      <form method="post" class="form large light" enctype="multipart/form-data">
+                          <input type="text" class="input" name="title">
+                          <textarea class="input" name="post" cols="30" rows="3"></textarea>
+                          <input type="file" name="img">
+                          <button class="btn primary large center" name="reponse">Envoyer</button>
+                      </form>  
+                <?php endif;
             endforeach; ?>
     </section>
 <?php else : ?>

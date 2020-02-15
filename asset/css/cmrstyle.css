@@ -54,6 +54,16 @@ main section.large.light{
     cursor: pointer;
     right: 5px;
 }
+.dump{
+    width: 60%;
+    margin: auto;
+    border: 1px solid #000;
+    height: 300px;
+    position: fixed;
+    top: 2px;
+    resize: both;
+    z-index: 1000;
+}
 pre {
     border: 1px solid #fff;
 }
@@ -444,7 +454,9 @@ FORM
     font-size: 20px;
     padding-left: 10px;
 }
-
+.form textarea{
+    resize: none;
+}
 .input,
 .textarea {
     margin: 0 auto;

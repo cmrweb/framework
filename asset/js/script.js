@@ -1,15 +1,17 @@
 "use strict";
-// if ('serviceWorker' in navigator) {
-//     try {
-//         navigator.serviceWorker.register('serviceWorker.js');
-//     } catch (error) {
-//         console.log(error);
-//     }
-//     window.addEventListener('beforeinstallprompt', (e) => {
-//         e.preventDefault();
-//         showInstallPromotion(e);
-//     });
-// }
+function sw_register(){
+if ('serviceWorker' in navigator) {
+    try {
+        navigator.serviceWorker.register('serviceWorker.js');
+    } catch (error) {
+        console.log(error);
+    }
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        showInstallPromotion(e);
+    });
+}
+}
 /*
 PWA
 */

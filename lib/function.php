@@ -15,7 +15,7 @@ function needAdmin(){
 
 
 function dump($var){
-  echo "<pre>";var_dump($var);echo"</pre>";
+  echo "<pre class='dump'><code class='language-js'>";echo preg_replace("/}\,\"/","},\n\"",preg_replace("/{\"/","{\n\"",preg_replace("/\,\"/",",\n\t\"",json_encode($var,true))));echo"</code></pre>";
 }
 
 function uploadImg($img){
