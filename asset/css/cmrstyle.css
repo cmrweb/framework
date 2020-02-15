@@ -54,16 +54,6 @@ main section.large.light{
     cursor: pointer;
     right: 5px;
 }
-.dump{
-    width: 60%;
-    margin: auto;
-    border: 1px solid #000;
-    height: 300px;
-    position: fixed;
-    top: 2px;
-    resize: both;
-    z-index: 1000;
-}
 pre {
     border: 1px solid #fff;
 }
@@ -125,6 +115,16 @@ color: #be9b0e;
 small{
     display: block;
     padding: 5px 0;
+}
+.dump{
+    width: 60%;
+    margin: auto;
+    border: 1px solid #000;
+    height: 300px;
+    position: fixed;
+    top: 50px;
+    resize: both;
+    z-index: 1000;
 }
 .erreur{
     text-align: center;
@@ -485,6 +485,12 @@ FORM
     padding: 10px 20px 10px 20px;
     box-shadow: 0px 5px 5px 5px #ccc;
     border: 1px solid #ccc;
+}
+.dumpBtn{
+    position: fixed;
+    top: 0;
+    width: 30%;
+    z-index: 1000;
 }
 /*****************************************************************************************
 POSITION
