@@ -4,6 +4,7 @@
 // needAdmin();
 $msg = "";
 $Post = new Post("parent_id IS NULL");
+dump($Post->getData());
 if (isset($_POST['addPost'])) {
     if(!empty($_POST['title'])&&!empty($_POST['post'])){
         if (!empty($_FILES['img']["size"])) {
