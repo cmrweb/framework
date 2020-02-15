@@ -1,14 +1,14 @@
 <?php
 function needLog(){
     if(!isset($_SESSION['user'])){
-        $msg="connexion requise";
+      $_SESSION['message']['danger'] ="connexion requise";
       return  header('Location: ./');
     }
 }
 
 function needAdmin(){
   if($_SESSION['user']['admin']!=1){
-    $msg="connexion requise";
+    $_SESSION['message']['danger'] = "connexion requise";
   return  header('Location: ./');
 }
 }
@@ -28,5 +28,11 @@ function uploadImg($img){
     if (is_uploaded_file($img["tmp_name"]))
     return $uploadName;
   }else
-  return "l'image est trop lourde";
+  $_SESSION['message']['danger'] = "l'image est trop lourde";
+}
+
+function message($message){
+  if(isset($message))
+  foreach ($message as $key => $value)
+  echo "<p class=\"$key p4\">$value</p>";
 }

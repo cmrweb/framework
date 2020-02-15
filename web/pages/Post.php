@@ -1,4 +1,5 @@
 <?php
+$html = new Html;
 echo $html->code("div", "", "background");
 echo $html->code(
     'section',
@@ -9,8 +10,7 @@ echo $html->code(
         $html->input("file", "img", "img") .
         $html->img("", "preview", "imgpreview small center") .
         $html->button('submit', 'success center', 'envoyer', 'addPost') .
-        $html->formClose() .
-        $html->p($msg),
+        $html->formClose(),
     'light small formBall'
 );
 echo "<p class='newMsg'>Create <i class=\"far fa-comment-alt\"></i></p>";

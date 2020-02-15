@@ -1,8 +1,6 @@
 <?php
 needLog();
 $getuser = new User("id!=$userid");?>
-
-
 <div id="online_user">
 
 </div>

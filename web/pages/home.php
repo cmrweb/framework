@@ -35,7 +35,7 @@
     <?= $html->h('1', "cmrframework") .
         $html->a("https://github.com/cmrweb/cmrweb", $html->img(ROOT_DIR . IMG_DIR . "github.png", "lien github cmrweb", "logo"), true) .
         $html->h('4', "cmrframework inBulid") .
-        $html->iframe("https://www.youtube.com/embed/kbLOpv2vWo4") .
+        $html->iframe("https://www.youtube.com/embed/InM_uDLBm7Q") .
         $html->menu(['<h2>Installation</h2>' . $html->menu([
             "installer WampServer" => "http://www.wampserver.com/en/download-wampserver-64bits/",
             "installer composer" => "https://getcomposer.org/download/",
