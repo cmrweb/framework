@@ -16,7 +16,7 @@ function needAdmin(){
 
 function dump($var){
   echo "<p class='btn success small dumpBtn' onclick='openModal(\"dump\")'>dump</p>";
-  echo "<pre id='dump' class='dump hide'><code class='language-js'>";echo preg_replace("/}\,\"/","},\n\"",preg_replace("/{\"/","{\n\"",preg_replace("/\,\"/",",\n\t\"",json_encode($var,true))));echo"</code></pre>";
+  echo "<pre id='dump' class='dump hide'><code class='language-js'>". preg_replace("/}\,\"/","},\n\"",preg_replace("/{\"/","{\n\"",preg_replace("/\,\"/",",\n\t\"",json_encode($var,true))))."</code></pre>";
 }
 
 function uploadImg($img){
