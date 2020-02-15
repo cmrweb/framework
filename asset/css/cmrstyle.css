@@ -117,12 +117,11 @@ small{
     padding: 5px 0;
 }
 .dump{
-    width: 60%;
-    margin: auto;
+    width: 300px;
     border: 1px solid #000;
     height: 300px;
     position: fixed;
-    top: 50px;
+    top: 102px;
     resize: both;
     z-index: 1000;
 }
@@ -488,7 +487,7 @@ FORM
 }
 .dumpBtn{
     position: fixed;
-    top: 0;
+    top: 58px;
     width: 30%;
     z-index: 1000;
 }
