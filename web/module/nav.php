@@ -2,7 +2,8 @@
 echo $html->code('nav',
 $html->menu([
     'Home'=> ROOT_DIR."/" ,
-    'Demo'=> ROOT_DIR."/post"
+    'Articles'=> ROOT_DIR."/post",
+    'Articles Editor'=> ROOT_DIR."/edit"
 ],
 ''),
 'nav navClassic');
