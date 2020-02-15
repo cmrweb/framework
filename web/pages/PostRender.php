@@ -1,4 +1,5 @@
 <?php
+
 dump($Post->getData());
 if ($Post->getData()) : ?>
     <section class="large light">
