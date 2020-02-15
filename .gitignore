@@ -2,3 +2,10 @@
 /tmp/
 /asset/img/
 favicon.ico
+web/module/route.php
+web/includes/header.php
+/vendor/
+images/icons/
+manifest.json
+composer*
+*.png

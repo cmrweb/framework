@@ -1,4 +1,8 @@
 <?php
+// $router = new Router;
+// $router::route("","home");
+// $router::route("post","postRender");
+// $router::route("edit","post");
 switch ($url) {
     case '':
         require 'web/pages/controller/c_home.php';
@@ -11,10 +15,6 @@ switch ($url) {
         break;
     case $url[0] == 'dev' and empty($url[1]):
         require 'web/pages/dev.php';
-        break;
-    case $url[0] == 'docs' and empty($url[1]):
-        require 'web/pages/controller/c_docs.php';
-        require 'web/pages/docs.php';
         break;
 
     case $url[0] == 'edit' and empty($url[1]):

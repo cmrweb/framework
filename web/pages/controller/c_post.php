@@ -1,52 +1,45 @@
 <?php
 //controller
-needLog();
-needAdmin();
+// needLog();
+// needAdmin();
 $msg = "";
-$Post = new Post();
+$Post = new Post("parent_id IS NULL");
+dump($Post->getData());
 if (isset($_POST['addPost'])) {
-    if (!empty($_FILES['img']["size"])) {
-        if ($_FILES['img']["size"] <= 500000) {
-            $target_dir =  "../" . ROOT_DIR . IMG_DIR;
-            $bytes = random_bytes(5);
-            $ext = pathinfo(basename($_FILES['img']["name"]), PATHINFO_EXTENSION);
-            $target_file = bin2hex($bytes);
-            $uploadName = strtolower($target_file . '.' . $ext);
-            $fileDbName = strtolower($target_file . '.' . $ext);
-            if (is_uploaded_file($_FILES['img']["tmp_name"]))
-                if (move_uploaded_file($_FILES['img']["tmp_name"],  $target_dir . $uploadName)) {
-                    $Post->setData(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => "$fileDbName"]);
-                }
+    if(!empty($_POST['title'])&&!empty($_POST['post'])){
+        if (!empty($_FILES['img']["size"])) {
+            $fileDbName = uploadImg($_FILES['img']);
+            if (move_uploaded_file($_FILES['img']["tmp_name"], "../" . ROOT_DIR . IMG_DIR."upload/" . $fileDbName)) {
+                $Post->setData(["user_id" => 0, "title" => $_POST['title'], "post" => nl2br($_POST['post']), "img" => "$fileDbName"]);
+                $_SESSION['message']['success'] = "Message envoyer";
+            }else{
+                $_SESSION['message']['danger'] =  "une erreur est survenu";
+            }
         } else {
-            $msg = "image trop lourde";
+            $Post->setData(["user_id" => 0, "title" => $_POST['title'], "post" => nl2br($_POST['post'])]);
+            $_SESSION['message']['success'] = "Message envoyer";
         }
-    } else {
-        $Post->setData(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post']]);
+    }else{
+        $_SESSION['message']['danger'] = "Veuillez remplir les champs";
     }
-    header("Location: ./edit");
+    header("Location: edit");
 }
 if (isset($_POST['update'])) {
     if (!empty($_FILES['img']["size"])) {
-        if ($_FILES['img']["size"] <= 500000) {
-            $target_dir =  "../" . ROOT_DIR . IMG_DIR;
-            $bytes = random_bytes(5);
-            $ext = pathinfo(basename($_FILES['img']["name"]), PATHINFO_EXTENSION);
-            $target_file = bin2hex($bytes);
-            $uploadName = strtolower($target_file . '.' . $ext);
-            $fileDbName = strtolower($target_file . '.' . $ext);
-            if (is_uploaded_file($_FILES['img']["tmp_name"]))
-                if (move_uploaded_file($_FILES['img']["tmp_name"],  $target_dir . $uploadName)) {
-                    $Post->update(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post'], "img" => "$fileDbName"], "id=" . $_POST['id']);
-                }
-        } else {
-            $msg = "image trop lourde";
+        $fileDbName = uploadImg($_FILES['img']);
+        if (move_uploaded_file($_FILES['img']["tmp_name"],  "../" . ROOT_DIR . IMG_DIR."upload/" . $fileDbName)) {
+            $Post->update(["user_id" => 0, "title" => $_POST['title'], "post" => nl2br($_POST['post']), "img" => "$fileDbName"], "id=" . $_POST['id']);
+            $_SESSION['message']['success'] = "Message mis à jour";
+        }else{
+            $_SESSION['message']['danger'] =  "une erreur est survenu";
         }
     } else {
-        $Post->update(["user_id" => $userid, "title" => $_POST['title'], "post" => $_POST['post']], "id=" . $_POST['id']);
+        $Post->update(["user_id" => 0, "title" => $_POST['title'], "post" => nl2br($_POST['post'])], "id=" . $_POST['id']);
+        $_SESSION['message']['success'] = "Message mis à jour";
     }
-    header("Location: ./edit");
+    header("Location: edit");
 }
 if (isset($_POST['delete'])) {
     $Post->delete($_POST['id']);
-    header("Location: ./edit");
+    header("Location: edit");
 }

@@ -29,7 +29,7 @@ if (isset($_POST['send'])) {
         DB_NAME=\"{$dbNAME}\"
         DB_USER=\"{$dbUSER}\"
         DB_PASS=\"{$dbPASS}\"
-        ROOT_PATH=\"/{$_POST['projectName']}\"";
+        ROOT_PATH=\"/{$projectName}\"";
     //dump($envContent);
     file_put_contents(".env", $envContent);
 
@@ -89,17 +89,22 @@ if (isset($_POST['send'])) {
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;COMMIT;");
     $tableUser->execute();
     //reecriture du path cli
-    $cli = preg_replace("/cmrweb/", $_POST['projectName'], file_get_contents("lib/cli/cmr.bat"));
+    $cli = preg_replace("/cmrweb/", $projectName, file_get_contents("lib/cli/cmr.bat"));
     file_put_contents("lib/cli/cmr.bat", $cli);
+
     //reecriture des routes
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
     //dump($route);
     file_put_contents("web/module/route.php", $route);
+    
+    $_SESSION['message']['success'] = "Projet initialiser";
     header("Location: home");
+  }else{
+      $_SESSION['message']['danger'] = "Veuillez Remplir les champs";
   }
 }
 
-
+ require "web/module/init.manifest.php";
 ?>
 <style>
   label {
@@ -108,11 +113,6 @@ if (isset($_POST['send'])) {
 </style>
 <form method="post" class='large primary formContainer'>
   <h1>Initialiation du projet</h1>
-  <div class="form">
-    <label for="projectName">Nom du projet</label>
-    <input class="input" type="text" id="projectName" name="projectName" value="<?= $projectName ?>">
-  </div>
-
   <div class="form">
     <label for="dbHost">Hote de la Base de données</label>
     <input class="input" type="text" id="dbHost" name="dbHost" value="<?= $dbHOST ?>">

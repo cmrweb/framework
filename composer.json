@@ -12,6 +12,11 @@
     "require": {
         "vlucas/phpdotenv": "3.4.0"
     },
+    "scripts":{
+        "post-create-project-cmd": [
+            "php init.php"
+        ]
+    },
     "version": "dev-master",
     "license": "MIT"
 }

@@ -68,12 +68,13 @@ for ($i = 3; $i < count($argv); $i++) {
 }
 $controller = substr($controller, 0, -2);
 $controller .= ")\";\n
+\$req=\$db->pdo->prepare(\$query);\n
+\$req->execute();\n
 /*
 * READ
 */
-\$req=\$db->pdo->prepare(\$query);\n
-\$req->execute();\n
 \${$argv[2]}=new {$argUc}();
+//dump(\${$argv[2]}->getData());
 /*
 * CREATE
 */
@@ -158,8 +159,6 @@ if (isset(\$_POST['delete'])) {\n
 }
 ?>";
 
-//echo $controller;
-
 $pathctrl = '../../web/pages/controller/';
 $controllerFile = $pathctrl . "c_" . $argLower . '.php';
 file_put_contents($controllerFile, $controller);
@@ -211,7 +210,7 @@ for ($i = 3; $i < count($argv); $i++) {
             $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"date\" class='input' name=\"{$field[0]}\" id=\"{$field[0]}\">\n</div>\n";
             break;
         case "text":
-            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<textarea rows=\"5\" class='input' name=\"{$field[0]}\" id\"{$field[0]}\">\n</div>\n";
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<textarea rows=\"5\" class='input' name=\"{$field[0]}\" id\"{$field[0]}\"></textarea>\n</div>\n";
             break;
     }
 }
@@ -271,11 +270,11 @@ class {$argUc}
     private \$pdo;
     private \$data;
     private \$id;\n";
-for ($i = 3; $i < count($argv); $i++) {
-    $field = implode("-", explode(" ", $argv[$i]));
-    $field = explode("-", $field);
-    $class .= "private \${$field[0]};\n";
-}
+    for ($i = 3; $i < count($argv); $i++) {
+        $field = implode("-", explode(" ", $argv[$i]));
+        $field = explode("-", $field);
+        $class .= "private \${$field[0]};\n";
+    }
 $class .= "
     function __construct(\$bool = NULL)
     {
@@ -284,18 +283,18 @@ $class .= "
         foreach (\$this->pdo->result as \$value) {
             \$this->data[\$value['id']] = [
                 'id' => \$value['id'],\n";
-for ($i = 3; $i < count($argv); $i++) {
-    $field = implode("-", explode(" ", $argv[$i]));
-    $field = explode("-", $field);
-    $class .= "'{$field[0]}'=>\$value['{$field[0]}'],\n";
-}
-$class .= "  ];\n";
-$class .= " \$this->id[] = \$value['id'];\n";
-for ($i = 3; $i < count($argv); $i++) {
-    $field = implode("-", explode(" ", $argv[$i]));
-    $field = explode("-", $field);
-    $class .= "\$this->{$field[0]}[] = \$value['{$field[0]}'];\n";
-}
+        for ($i = 3; $i < count($argv); $i++) {
+            $field = implode("-", explode(" ", $argv[$i]));
+            $field = explode("-", $field);
+            $class .= "'{$field[0]}'=>\$value['{$field[0]}'],\n";
+        }
+        $class .= "  ];\n";
+        $class .= " \$this->id[] = \$value['id'];\n";
+        for ($i = 3; $i < count($argv); $i++) {
+            $field = implode("-", explode(" ", $argv[$i]));
+            $field = explode("-", $field);
+            $class .= "\$this->{$field[0]}[] = \$value['{$field[0]}'];\n";
+        }
 $class .= "
         }
         return \$this->data;

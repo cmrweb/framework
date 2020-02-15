@@ -109,11 +109,11 @@ $vue = "
     <h1>Connexion</h1>
     <div class='form'>
         <label for='email'>email</label>
-        <input type=\"email\" class='input' name=\"email\" id=\"email\">
+        <input type=\"email\" class='input mailSecure' name=\"email\" id=\"email\">
     </div>
     <div class='form'>
         <label for='password'>password</label>
-        <input type=\"password\" class='input' name=\"password\" id=\"password\">
+        <input type=\"password\" class='input passSecure' name=\"password\" id=\"password\">
     </div>
     <button type='submit' class='success center' name='conn'>connexion</button>
 </form>
@@ -192,5 +192,15 @@ class User
 $pathClass = '../../web/Entity/';
 $classFile = $pathClass .'User.php';
 file_put_contents($classFile, $class);
+
+$module = preg_replace("/userModule\=false\;/", "userModule=true;", file_get_contents("../../web/includes/header.php"));
+file_put_contents("../../web/includes/header.php", $module);
+
+    $header = file_get_contents("../../web/includes/header.php");
+    $newHeader = "$header<?php
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    ?>";
+    file_put_contents("../../web/includes/header.php",$newHeader);
 
 echo "Generation des fichiers : \n->" . $pathClass ."User.php \n-> " . $pathvue ."user.php \n-> " . $pathctrl . "c_user.php \n-> " . $pathcss ."user.css \nRoute user ajouter";
