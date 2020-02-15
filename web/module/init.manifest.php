@@ -68,6 +68,9 @@ if (isset($_POST['send_app'])) {
             }
             move_uploaded_file($uploadedFile,  "./images/icons/" . $newFileName . "." . $ext);
         }
+        $_SESSION['message']['success'] = "PWA initialiser";
+    }else{
+        $_SESSION['message']['danger'] = "Veuillez Remplir les champs";
     }
 }
 function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth, $newImageHeight)

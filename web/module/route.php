@@ -1,4 +1,8 @@
 <?php
+// $router = new Router;
+// $router::route("","home");
+// $router::route("post","postRender");
+// $router::route("edit","post");
 switch ($url) {
     case '':
         require 'web/pages/controller/c_home.php';

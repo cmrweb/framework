@@ -96,9 +96,12 @@ if (isset($_POST['send'])) {
     $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
     //dump($route);
     file_put_contents("web/module/route.php", $route);
+    
+    $_SESSION['message']['success'] = "Projet initialiser";
     header("Location: home");
+  }else{
+      $_SESSION['message']['danger'] = "Veuillez Remplir les champs";
   }
- 
 }
 
  require "web/module/init.manifest.php";

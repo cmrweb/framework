@@ -1,5 +1,4 @@
 <?php
-$html = new Html;
 echo $html->code("div", "", "background");
 echo $html->code(
     'section',
