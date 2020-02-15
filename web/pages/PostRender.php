@@ -2,7 +2,6 @@
 dump($Post->getData());
 if ($Post->getData()) : ?>
     <section class="large light">
-
         <?= $html->h('1', 'Read');
             foreach ($Post->getData() as $key => $value) :
                 echo $html->code("section",
@@ -14,9 +13,9 @@ if ($Post->getData()) : ?>
                     foreach ($comments->getData() as $comment){
                         echo $html->code("section",
                         $html->img(ROOT_DIR . IMG_DIR."upload/" . $comment['img'], $comment['img'], "medium center") .
-                        $html->a((isset($id))?"":"post/". $comment['id'],$html->h(2, $comment['title'])).
+                        $html->a("./".$comment['id'],$html->h(2, $comment['title'])).
                         $html->p($comment['post']),
-                        (isset($id))?"article large light":"articles large light");
+                        "articles large light");
                      } if(isset($id)):?>
                       <form method="post" class="form large light" enctype="multipart/form-data">
                           <input type="hidden" name="parent_id" value="<?=$value['id']?>">
