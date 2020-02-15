@@ -1,6 +1,6 @@
 <header class="fixhead xlarge light header">
 <?php
-$userModule=true;
+$userModule=false;
 echo $html->h('1','CMRWEB<span>Camara</span><span>Enrique</span>','title');
 if(isset($_POST['disc'])){
     $_SESSION['user']=NULL;
