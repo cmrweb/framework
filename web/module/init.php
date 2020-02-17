@@ -101,6 +101,7 @@ if (isset($_POST['send'])) {
     header("Location: home");
   }else{
       $_SESSION['message']['danger'] = "Veuillez Remplir les champs";
+      header("Location: ./");
   }
 }
 

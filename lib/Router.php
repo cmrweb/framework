@@ -8,21 +8,27 @@ class Router
             self::$url = explode('/', $_GET['url']);
         }
     }
-    public static function route($route, $file)
+    public static function route($route, $file, $controller = true)
     {
-        
-        switch (self::$url) {
-            case self::$url[0] == "{$route}" and empty(self::$url[1]):
+        if ($controller) {
+            if (self::$url[0] == "{$route}" && empty(self::$url[1])) {
+                $html = new Html();
+                $dev = $_ENV['APP_ENV']=="dev"?true:false;
                 require "web/pages/controller/c_$file.php";
                 require "web/pages/$file.php";
-                break;
-            case '':
-                require 'web/pages/controller/c_home.php';
-                require 'web/pages/home.php';
-                break;
-            default:
-                echo 'ERREUR 404';
-                break;
+            }elseif(self::$url[0] == "{$route}" && !empty(self::$url[1])){
+                $html = new Html();
+                $dev = $_ENV['APP_ENV']=="dev"?true:false;
+                $id = self::$url[1];
+                require "web/pages/controller/c_$file.php";
+                require "web/pages/$file.php";
+            }
+        } else {
+            if (self::$url[0] == "{$route}" && empty(self::$url[1])) {
+                $html = new Html();
+                $dev = $_ENV['APP_ENV']=="dev"?true:false;
+                require "web/pages/$file.php";
+            }
         }
     }
 }

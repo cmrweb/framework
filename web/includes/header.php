@@ -1,5 +1,6 @@
 <header class="fixhead xlarge light header">
     <?php
+    $dev = $_ENV['APP_ENV']=="dev"?true:false;
     $userModule = false;
     echo $html->h('1', 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
     if (isset($_POST['disc'])) {
@@ -34,7 +35,7 @@
     <p id="AppInstall" class="btn-gold">PWA <i class="fas fa-cloud-download-alt"></i></p>
 </header>
 <div class="message">
-    <?php if(isset($_SESSION['message']))message($_SESSION['message']);unset($_SESSION['message'])?>
+    <?php if(isset($_SESSION['message']))message($_SESSION['message'])?>
 </div>
 <main>
     <div id="bgCover" class="hide" onclick="openModal()"></div>
