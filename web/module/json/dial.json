@@ -54,42 +54,97 @@
             }
         ]
     },
-    "vous_contact":{
-        "question":"C'est tres simple, il vous suffit de cliquez sur le lien si dessous",
-        "reponses":[
+    "vous_contact": {
+        "question": "Veuillez entrer votre adresse email",
+        "reponses": [
             {
-                "text":"Contactez moi !",
-                "id":"contactModal"
+                "input": {
+                    "type": "email",
+                    "text":"Suivant",
+                    "id": "nom"
+                },
+                "next":"vous_contact_2"
             },
             {
-                "text":"Retour",
-                "next":"vous"
+                "text": "Retour",
+                "next": "vous"
             }
         ]
     },
-    "tu_contact":{
-        "question":"Easy, tu clique juste là",
-        "reponses":[
+    "vous_contact_2": {
+        "question": "Vous pouvez entrer votre message",
+        "reponses": [
             {
-                "text":"Ici !",
-                "id":"contactModal"
+                "input": {
+                    "type": "textarea",
+                    "text":"Envoyer",
+                    "id": "message"
+                },
+                "next":"sendMessage"
             },
             {
-                "text":"Oups, Laisse tomber!",
-                "next":"vous"
+                "text": "Annulé",
+                "next": "vous"
             }
         ]
     },
-    "copy":{
-        "question":"",
-        "reponses":[
+    "tu_contact": {
+        "question": "Tu peu entrer ton adresse email",
+        "reponses": [
             {
-                "text":"",
-                "next":0
+                "input": {
+                    "type": "email",
+                    "text":"Suivant",
+                    "id": "nom"
+                },
+                "next":"tu_contact_2"
             },
             {
-                "text":"",
-                "next":0
+                "text": "Oups, Laisse tomber!",
+                "next": "vous"
+            }
+        ]
+    },
+    "tu_contact_2": {
+        "question": "Tu peu entrer ton message",
+        "reponses": [
+            {
+                "input": {
+                    "type": "textarea",
+                    "text":"Envoyer",
+                    "id": "message"
+                },
+                "next":"sendMessage"
+            },
+            {
+                "text": "Oups, Laisse tomber!",
+                "next": "vous"
+            }
+        ]
+    },
+    "sendMessage": {
+        "question": "Message Envoyer",
+        "reponses": [
+            {
+                "text": "",
+                "next": 0
+            },
+            {
+                "text": "",
+                "next": 0
+            }
+        ]
+    },
+    "copy": {
+        "question": "",
+        "reponses": [
+            {
+                "text": "",
+                "next": 0
+            },
+            {
+                "text": "",
+                "next": 0
             }
         ]
     }

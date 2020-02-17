@@ -39,16 +39,15 @@ class DB
                 return $this->result = $req->fetchAll();
             }
         } else {
-            if (!$order) {
+            if (!$order && !$group) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from ORDER BY `id` asc");
                 $req->execute();
                 return $this->result = $req->fetchAll();
-            } else {
+            } elseif($order) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from  order by id desc");
                 $req->execute();
                 return $this->result = $req->fetchAll();
-            }
-            if ($group) {
+            }elseif (!$order && $group) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from GROUP by {$group}");
                 $req->execute();
                 return $this->result = $req->fetchAll();

@@ -82,22 +82,7 @@ if(isset(\$_POST['conn'])){
 $pathctrl = '../../web/pages/controller/';
 $controllerFile = $pathctrl . "c_user" . '.php';
 file_put_contents($controllerFile, $controller);
-/**
- *  GENERATE ROUTE
- */
-$route = substr(file_get_contents("../../web/module/route.php"), 0, -48);
-$newRoute = $route . "
 
-case \$url[0] == 'user' and empty(\$url[1]):
-    require 'web/pages/controller/c_user.php';
-    require 'web/pages/user.php';
-    break;
-
-    default:
-    echo 'ERREUR 404';
-    break;
-}";
-file_put_contents("../../web/module/route.php", $newRoute);
 /**
  *  GENERATE VUE
  */
@@ -193,7 +178,18 @@ $pathClass = '../../web/Entity/';
 $classFile = $pathClass .'User.php';
 file_put_contents($classFile, $class);
 
-$module = preg_replace("/userModule\s\=\sfalse\;/", "userModule=true;", file_get_contents("../../web/includes/header.php"));
+/**
+ *  GENERATE ROUTE
+ */
+preg_match("/\[[\W|\w|\s]*\]/",file_get_contents("../../web/module/route.php"),$oldRoute);
+$route=substr($oldRoute[0],0,-1).",'user'=>'user'\n]";
+$routeFinal = preg_replace("/\[[\W|\w|\s]*\]/",$route,file_get_contents("../../web/module/route.php"));
+file_put_contents("../../web/module/route.php", $routeFinal);
+/**
+ * Header
+ */
+$module = preg_replace("//userModule\s\=\sfalse\;/", "userModule=true;", file_get_contents("../../web/includes/header.php"));
+
 file_put_contents("../../web/includes/header.php", $module);
 
     $header = file_get_contents("../../web/includes/header.php");

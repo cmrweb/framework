@@ -35,4 +35,5 @@ function message($message){
   if(isset($message))
   foreach ($message as $key => $value)
   echo "<p class=\"$key p4\">$value</p>";
+  unset($_SESSION['message']);
 }

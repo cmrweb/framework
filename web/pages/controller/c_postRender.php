@@ -2,9 +2,15 @@
 if(isset($id)){
     $Post = new Post("id=".$id); 
     $comments = new Post("parent_id=".$id);
+    $db = new DB;
+    $db->select("parent_id,COUNT(id) as comm","post",null,false,"parent_id");
+    $countComm = $db->result;
 }else{
-    $Post = new Post("parent_id IS NULL");
-    $comments = null;
+    $Post = new Post();
+    $comments = null;//SELECT parent_id,COUNT(id) as comm FROM `post` GROUP BY parent_id
+    $db = new DB;
+    $db->select("parent_id,COUNT(id) as comm","post",null,false,"parent_id");
+    $countComm = $db->result;
 }
 if (isset($_POST['reponse'])) {
     if(!empty($_POST['title'])&&!empty($_POST['parent_id'])&&!empty($_POST['post']))

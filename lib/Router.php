@@ -8,21 +8,32 @@ class Router
             self::$url = explode('/', $_GET['url']);
         }
     }
-    public static function route($route, $file)
+    public static function route($routes)
     {
-        
-        switch (self::$url) {
-            case self::$url[0] == "{$route}" and empty(self::$url[1]):
-                require "web/pages/controller/c_$file.php";
-                require "web/pages/$file.php";
-                break;
-            case '':
-                require 'web/pages/controller/c_home.php';
-                require 'web/pages/home.php';
-                break;
-            default:
-                echo 'ERREUR 404';
-                break;
+        if(!in_array(self::$url[0],array_keys($routes))){   
+            require "web/pages/erreur.php";
+        }else
+        foreach ($routes as $route => $file) {
+            if ($file) {
+                if (self::$url[0] == "{$route}" && empty(self::$url[1])) {
+                    $html = new Html();
+                    $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
+                    require "web/pages/controller/c_$file.php";
+                    require "web/pages/$file.php";
+                } elseif (self::$url[0] == "{$route}" && !empty(self::$url[1])) {
+                    $html = new Html();
+                    $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
+                    $id = self::$url[1];
+                    require "web/pages/controller/c_$file.php";
+                    require "web/pages/$file.php";
+                }
+            } else {
+                if (self::$url[0] == "{$route}" && empty(self::$url[1])) {
+                    $html = new Html();
+                    $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
+                    require "web/pages/$route.php";
+                }
+            }
         }
     }
 }

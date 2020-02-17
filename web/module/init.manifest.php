@@ -62,15 +62,17 @@ if (isset($_POST['send_app'])) {
                     imagejpeg($tmp, "./images/icons/icon-72x72." . $ext);
                     break;
                 default:
-                    echo "type invalid";
-                    exit;
+                $_SESSION['message']['danger'] = "type invalid";
                     break;
             }
             move_uploaded_file($uploadedFile,  "./images/icons/" . $newFileName . "." . $ext);
+            
         }
         $_SESSION['message']['success'] = "PWA initialiser";
+        header("Location: ./");
     }else{
         $_SESSION['message']['danger'] = "Veuillez Remplir les champs";
+        header("Location: ./");
     }
 }
 function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth, $newImageHeight)
