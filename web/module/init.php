@@ -4,13 +4,7 @@ $dbHOST = $_ENV['DB_HOST'];
 $dbNAME = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
 $dbUSER = $_ENV['DB_USER'];
 $dbPASS = $_ENV['DB_PASS'];
-$envContent = "
-APP_ENV=\"dev\"
-DB_HOST=\"{$dbHOST}\"
-DB_NAME=\"{$dbNAME}\"
-DB_USER=\"{$dbUSER}\"
-DB_PASS=\"{$dbPASS}\"
-ROOT_PATH=\"/{$projectName}\"";
+$envContent = "APP_ENV=\"dev\"\nDB_HOST=\"{$dbHOST}\"\nDB_NAME=\"{$dbNAME}\"\nDB_USER=\"{$dbUSER}\"\nDB_PASS=\"{$dbPASS}\"\nROOT_PATH=\"/{$projectName}\"";
 $db = new DB($dbNAME);
 //dump($envContent);
 file_put_contents(".env", $envContent);
@@ -23,13 +17,7 @@ if (isset($_POST['send'])) {
     $dbNAME = $_POST['dbName'];
     $dbUSER = $_POST['dbUser'];
     $dbPASS = $_POST['dbPwd'];
-    $envContent = "
-        APP_ENV=\"dev\"
-        DB_HOST=\"{$dbHOST}\"
-        DB_NAME=\"{$dbNAME}\"
-        DB_USER=\"{$dbUSER}\"
-        DB_PASS=\"{$dbPASS}\"
-        ROOT_PATH=\"/{$projectName}\"";
+    $envContent = "APP_ENV=\"dev\"\nDB_HOST=\"{$dbHOST}\"\nDB_NAME=\"{$dbNAME}\"\nDB_USER=\"{$dbUSER}\"\nDB_PASS=\"{$dbPASS}\"\nROOT_PATH=\"/{$projectName}\"";
     //dump($envContent);
     file_put_contents(".env", $envContent);
 
@@ -91,7 +79,9 @@ if (isset($_POST['send'])) {
     //reecriture du path cli
     $cli = preg_replace("/cmrweb/", $projectName, file_get_contents("lib/cli/cmr.bat"));
     file_put_contents("lib/cli/cmr.bat", $cli);
+    $module = preg_replace("/init\s\=\strue\;/", "init = false;", file_get_contents("web/includes/header.php"));
 
+    file_put_contents("web/includes/header.php", $module);
     //reecriture des routes
     $route = preg_replace("/init/", "home", file_get_contents("web/module/route.php"));
     //dump($route);
