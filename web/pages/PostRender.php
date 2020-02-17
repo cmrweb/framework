@@ -7,7 +7,7 @@ if ($Post->getData()) : ?>
         foreach ($Post->getData() as $key => $value) :  ?>
 
             <?php if (!$value['parent_id']): ?>
-            <section class=<?= (isset($id)) ? "article large light" : "articles large light" ?>>
+            <section class="<?= (isset($id)) ? "article large light" : "articles large light" ?>">
                 <?php echo $html->img(ROOT_DIR . IMG_DIR . "upload/" . $value['img'], $value['img'], "medium center") .
                     $html->a((isset($id)) ? "" : "post/" . $value['id'], $html->h(2, $value['title'])) .
                     $html->p(trim($value['post']));
