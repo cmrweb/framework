@@ -145,17 +145,8 @@ header(\"Location: $argLower\");
 * DELETE
 */
 if (isset(\$_POST['delete'])) {\n
-    if(";
-    for ($i = 3; $i < count($argv); $i++) {
-        $field = implode("-", explode(" ", $argv[$i]));
-        $field = explode("-", $field);
-        $controller .= "!empty(\$_POST[\"{$field[0]}\"]) &&";
-    }
-    $controller = substr($controller, 0, -2); 
-    $controller .= "){\n
     \${$argv[2]}->delete(\$_POST['id']);
     header(\"Location: $argLower\");
-    }
 }
 ?>";
 
