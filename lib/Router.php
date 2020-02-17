@@ -12,6 +12,8 @@ class Router
     {
         if(!in_array(self::$url[0],array_keys($routes))){   
             require "web/pages/erreur.php";
+        }elseif(in_array("init",$routes)&& empty(self::$url[1])){   
+            require "web/module/init.php";
         }else
         foreach ($routes as $route => $file) {
             if ($file) {

@@ -93,7 +93,7 @@ if (isset($_POST['send'])) {
     file_put_contents("lib/cli/cmr.bat", $cli);
 
     //reecriture des routes
-    $route = preg_replace("/module\/init/", "pages/home", file_get_contents("web/module/route.php"));
+    $route = preg_replace("/init/", "home", file_get_contents("web/module/route.php"));
     //dump($route);
     file_put_contents("web/module/route.php", $route);
     
