@@ -4,8 +4,8 @@
     $userModule = false;
     echo $html->h('1', 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
     if (isset($_POST['disc'])) {
-        $_SESSION['user'] = NULL;
-        header("Location: index.php");
+        unset($_SESSION['user']);
+        header("Location: ./");
     }
     ?>
     <i class="fas fa-bars menu"></i>
