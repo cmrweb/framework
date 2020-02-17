@@ -1,11 +1,13 @@
 <header class="fixhead xlarge light header">
     <?php
-    $dev = $_ENV['APP_ENV']=="dev"?true:false;
-    $userModule=true;
+    $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
+    $userModule = false;
+    $init = true;
+
     echo $html->h('1', 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
     if (isset($_POST['disc'])) {
-        $_SESSION['user'] = NULL;
-        header("Location: index.php");
+        unset($_SESSION['user']);
+        header("Location: ./");
     }
     ?>
     <i class="fas fa-bars menu"></i>
@@ -30,15 +32,14 @@
 
         echo $form;
     }
-    include 'web/module/nav.php';
+    if (!$init)
+        include 'web/module/nav.php';
     ?>
     <p id="AppInstall" class="btn-gold">PWA <i class="fas fa-cloud-download-alt"></i></p>
+
 </header>
 <div class="message">
-    <?php if(isset($_SESSION['message']))message($_SESSION['message'])?>
+    <?php if (isset($_SESSION['message'])) message($_SESSION['message']) ?>
 </div>
 <main>
-    <div id="bgCover" class="hide" onclick="openModal()"></div><?php
-    require 'web/pages/controller/c_user.php';
-    require 'web/pages/user.php';
-    ?>
+    <div id="bgCover" class="hide" onclick="openModal()"></div>
