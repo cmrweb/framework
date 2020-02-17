@@ -2,7 +2,7 @@
 
 dump($Post->getData());
 if ($Post->getData()) : ?>
-    <section class="large light">
+    <section class="large light article">
         <?= $html->h('1', 'Read');
         foreach ($Post->getData() as $key => $value) :  ?>
 

@@ -225,8 +225,7 @@ NAV
 .menu{
     position: fixed;
     top: 20px;
-    left: 0;
-    right: 0;
+    right: 25px;
     font-size: 30px;
     text-align: center;
 }
