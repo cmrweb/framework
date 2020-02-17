@@ -2,6 +2,7 @@
 echo $html->code('nav',
 $html->menu([
     'Home'=> ROOT_DIR."/" ,
+    'Dev'=> ROOT_DIR."/dev",
     'Articles'=> ROOT_DIR."/post",
     'Articles Editor'=> ROOT_DIR."/edit"
 ],
