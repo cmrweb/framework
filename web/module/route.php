@@ -7,4 +7,11 @@ $router::route([
     "dev" => null
 ,'user'=>'user'
 ,'profil'=>'profil'
+,'test'=>'test'
+,'test'=>'test'
+,'test'=>'test'
+,'test'=>'test'
+,'test'=>'test'
+,'test'=>'test'
+,'test'=>'test'
 ]);
