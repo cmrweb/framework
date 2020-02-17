@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 require 'Autoload.php';
 use cmr\autoload\Autoloader;
 Autoloader::register(); 
+$router = new Router;
 $html = new Html();
 include 'lib/function.php';
 $dotenv = Dotenv\Dotenv::create(__DIR__);;

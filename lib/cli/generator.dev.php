@@ -162,22 +162,7 @@ if (isset(\$_POST['delete'])) {\n
 $pathctrl = '../../web/pages/controller/';
 $controllerFile = $pathctrl . "c_" . $argLower . '.php';
 file_put_contents($controllerFile, $controller);
-/**
- *  GENERATE ROUTE
- */
-$route = substr(file_get_contents("../../web/module/route.php"), 0, -48);
-$newRoute = $route . "
 
-case \$url[0] == '$argLower' and empty(\$url[1]):
-    require 'web/pages/controller/c_$argLower.php';
-    require 'web/pages/$argLower.php';
-    break;
-
-    default:
-    echo 'ERREUR 404';
-    break;
-}";
-file_put_contents("../../web/module/route.php", $newRoute);
 /**
  *  GENERATE VUE
  */
@@ -321,4 +306,12 @@ $pathClass = '../../web/Entity/';
 $classFile = $pathClass . $argUc . '.php';
 file_put_contents($classFile, $class);
 
-echo "Generation des fichiers : \n->" . $pathClass . $argUc . ".php \n-> " . $pathvue . $argLower . ".php \n-> " . $pathctrl . "c_" . $argLower . ".php \n-> " . $pathcss . $argLower . ".css \nRoute $argLower ajouter";
+/**
+ *  GENERATE ROUTE
+ */
+preg_match("/\[[\W|\w|\s]*\]/",file_get_contents("../../web/module/route.php"),$oldRoute);
+$route=substr($oldRoute[0],0,-1).",'{$argLower}'=>'{$argLower}'\n]";
+$routeFinal = preg_replace("/\[[\W|\w|\s]*\]/",$route,file_get_contents("../../web/module/route.php"));
+file_put_contents("../../web/module/route.php", $routeFinal);
+$path = preg_replace("/[\w|\W]*www\W|\Wlib\Wcli/","",__DIR__);
+echo "Generation des fichiers : \n->" . $pathClass . $argUc . ".php \n-> " . $pathvue . $argLower . ".php \n-> " . $pathctrl . "c_" . $argLower . ".php \n-> " . $pathcss . $argLower . ".css \nRoute http://localhost/$path/$argLower ajouter";
