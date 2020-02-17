@@ -177,6 +177,7 @@ class User
 $pathClass = '../../web/Entity/';
 $classFile = $pathClass .'User.php';
 file_put_contents($classFile, $class);
+
 /**
  *  GENERATE ROUTE
  */
@@ -187,7 +188,8 @@ file_put_contents("../../web/module/route.php", $routeFinal);
 /**
  * Header
  */
-$module = preg_replace("/userModule\=false\;/", "userModule=true;", file_get_contents("../../web/includes/header.php"));
+$module = preg_replace("//userModule\s\=\sfalse\;/", "userModule=true;", file_get_contents("../../web/includes/header.php"));
+
 file_put_contents("../../web/includes/header.php", $module);
 
     $header = file_get_contents("../../web/includes/header.php");
