@@ -19,11 +19,14 @@ function dump($var){
   echo "<pre id='dump' class='dump hide'><code class='language-js'>". preg_replace("/}\,\"/","},\n\"",preg_replace("/{\"/","{\n\"",preg_replace("/\,\"/",",\n\t\"",json_encode($var,true))))."</code></pre>";
 }
 
+function token($length){
+  return bin2hex(random_bytes($length));
+}
+
 function uploadImg($img){
   if ($img["size"] <= 500000) {
-    $bytes = random_bytes(5);
     $ext = pathinfo(basename($img["name"]), PATHINFO_EXTENSION);
-    $target_file = bin2hex($bytes);
+    $target_file = token(5);
     $uploadName = strtolower($target_file . '.' . $ext);
     if (is_uploaded_file($img["tmp_name"]))
     return $uploadName;
