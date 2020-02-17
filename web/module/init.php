@@ -98,7 +98,7 @@ if (isset($_POST['send'])) {
     file_put_contents("web/module/route.php", $route);
     
     $_SESSION['message']['success'] = "Projet initialiser";
-    header("Location: home");
+    header("Location: ./");
   }else{
       $_SESSION['message']['danger'] = "Veuillez Remplir les champs";
       header("Location: ./");
