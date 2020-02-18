@@ -9,7 +9,7 @@ $html = new Html();
 include 'lib/function.php';
 $dotenv = Dotenv\Dotenv::create(__DIR__);;
 $dotenv->overload();
-
+//dump($_ENV);
 define('ROOT_DIR',$_ENV['ROOT_PATH']);
 define('CSS_DIR', '/asset/css/');
 define('JS_DIR', '/asset/js/');
@@ -17,10 +17,8 @@ define('IMG_DIR', '/asset/img/');
 define('MOD_DIR', '/web/module/');
 define('PAGES_DIR', '/web/pages/');
 
-if(isset($_SESSION['user']['id'])){
-    $username = $_SESSION['user']['name'];
-    $userid = $_SESSION['user']['id'];
-    $admin = $_SESSION['user']['admin'];
-}else{
-    $username=false;$userid =false;$admin=false;
-}
+$useremail = isset($_SESSION['user']['email'])?$_SESSION['user']['email']:false;
+$userprenom = isset($_SESSION['user']['prenom'])?$_SESSION['user']['prenom']:false;
+$username = isset($_SESSION['user']['nom'])?$_SESSION['user']['nom']:false;
+$userid = isset($_SESSION['user']['id'])?$_SESSION['user']['id']:false;
+$admin = isset($_SESSION['user']['admin'])?$_SESSION['user']['admin']:false;
