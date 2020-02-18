@@ -78,8 +78,8 @@ if (isset($_POST['send'])) {
     //reecriture du path cli
     $cli = preg_replace("/cmrweb/", $projectName, file_get_contents("lib/cli/cmr.bat"));
     file_put_contents("lib/cli/cmr.bat", $cli);
-    $module = preg_replace("/init\s\=\strue\;/", "init = false;", file_get_contents("web/includes/header.php"));
 
+    $module = preg_replace("/init\s\=\strue\;/", "init = false;", file_get_contents("web/includes/header.php"));
     file_put_contents("web/includes/header.php", $module);
     //reecriture des routes
     $route = preg_replace("/init/", "home", file_get_contents("web/module/route.php"));
