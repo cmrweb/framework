@@ -1,5 +1,5 @@
 <?php
-$projectName = $_ENV['ROOT_PATH'];
+$projectName = preg_replace("/\//","",$_ENV['ROOT_PATH']);
 $dbHOST = $_ENV['DB_HOST'];
 $dbNAME = $_ENV['DB_NAME'];
 $dbUSER = $_ENV['DB_USER'];
