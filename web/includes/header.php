@@ -1,7 +1,7 @@
 <header class="fixhead xlarge light header">
     <?php
     $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
-    $userModule = false;
+    $userModule=true;
     $init = true;
 
     echo $html->h('1', 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
@@ -42,4 +42,7 @@
     <?php if (isset($_SESSION['message'])) message($_SESSION['message']) ?>
 </div>
 <main>
-    <div id="bgCover" class="hide" onclick="openModal()"></div>
+    <div id="bgCover" class="hide" onclick="openModal()"></div><?php
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    ?>
