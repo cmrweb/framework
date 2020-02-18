@@ -12,11 +12,11 @@ DB_USER=\"{$dbUSER}\"
 DB_PASS=\"{$dbPASS}\"
 ROOT_PATH=\"/{$projectName}\"";
 file_put_contents(".env", $envContent);
-echo "\n\e[39minit \e[93m.env \e[32mDone! \n";
+//echo "\n\e[39minit \e[93m.env \e[32mDone! \n";
 //echo $envContent;
 $cli = preg_replace("/cmrweb/", $projectName, file_get_contents("lib/cli/cmr.bat"));
     file_put_contents("lib/cli/cmr.bat", $cli);
-echo "\e[39minit \e[93mcli \e[32mDone!\n";
+//echo "\e[39minit \e[93mcli \e[32mDone!\n";
 echo "\n\e[96mRun \e[93mcd \e[39m$projectName\n\n";
 echo "\e[93mcd \e[39mlib\n";
 echo "\e[93mcli/cmr\n";
