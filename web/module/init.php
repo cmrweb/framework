@@ -1,9 +1,9 @@
 <?php
-// $projectName = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
-// $dbHOST = $_ENV['DB_HOST'];
-// $dbNAME = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
-// $dbUSER = $_ENV['DB_USER'];
-// $dbPASS = $_ENV['DB_PASS'];
+$projectName = $_ENV['ROOT_PATH'];
+$dbHOST = $_ENV['DB_HOST'];
+$dbNAME = $_ENV['DB_NAME'];
+$dbUSER = $_ENV['DB_USER'];
+$dbPASS = $_ENV['DB_PASS'];
 // $envContent = "APP_ENV=\"dev\"\nDB_HOST=\"{$dbHOST}\"\nDB_NAME=\"{$dbNAME}\"\nDB_USER=\"{$dbUSER}\"\nDB_PASS=\"{$dbPASS}\"\nROOT_PATH=\"/{$projectName}\"";
 // //dump($envContent);
 // file_put_contents(".env", $envContent);
