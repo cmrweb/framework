@@ -3,29 +3,31 @@
         [
             'Home' => ROOT_DIR . "/",
             'Dev' => ROOT_DIR . "/dev",
+            'Articles' => ROOT_DIR . "/post"
+        ],
+        ''
+    );
+elseif ($userid) :
+    $nav = $html->menu(
+        [
+            'Home' => ROOT_DIR . "/",
+            'Dev' => ROOT_DIR . "/dev",
             'Articles' => ROOT_DIR . "/post",
-            'Articles Editor' => ROOT_DIR . "/edit"
+            'Articles Editor' => ROOT_DIR . "/edit",
+            'Profil' => ROOT_DIR . "/profil",
+            //'Chat'=> ROOT_DIR."/chat"
         ],
         ''
     );
-elseif ($admin) :
+elseif ($userid && $admin) :
     $nav = $html->menu(
         [
             'Home' => ROOT_DIR . "/",
             'Dev' => ROOT_DIR . "/dev",
-            'Demo' => ROOT_DIR . "/post",
-            'Article Editor' => ROOT_DIR . "/edit",
-            // 'Chat'=> ROOT_DIR."/chat"
-        ],
-        ''
-    );
-elseif ($userid && !$admin) :
-    $nav = $html->menu(
-        [
-            'Home' => ROOT_DIR . "/",
-            'Dev' => ROOT_DIR . "/dev",
-            'Demo' => ROOT_DIR . "/post",
-            // 'Chat'=> ROOT_DIR."/chat"
+            'Articles' => ROOT_DIR . "/post",
+            'Articles Editor' => ROOT_DIR . "/edit",
+            'Profil' => ROOT_DIR . "/profil",
+            //'Chat'=> ROOT_DIR."/chat"
         ],
         ''
     );

@@ -5,4 +5,7 @@ $router::route([
     "post" => "postRender",
     "edit" => "post",
     "dev" => null
+,'user'=>'user'
+,'profil'=>'profil'
+,'test'=>'test'
 ]);
