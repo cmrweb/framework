@@ -56,6 +56,19 @@ if (isset($_POST['send'])) {
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+    DROP TABLE IF EXISTS `profil`;
+    CREATE TABLE IF NOT EXISTS `profil` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `user_id` int(11) NOT NULL,
+      `nom` varchar(255) NOT NULL,
+      `prenom` varchar(255) NOT NULL,
+      `age` int(11) NOT NULL,
+      `adresse` varchar(255) NOT NULL,
+      `cp` int(11) NOT NULL,
+      PRIMARY KEY (`id`),
+      KEY `user_id` (`user_id`)
+    ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
     DROP TABLE IF EXISTS `chat`;
     CREATE TABLE IF NOT EXISTS `chat` (
       `id` int(11) NOT NULL AUTO_INCREMENT,
