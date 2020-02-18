@@ -71,7 +71,7 @@ if (isset($_POST))
         
             $data = '%'.$_POST['keyword'].'%';
             $search = new DB();
-            $search->select("id,username","cmr_user","username LIKE '$data' AND id!=$userid");
+            $search->select("id,email","user","email LIKE '$data' AND id!=$userid");
             //echo "<section>". json_encode($search->result)."</section>";
             foreach ($search->result as $key => $value) :?>
               <section onclick="set_item('<?=$value['id']?>','<?=$value['username']?>')"><?=$value['username']?></section> 

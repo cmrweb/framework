@@ -1,16 +1,15 @@
 <?php
 if (empty($argv[1])||in_array($argv[1], array('-help', '-h', 'help','h', '','aide','-aide','a','-a'))) {
     ?>
-   ______
-  / ____/____ ___   _____
- / /    / __ `__ \ / ___/
+   ____  ____ ___   _____
+ / ___/ / __ `__ \ / ___/
 / /___ / / / / / // /
 \____//_/ /_/ /_//_/                   
 Aide                          | cmr | -help|-h|-aide|-a|help|h|aide|a                                                       
 Generer un composant          | cmr | -generate|-gen|generate|gen|g <table> <nom-type-valeur> <nom-type-valeur-table.field> 
 Generer le module utilisateur | cmr | -module|-mod|module|mod <-user|-u|user|u>                                                               
-Demarrer server Wamp          | cmr | -start|-serve|-s|start|serve|s <project-name>                                         
-Build le projet               | cmr | -build|-b|build|b                                   
+Demarrer server Wamp          | cmr | -start|-serve|-s|start|serve|s                                         
+Build le projet (in progress!)| cmr | -build|-b|build|b                                   
 <?php
 } elseif ($argc >= 1 && in_array($argv[1], array('generate','-generate','-gen','gen', '-g','g'))) {
     echo'generer le composant '.$argv[2]." ?\n";

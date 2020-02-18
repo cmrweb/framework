@@ -54,6 +54,26 @@ for ($i = 3; $i < count($argv); $i++) {
                 $controller .= "`{$field[0]}` varchar(255) NOT NULL,\n";
             }
             break;
+        case "file":
+            if (isset($field[2]) && !isset($field[3])) {
+                $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+            } elseif (isset($field[2]) && isset($field[3])) {
+                $foreignKey = preg_replace("/\./", "(", $field[3]) . ")";
+                $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,FOREIGN KEY (`{$field[0]}`) REFERENCES {$foreignKey},\n";
+            } else {
+                $controller .= "`{$field[0]}` varchar(255) NOT NULL,\n";
+            }
+            break;
+        case "image":
+            if (isset($field[2]) && !isset($field[3])) {
+                $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,\n";
+            } elseif (isset($field[2]) && isset($field[3])) {
+                $foreignKey = preg_replace("/\./", "(", $field[3]) . ")";
+                $controller .= "`{$field[0]}` varchar({$field[2]}) NOT NULL,FOREIGN KEY (`{$field[0]}`) REFERENCES {$foreignKey},\n";
+            } else {
+                $controller .= "`{$field[0]}` varchar(255) NOT NULL,\n";
+            }
+            break;
         default:
             if (isset($field[2]) && !isset($field[3])) {
                 $controller .= "`{$field[0]}` {$field[1]}({$field[2]}) NOT NULL,\n";
@@ -80,18 +100,53 @@ $controller .= ")\";\n
 */
 if (isset(\$_POST['send'])) {\n
     if(";
-    for ($i = 3; $i < count($argv); $i++) {
-        $field = implode("-", explode(" ", $argv[$i]));
-        $field = explode("-", $field);
-        $controller .= "!empty(\$_POST[\"{$field[0]}\"]) &&";
-    }
-    $controller = substr($controller, 0, -2); 
-$controller .= "){
-    \${$argv[2]}->setData([\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
+        case 'file':
+            $controller .= "";
+            break;
+        case 'image':
+            $controller .= "";
+            break;
+        default:
+            $controller .= "!empty(\$_POST[\"{$field[0]}\"]) &&";
+            break;
+    }
+}
+$controller = substr($controller, 0, -2);
+$controller .= "){\n";
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    switch ($field[1]) {
+        case 'file':
+            $controller .= "if (!empty(\$_FILES[\"{$field[0]}\"][\"size\"])) {
+                \$fileDbName = uploadImg(\$_FILES[\"{$field[0]}\"]);
+                if (move_uploaded_file(\$_FILES[\"{$field[0]}\"][\"tmp_name\"], \"..\" . ROOT_DIR . IMG_DIR.\"upload/\" . \$fileDbName)) {";
+            break;
+        case 'image':
+            $controller .= "if (!empty(\$_FILES[\"{$field[0]}\"][\"size\"])) {
+                \$fileDbName = uploadImg(\$_FILES[\"{$field[0]}\"]);
+                if (move_uploaded_file(\$_FILES[\"{$field[0]}\"][\"tmp_name\"], \"..\" . ROOT_DIR . IMG_DIR.\"upload/\" . \$fileDbName)) {";
+            break;
+        default:
+            $controller .= "";
+            break;
+    }
+}
+$controller .= "\${$argv[2]}->setData([\n";
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    switch ($field[1]) {
+        case 'file':
+            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            break;
+        case 'image':
+            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            break;
         case 'password':
             $controller .= "\n\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
             break;
@@ -104,8 +159,23 @@ for ($i = 3; $i < count($argv); $i++) {
     }
 }
 $controller = substr($controller, 0, -2);
-$controller .= "\n]); \n
-header(\"Location: $argLower\");
+$controller .= "\n]);\n";
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    switch ($field[1]) {
+        case 'file':
+            $controller .= "}}";
+            break;
+        case 'image':
+            $controller .= "}}";
+            break;
+        default:
+            $controller .= "";
+            break;
+    }
+}
+$controller.="header(\"Location: $argLower\");
 }
 }
 /*
@@ -113,17 +183,53 @@ header(\"Location: $argLower\");
 */
 if (isset(\$_POST['update'])) {    
     if(";
-    for ($i = 3; $i < count($argv); $i++) {
-        $field = implode("-", explode(" ", $argv[$i]));
-        $field = explode("-", $field);
-        $controller .= "!empty(\$_POST[\"{$field[0]}\"]) &&";
-    }
-    $controller = substr($controller, 0, -2); 
-$controller .= "){\n\${$argv[2]}->update([\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
+        case 'file':
+            $controller .= "";
+            break;
+        case 'image':
+            $controller .= "";
+            break;
+        default:
+            $controller .= "!empty(\$_POST[\"{$field[0]}\"]) &&";
+            break;
+    }
+}
+$controller = substr($controller, 0, -2);
+$controller .= "){\n";
+    for ($i = 3; $i < count($argv); $i++) {
+        $field = implode("-", explode(" ", $argv[$i]));
+        $field = explode("-", $field);
+        switch ($field[1]) {
+            case 'file':
+                $controller .= "if (!empty(\$_FILES[\"{$field[0]}\"][\"size\"])) {
+                    \$fileDbName = uploadImg(\$_FILES[\"{$field[0]}\"]);
+                    if (move_uploaded_file(\$_FILES[\"{$field[0]}\"][\"tmp_name\"], \"..\" . ROOT_DIR . IMG_DIR.\"upload/\" . \$fileDbName)) {";
+                break;
+            case 'image':
+                $controller .= "if (!empty(\$_FILES[\"{$field[0]}\"][\"size\"])) {
+                    \$fileDbName = uploadImg(\$_FILES[\"{$field[0]}\"]);
+                    if (move_uploaded_file(\$_FILES[\"{$field[0]}\"][\"tmp_name\"], \"..\" . ROOT_DIR . IMG_DIR.\"upload/\" . \$fileDbName)) {";
+                break;
+            default:
+                $controller .= "";
+                break;
+        }
+    }
+    $controller .= "\${$argv[2]}->update([\n";
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    switch ($field[1]) {
+        case 'file':
+            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            break;
+        case 'image':
+            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            break;
         case 'password':
             $controller .= "\n\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
             break;
@@ -137,8 +243,23 @@ for ($i = 3; $i < count($argv); $i++) {
 }
 $controller = substr($controller, 0, -2);
 
-$controller .= "\n],\n\"id=\".\$_POST['id']);\n
-header(\"Location: $argLower\");
+$controller .= "\n],\n\"id=\".\$_POST['id']);\n";
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    switch ($field[1]) {
+        case 'file':
+            $controller .= "}}";
+            break;
+        case 'image':
+            $controller .= "}}";
+            break;
+        default:
+            $controller .= "";
+            break;
+    }
+}
+$controller.="header(\"Location: $argLower\");
 }
 }
 /*
@@ -161,12 +282,18 @@ file_put_contents($controllerFile, $controller);
 $vue = "
 <!-- Ajouter $argLower à l'url. -->
 <link rel='stylesheet' href=\"<?= ROOT_DIR . PAGES_DIR ?>style/{$argLower}.css\">
-<form method='post' class='large primary'>\n
+<form method='post' class='large primary'  enctype=\"multipart/form-data\">\n
     <h1>Create</h1>\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
+        case "file":
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"file\" class='input' name=\"{$field[0]}\"  id=\"{$field[0]}\">\n</div>\n";
+            break;
+        case "image":
+            $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"file\" class='input' name=\"{$field[0]}\"  id=\"{$field[0]}\">\n</div>\n";
+            break;
         case "password":
             $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"password\" class='input passSecure' name=\"{$field[0]}\"  id=\"{$field[0]}\">\n</div>\n";
             break;
@@ -195,12 +322,18 @@ $vue .= "<button type='submit' class='success center' name='send'>envoyer</butto
 <?php if(\${$argv[2]}->getData()): ?>
     <h1>Read Update Delete</h1>
 <?php  foreach (\${$argv[2]}->getData() as \$key => \$value) : ?>
-    <form method='post' class='small primary'>
+    <form method='post' class='small primary'  enctype=\"multipart/form-data\">
             <input type=\"hidden\" name=\"id\" label=\"\" class=\"\" placeholder=\"<?=\$value['id']?>\"  value=\"<?=\$value['id']?>\">\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
+        case "file":
+            $vue .= "<div class='form'><img src=\"<?=ROOT_DIR.IMG_DIR.'upload/'.\$value['{$field[0]}']?>\" width='360' height='250'/>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"file\" name=\"{$field[0]}\"  id=\"{$field[0]}\" class=\"input\" > \n</div>\n";
+            break;
+        case "image":
+            $vue .= "<div class='form'><img src=\"<?=ROOT_DIR.IMG_DIR.'upload/'.\$value['{$field[0]}']?>\" width='360' height='250'/>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"file\" name=\"{$field[0]}\"  id=\"{$field[0]}\" class=\"input\" > \n</div>\n";
+            break;
         case "password":
             $vue .= "<div class='form'>\n<label for='{$field[0]}'>{$field[0]}</label>\n<input type=\"password\" name=\"{$field[0]}\"  id=\"{$field[0]}\" class=\"input\" placeholder=\"<?=\$value['{$field[0]}']?>\" value=\"<?=\$value['{$field[0]}']?>\"> \n</div>\n";
             break;
@@ -246,11 +379,11 @@ class {$argUc}
     private \$pdo;
     private \$data;
     private \$id;\n";
-    for ($i = 3; $i < count($argv); $i++) {
-        $field = implode("-", explode(" ", $argv[$i]));
-        $field = explode("-", $field);
-        $class .= "private \${$field[0]};\n";
-    }
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    $class .= "private \${$field[0]};\n";
+}
 $class .= "
     function __construct(\$bool = NULL)
     {
@@ -259,18 +392,18 @@ $class .= "
         foreach (\$this->pdo->result as \$value) {
             \$this->data[\$value['id']] = [
                 'id' => \$value['id'],\n";
-        for ($i = 3; $i < count($argv); $i++) {
-            $field = implode("-", explode(" ", $argv[$i]));
-            $field = explode("-", $field);
-            $class .= "'{$field[0]}'=>\$value['{$field[0]}'],\n";
-        }
-        $class .= "  ];\n";
-        $class .= " \$this->id[] = \$value['id'];\n";
-        for ($i = 3; $i < count($argv); $i++) {
-            $field = implode("-", explode(" ", $argv[$i]));
-            $field = explode("-", $field);
-            $class .= "\$this->{$field[0]}[] = \$value['{$field[0]}'];\n";
-        }
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    $class .= "'{$field[0]}'=>\$value['{$field[0]}'],\n";
+}
+$class .= "  ];\n";
+$class .= " \$this->id[] = \$value['id'];\n";
+for ($i = 3; $i < count($argv); $i++) {
+    $field = implode("-", explode(" ", $argv[$i]));
+    $field = explode("-", $field);
+    $class .= "\$this->{$field[0]}[] = \$value['{$field[0]}'];\n";
+}
 $class .= "
         }
         return \$this->data;
@@ -300,9 +433,9 @@ file_put_contents($classFile, $class);
 /**
  *  GENERATE ROUTE
  */
-preg_match("/\[[\W|\w|\s]*\]/",file_get_contents("../../web/module/route.php"),$oldRoute);
-$route=substr($oldRoute[0],0,-1).",'{$argLower}'=>'{$argLower}'\n]";
-$routeFinal = preg_replace("/\[[\W|\w|\s]*\]/",$route,file_get_contents("../../web/module/route.php"));
+preg_match("/\[[\W|\w|\s]*\]/", file_get_contents("../../web/module/route.php"), $oldRoute);
+$route = substr($oldRoute[0], 0, -1) . ",'{$argLower}'=>'{$argLower}'\n]";
+$routeFinal = preg_replace("/\[[\W|\w|\s]*\]/", $route, file_get_contents("../../web/module/route.php"));
 file_put_contents("../../web/module/route.php", $routeFinal);
-$path = preg_replace("/[\w|\W]*www\W|\Wlib\Wcli/","",__DIR__);
+$path = preg_replace("/[\w|\W]*www\W|\Wlib\Wcli/", "", __DIR__);
 echo "Generation des fichiers : \n->" . $pathClass . $argUc . ".php \n-> " . $pathvue . $argLower . ".php \n-> " . $pathctrl . "c_" . $argLower . ".php \n-> " . $pathcss . $argLower . ".css \nRoute http://localhost/$path/$argLower ajouter";
