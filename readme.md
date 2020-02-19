@@ -17,8 +17,15 @@
     - cmr `help`
     - cmr `start`
     - cmr `generate table nom-type-valeur nom-type-valeur-table.field`
-
-
+   
+  * Les types 
+    - Tous les types sql : varchar int date text ...
+    - char      = varchar
+    - password  = varchar + input type password + hash
+    - pwd       = varchar + input type password + hash
+    - image     = varchar + input type file + upload in asset/img/upload
+    - file      = varchar + input type file + upload in asset/img/upload
+  
   * Exemple
   
   

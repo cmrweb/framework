@@ -1,13 +1,12 @@
 <?php
-$projectName = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
+$projectName = preg_replace("/\//","",$_ENV['ROOT_PATH']);
 $dbHOST = $_ENV['DB_HOST'];
-$dbNAME = preg_replace("/\//","",$_SERVER['REQUEST_URI']);
+$dbNAME = $_ENV['DB_NAME'];
 $dbUSER = $_ENV['DB_USER'];
 $dbPASS = $_ENV['DB_PASS'];
-$envContent = "APP_ENV=\"dev\"\nDB_HOST=\"{$dbHOST}\"\nDB_NAME=\"{$dbNAME}\"\nDB_USER=\"{$dbUSER}\"\nDB_PASS=\"{$dbPASS}\"\nROOT_PATH=\"/{$projectName}\"";
-$db = new DB($dbNAME);
-//dump($envContent);
-file_put_contents(".env", $envContent);
+// $envContent = "APP_ENV=\"dev\"\nDB_HOST=\"{$dbHOST}\"\nDB_NAME=\"{$dbNAME}\"\nDB_USER=\"{$dbUSER}\"\nDB_PASS=\"{$dbPASS}\"\nROOT_PATH=\"/{$projectName}\"";
+// //dump($envContent);
+// file_put_contents(".env", $envContent);
 if (isset($_POST['send'])) {
   //réecrire .env
   if (!empty($_POST['dbHost']) && !empty($_POST['dbName']) && !empty($_POST['dbUser']) && !empty($_POST['username']) && !empty($_POST['pwd'])) {
@@ -23,7 +22,6 @@ if (isset($_POST['send'])) {
 
     $db = new DB($dbNAME);
         //init required tables
-    $db = new DB;
     $tableUser = $db->pdo->prepare("DROP TABLE IF EXISTS `user`;
     CREATE TABLE IF NOT EXISTS `user` (
 
@@ -31,11 +29,12 @@ if (isset($_POST['send'])) {
       `email` varchar(30) NOT NULL,
       `password` varchar(255) NOT NULL,
       `admin_lvl` int(11) DEFAULT NULL,
+      `token` varchar(255) DEFAULT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-    INSERT INTO `user` (`email`, `password`, `admin_lvl`) 
-    VALUES('{$user}','{$pwd}',1);
+    INSERT INTO `user` (`email`, `password`, `admin_lvl`,`token`) 
+    VALUES('{$user}','{$pwd}',1,null);
 
     DROP TABLE IF EXISTS `post`;
     CREATE TABLE IF NOT EXISTS `post` (
@@ -56,6 +55,19 @@ if (isset($_POST['send'])) {
       `follow_id` int(11) NOT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+    DROP TABLE IF EXISTS `profil`;
+    CREATE TABLE IF NOT EXISTS `profil` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `user_id` int(11) NOT NULL,
+      `nom` varchar(255) NOT NULL,
+      `prenom` varchar(255) NOT NULL,
+      `age` int(11) NOT NULL,
+      `adresse` varchar(255) NOT NULL,
+      `cp` int(11) NOT NULL,
+      PRIMARY KEY (`id`),
+      KEY `user_id` (`user_id`)
+    ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
     DROP TABLE IF EXISTS `chat`;
     CREATE TABLE IF NOT EXISTS `chat` (
@@ -79,8 +91,8 @@ if (isset($_POST['send'])) {
     //reecriture du path cli
     $cli = preg_replace("/cmrweb/", $projectName, file_get_contents("lib/cli/cmr.bat"));
     file_put_contents("lib/cli/cmr.bat", $cli);
-    $module = preg_replace("/init\s\=\strue\;/", "init = false;", file_get_contents("web/includes/header.php"));
 
+    $module = preg_replace("/init\s\=\strue\;/", "init = false;", file_get_contents("web/includes/header.php"));
     file_put_contents("web/includes/header.php", $module);
     //reecriture des routes
     $route = preg_replace("/init/", "home", file_get_contents("web/module/route.php"));
@@ -88,7 +100,7 @@ if (isset($_POST['send'])) {
     file_put_contents("web/module/route.php", $route);
     
     $_SESSION['message']['success'] = "Projet initialiser";
-    header("Location: ./");
+    header("Location: ./home");
   }else{
       $_SESSION['message']['danger'] = "Veuillez Remplir les champs";
       header("Location: ./");

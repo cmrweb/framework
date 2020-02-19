@@ -282,7 +282,7 @@ file_put_contents($controllerFile, $controller);
 $vue = "
 <!-- Ajouter $argLower à l'url. -->
 <link rel='stylesheet' href=\"<?= ROOT_DIR . PAGES_DIR ?>style/{$argLower}.css\">
-<form method='post' class='large primary'  enctype=\"multipart/form-data\">\n
+<form method='post' class='large primary m4 p2'  enctype=\"multipart/form-data\">\n
     <h1>Create</h1>\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
@@ -322,7 +322,7 @@ $vue .= "<button type='submit' class='success center' name='send'>envoyer</butto
 <?php if(\${$argv[2]}->getData()): ?>
     <h1>Read Update Delete</h1>
 <?php  foreach (\${$argv[2]}->getData() as \$key => \$value) : ?>
-    <form method='post' class='small primary'  enctype=\"multipart/form-data\">
+    <form method='post' class='small primary m4 p2'  enctype=\"multipart/form-data\">
             <input type=\"hidden\" name=\"id\" label=\"\" class=\"\" placeholder=\"<?=\$value['id']?>\"  value=\"<?=\$value['id']?>\">\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));

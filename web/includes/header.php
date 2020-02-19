@@ -42,7 +42,14 @@
     <?php if (isset($_SESSION['message'])) message($_SESSION['message']) ?>
 </div>
 <main>
-    <div id="bgCover" class="hide" onclick="openModal()"></div><?php
-    require 'web/pages/controller/c_user.php';
-    require 'web/pages/user.php';
-    ?>
+
+    <div id="bgCover" class="hide" onclick="openModal()"></div>
+    <style>
+.speech{
+    top: 118px;
+    right: 5px;
+}
+</style>
+    <div class="speech"></div>
+    <script src="<?=ROOT_DIR.JS_DIR?>cmrSpeech.js"></script>
+
