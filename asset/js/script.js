@@ -45,7 +45,8 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
  */
 function updateOnlineStatus(msg) {
     var status = document.getElementById("footer");
-    var condition = navigator.onLine ? "ONLINE" : "OFFLINE";
+    var condition = navigator.onLine ? "ONLINE" : "OFFLINE";   
+    console.log(condition)
     status.setAttribute("class", condition);
   }
   function loaded() {

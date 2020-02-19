@@ -23,7 +23,7 @@ include '_inc.php';
     <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR . CSS_DIR ?>style.css">
     <script src="<?= ROOT_DIR . JS_DIR ?>jquery-3.2.1.min.js"></script>
     <script src="<?= ROOT_DIR . JS_DIR ?>ajax.js"></script>
-
+    <script src="<?= ROOT_DIR . JS_DIR ?>headScript.js"></script>
 </head>
 
 <body onload="loaded()">

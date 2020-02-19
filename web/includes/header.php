@@ -1,6 +1,7 @@
 <header class="fixhead xlarge light header">
     <?php
     $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
+
     $userModule = false;
     $init = true;
 

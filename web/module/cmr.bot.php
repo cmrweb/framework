@@ -57,23 +57,6 @@
 <div id="bot">
 </div>
 
-<form method="post" id="contactModal" class="hide">
-    <h1>Contact</h1>
-    <div class="form">
-        <label for="nom">Nom Prenom</label>
-        <input type="text" name="" id="nom" class="input">
-    </div>
-
-    <div class="form">
-        <label for="mail">Adresse email</label>
-        <input type="text" name="" id="mail" class="input">
-    </div>
-    <div class="form">
-        <label for="msg">Message</label>
-        <textarea name="" class="input" id="msg" cols="30" rows="10"></textarea>
-    </div>
-    <button class="btn light large center">Envoyer</button>
-</form>
 <script>
     //bot nextStep
     const bot = <?= json_encode(json_decode(file_get_contents("web/module/json/dial.json"), true)) ?>;

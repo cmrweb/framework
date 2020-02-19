@@ -1,5 +1,11 @@
 <link rel="stylesheet" href="<?= ROOT_DIR . PAGES_DIR ?>style/home.css">
+<?php if ($dev) : ?>
+    <form method="post">
+        <button class='btn dark' name='init'>Réinitialiser</button>
+    </form>
 
+<?php endif;
+// require_once 'web/module/cmr.bot.php'; ?>
 <div class="card3D">
     <section>
         <img src="<?= ROOT_DIR . IMG_DIR ?>photo.png" alt="photo enrique camara">
@@ -8,7 +14,7 @@
             <h5>Développeur Formateur Web</h5>
 
             <p> <a href="<?= ROOT_DIR ?>/asset/cv2020.pdf" download=""><i class="far fa-file-pdf"></i> mon cv</a></p>
-            <p><a href="mailto:contact@cmrweb.fr"><i class="fas fa-envelope-open-text"></i> contact@cmrweb.fr</a></p>
+            <p><a onclick="openContactForm()"><i class="fas fa-envelope-open-text"></i> contact@cmrweb.fr</a></p>
             <p><a href="https://www.linkedin.com/in/enrique-camara/"><i class="fab fa-linkedin"></i> Linkedin</a></p>
         </div>
     </section>
@@ -20,13 +26,7 @@
         En <strong>freelance</strong> depuis <strong>décembre 2017.</strong><br>Disponible par contact mail.</p>
 </div>
 <script src="<?= ROOT_DIR . JS_DIR ?>card3D.js"></script>
-<?php if ($dev) : ?>
-    <form method="post">
-        <button class='btn dark' name='init'>Réinitialiser</button>
-    </form>
 
-<?php endif;
-// require_once 'web/module/cmr.bot.php'; ?>
 <?= $html->code("section", $html->menu(['<h2>Cours/Tuto</h2>' . $html->menu(["HTML/CSS" => "https://formation.cmrweb.fr/", "JavaScript" => "https://formation.cmrweb.fr/javascript/", "React" => "https://react.cmrweb.fr/", "angular" => "https://angular.cmrweb.fr/",]) => "#"]), "tuto") .
     $html->h('2', !empty($userprenom) ? 'Bienvenu(e) ' . $userprenom : 'Bienvenu(e)', 'large');
 ?>

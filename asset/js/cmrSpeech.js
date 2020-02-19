@@ -67,14 +67,15 @@ function action(exp,speech,callback){
         callback(speech);
     }
 }
-function moveTo(url){
-    return window.location = window.location.href.match(/.*\//g)[0]+url;
-}
+
 //regex
-const page = /page|direction|va/g;
+const page = /page|direction|va|go/g;
 const homePage = /accueil|home|index/g;
-const devPage = /test|dév|dave|d\émo/g;
+const devPage = /test|dave|dev|d\émo/g;
 const articlePage = /article|post/g;
+
+const message = /message|formulaire|contact/g;
+
 const oui = /suivant|oui|accept|confirm/g;
 const non = /pr\éc\édent|non|refus/g;
 
@@ -102,7 +103,11 @@ recognition.onresult = function (event) {
                 console.log("Article page");
             });
         });
-
+        action(message,speech,()=>{
+            speechDiv.style.border = "#0be90b 1px solid";
+            openContactForm();
+            console.log("message");
+        });
         action(oui,speech,()=>{
             speechDiv.style.border = "#0be90b 1px solid";
             console.log("confirmer");

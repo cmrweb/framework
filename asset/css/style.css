@@ -29,8 +29,9 @@ header h1 span:last-child{
     font-weight: 500;
     cursor: pointer;
 }
-
-
+.contactModal{
+    transition: all .5s linear;
+}
 @media screen and (min-width: 768px) {
     header h1{
         float: left;
