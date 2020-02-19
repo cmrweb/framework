@@ -10,7 +10,7 @@ if (empty($argv[0])||in_array($argv[1], array('-help', '-h', 'help','h', '','aid
 \e[39mGenerer le module utilisateur \e[92m| \e[93mcmr \e[92m| \e[39m-module\e[91m|\e[39m-mod\e[91m|\e[39mmodule\e[91m|\e[39mmod \e[91m<\e[93m-user\e[91m|\e[93m-u\e[91m|\e[93muser\e[91m|\e[93mu\e[91m>                                                               
 \e[39mDemarrer server local         \e[92m| \e[93mcmr \e[92m| \e[39m-start\e[91m|\e[39m-serve\e[91m|\e[39m-s\e[91m|\e[39mstart\e[91m|\e[39mserve\e[91m|\e[39ms                                         
 \e[39mBuild le projet \e[91m(in progress!)\e[92m| \e[93mcmr \e[92m| \e[39m-build\e[91m|\e[39m-b\e[91m|\e[39mbuild\e[91m|\e[39mb   \e[39m                                
-";
+\n\n";
 } elseif ($argc >= 1 && in_array($argv[1], array('generate','-generate','-gen','gen', '-g','g'))) {
     echo'generer le composant '.$argv[2]." ?\n";
     echo 'Entree|oui|o non|n'."\n";
