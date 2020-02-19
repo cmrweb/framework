@@ -8,4 +8,5 @@ $router::route([
 ,'user'=>'user'
 ,'profil'=>'profil'
 ,'test'=>'test'
+,'user'=>'user'
 ]);
