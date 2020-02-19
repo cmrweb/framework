@@ -5,13 +5,14 @@
 
  [doc video](https://www.youtube.com/watch?v=InM_uDLBm7Q)
 
- 
+ ![usageconfig](https://cmrweb.fr/asset/img/cli.png) 
   * Install
     -  [WAMPServer](http://wampserver.com)
     -  [composer](https://getcomposer.org/download/)
     - `composer create-project cmrweb/cmrframework:dev-master nom_du_projet` 
 
   * Usage
+
     - `cd lib`
     - `cli/cmr`
     - cmr `help`
