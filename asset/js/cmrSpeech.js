@@ -58,10 +58,7 @@ btn.onclick = function () {
     } 
 
 }
-//regex
-const homePage = /accueil|home|index/g;
-const oui = /suivant|oui|accept|confirm/g;
-const non = /pr\éc\édent|non|refus/g;
+
 
 function action(exp,speech,callback){
     input.style.width = (speech.length + 1) * 8 + 'px';
@@ -73,16 +70,39 @@ function action(exp,speech,callback){
 function moveTo(url){
     return window.location = window.location.href.match(/.*\//g)[0]+url;
 }
+//regex
+const page = /page|direction|va/g;
+const homePage = /accueil|home|index/g;
+const devPage = /test|dév|dave|d\émo/g;
+const articlePage = /article|post/g;
+const oui = /suivant|oui|accept|confirm/g;
+const non = /pr\éc\édent|non|refus/g;
+
 recognition.onresult = function (event) {
     let speech = event.results[0][0].transcript;
     let confidence = event.results[0][0].confidence;
     if(confidence>0.8){
-        action(homePage,speech,(e)=>{
-            console.log(e);
-            moveTo("home");
-            speechDiv.style.border = "#0b0be9 1px solid";
-            console.log("home page");
+        action(page,speech,(e)=>{
+            action(homePage,speech,(e)=>{
+                console.log(e);
+                moveTo("home");
+                speechDiv.style.border = "#0b0be9 1px solid";
+                console.log("home page");
+            });
+            action(devPage,speech,(e)=>{
+                console.log(e);
+                moveTo("dev");
+                speechDiv.style.border = "#0b0be9 1px solid";
+                console.log("dev page");
+            });
+            action(articlePage,speech,(e)=>{
+                console.log(e);
+                moveTo("post");
+                speechDiv.style.border = "#0b0be9 1px solid";
+                console.log("Article page");
+            });
         });
+
         action(oui,speech,()=>{
             speechDiv.style.border = "#0be90b 1px solid";
             console.log("confirmer");
@@ -92,8 +112,8 @@ recognition.onresult = function (event) {
             console.log("refuser");
         });
     }else{
-        input.style.width = "250px";
         input.value = "je n'ai pas compris!";
+        input.style.width = "250px";
     }
 
 

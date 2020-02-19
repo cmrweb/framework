@@ -1,6 +1,6 @@
 <?php
 $router::route([
-    "" => "home",
+    "" => "init",
     "home"=>"home",
     "post" => "postRender",
     "edit" => "post",
