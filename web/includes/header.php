@@ -52,3 +52,7 @@
     </style>
     <div class="speech"></div>
     <script src="<?= ROOT_DIR . JS_DIR ?>cmrSpeech.js"></script>
+    <?php
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    ?>

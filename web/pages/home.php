@@ -8,7 +8,7 @@
             <h5>Développeur Formateur Web</h5>
 
             <p> <a href="<?= ROOT_DIR ?>/asset/cv2020.pdf" download=""><i class="far fa-file-pdf"></i> mon cv</a></p>
-            <p><a href="mailto:contact@cmrweb.fr"><i class="fas fa-envelope-open-text"></i> contact@cmrweb.fr</a></p>
+            <p><a onclick="openContactForm()"><i class="fas fa-envelope-open-text"></i> contact@cmrweb.fr</a></p>
             <p><a href="https://www.linkedin.com/in/enrique-camara/"><i class="fab fa-linkedin"></i> Linkedin</a></p>
         </div>
     </section>

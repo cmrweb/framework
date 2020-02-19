@@ -70,11 +70,38 @@ function action(exp,speech,callback){
 function moveTo(url){
     return window.location = window.location.href.match(/.*\//g)[0]+url;
 }
+function openContactForm(){
+    document.querySelector('.card3D').style.transform = "rotate3d(0, -1, 0, 180deg)";
+    setTimeout(()=>{
+        document.querySelector('.card3D').innerHTML = `
+        <form method="post" id="contactModal">
+            <h1>Contact</h1>
+            <div class="form">
+                <label for="nom">Nom Prenom</label>
+                <input type="text" name="" id="nom" class="input">
+            </div>
+        
+            <div class="form">
+                <label for="mail">Adresse email</label>
+                <input type="text" name="" id="mail" class="input">
+            </div>
+            <div class="form">
+                <label for="msg">Message</label>
+                <textarea name="" class="input" id="msg" cols="30" rows="10"></textarea>
+            </div>
+            <button class="btn light large center">Envoyer</button>
+        </form>`;
+        document.querySelector('.card3D').style.transform = "rotate3d(0, -1, 0, 0deg)";
+    },1000);
+}
 //regex
-const page = /page|direction|va/g;
+const page = /page|direction|va|go/g;
 const homePage = /accueil|home|index/g;
-const devPage = /test|dév|dave|d\émo/g;
+const devPage = /test|dave|dev|d\émo/g;
 const articlePage = /article|post/g;
+
+const message = /message|formulaire|contact/g;
+
 const oui = /suivant|oui|accept|confirm/g;
 const non = /pr\éc\édent|non|refus/g;
 
@@ -102,7 +129,11 @@ recognition.onresult = function (event) {
                 console.log("Article page");
             });
         });
-
+        action(message,speech,()=>{
+            speechDiv.style.border = "#0be90b 1px solid";
+            openContactForm();
+            console.log("message");
+        });
         action(oui,speech,()=>{
             speechDiv.style.border = "#0be90b 1px solid";
             console.log("confirmer");
