@@ -17,6 +17,7 @@
     - `cli/cmr`
     - cmr `help`
     - cmr `start`
+  ![init](https://cmrweb.fr/asset/img/init.png)
     - cmr `generate table nom-type-valeur nom-type-valeur-table.field`
    
   * Les types 
@@ -36,6 +37,8 @@
      Créer une table actif avec la clé étrangère de la table utilisateur et un champ date
     - cmr `generate actif user_id-int-11-utilisateur.id is_actif-date`
  
+ ![exemple](https://cmrweb.fr/asset/img/cli2.png)
+ ![exempleRender](https://cmrweb.fr/asset/img/cliRender.png)
 
  [docs pdf](https://docs.google.com/presentation/d/1FP2pDqd5z5KtJ_tku4P9MljjPUj33xVLkF9VqpDlFII/edit?usp=sharing)
 
