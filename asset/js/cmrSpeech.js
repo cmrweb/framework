@@ -70,13 +70,16 @@ function action(exp,speech,callback){
         callback(speech);
     }
 }
+function moveTo(url){
+    return window.location = window.location.href.match(/.*\//g)[0]+url;
+}
 recognition.onresult = function (event) {
     let speech = event.results[0][0].transcript;
     let confidence = event.results[0][0].confidence;
     if(confidence>0.8){
         action(homePage,speech,(e)=>{
             console.log(e);
-            window.location = window.location.href.match(/.*\//g)[0]+"home";
+            moveTo("home");
             speechDiv.style.border = "#0b0be9 1px solid";
             console.log("home page");
         });
