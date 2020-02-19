@@ -10,5 +10,3 @@ manifest.json
 composer*
 *.png
 .env
-web/includes/header.php
-web/module/route.php
