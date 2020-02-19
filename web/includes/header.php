@@ -1,7 +1,7 @@
 <header class="fixhead xlarge light header">
     <?php
     $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
-    $userModule=true;
+    $userModule = false;
     $init = true;
 
     echo $html->h('1', 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
@@ -45,11 +45,10 @@
 
     <div id="bgCover" class="hide" onclick="openModal()"></div>
     <style>
-.speech{
-    top: 118px;
-    right: 5px;
-}
-</style>
+        .speech {
+            top: 118px;
+            right: 5px;
+        }
+    </style>
     <div class="speech"></div>
-    <script src="<?=ROOT_DIR.JS_DIR?>cmrSpeech.js"></script>
-
+    <script src="<?= ROOT_DIR . JS_DIR ?>cmrSpeech.js"></script>
