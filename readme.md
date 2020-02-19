@@ -1,7 +1,7 @@
 # cmrweb/cmrframework
 **[cmrframework](http://cmrweb.fr) inBulid**
  
- 
+ ![install gif](https://media.giphy.com/media/THxXanoyOd88Grrd1w/giphy.gif)
 
  [doc video](https://www.youtube.com/watch?v=InM_uDLBm7Q)
 
