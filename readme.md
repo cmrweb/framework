@@ -12,9 +12,8 @@
     - `composer create-project cmrweb/cmrframework:dev-master nom_du_projet` 
 
   * Usage
-
-    - `cd lib`
-    - `cli/cmr`
+    - `cd nom_du_projet`
+    - `cmr` | `./cmr`
     - cmr `help`
     - cmr `start`
   ![init](https://cmrweb.fr/asset/img/init.png)
