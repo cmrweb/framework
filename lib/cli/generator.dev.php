@@ -137,7 +137,7 @@ for ($i = 3; $i < count($argv); $i++) {
             break;
     }
 }
-$controller .= "\${$argv[2]}->setData([\n";
+$controller .= "\n\${$argv[2]}->setData([\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
@@ -220,7 +220,7 @@ $controller .= "){\n";
                 break;
         }
     }
-    $controller .= "\${$argv[2]}->update([\n";
+    $controller .= "\n\${$argv[2]}->update([\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
