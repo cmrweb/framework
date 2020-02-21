@@ -2,12 +2,12 @@ class Cmrfor extends HTMLElement {
 
     constructor() {
         super();
-        console.log('constructor');
+        //console.log('constructor');
    
     }
 
     connectedCallback() {
-        console.log('connectedCallback');
+        //console.log('connectedCallback');
         //let shadom = this.attachShadow({mode:'close'})
         //shadom.innerHTML = this.innerHTML;
     }
