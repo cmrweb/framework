@@ -4,7 +4,7 @@ $controller = "<?php
 Partie SQL
     *supprimer le code ci dessous apres le lancement de la page
 */
-
+use cmrweb\DB;
 \$db = new DB;
 \$query=\"
 CREATE TABLE IF NOT EXISTS `user` (
@@ -127,6 +127,7 @@ file_put_contents($cssFile, "");
  * GENERATE ENTITY
  */
 $class = "<?php
+use cmrweb\DB;
 class User
 {
 

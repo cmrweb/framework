@@ -2,14 +2,14 @@
 function needLog(){
     if(!isset($_SESSION['user'])){
       $_SESSION['message']['danger'] ="connexion requise";
-      return  header('Location: ./');
+      header('Location: ./');
     }
 }
 
 function needAdmin(){
   if($_SESSION['user']['admin']!=1){
     $_SESSION['message']['danger'] = "connexion requise";
-  return  header('Location: ./');
+    header('Location: ./');
 }
 }
 

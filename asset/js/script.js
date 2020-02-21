@@ -116,4 +116,11 @@ function openPopup() {
     }
 $(document).ready(function () {
     openPopup();
+    var forLoop = document.getElementsByTagName('for');
+    let imgs = document.getElementsByTagName('img');
+    for (let i = 0; i < imgs.length; i++) {
+        if (imgs[i].getAttribute('src') == "asset/img/upload/")
+            imgs[i].remove();
+
+    }
 });
