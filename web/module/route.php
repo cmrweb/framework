@@ -1,14 +1,11 @@
 <?php
 $router::route([
-    "" => "home",
+    "" => "init",
     "home"=>"home",
     "post" => "postRender",
     "edit" => "post",
     "dev" => "dev"
-,'user'=>'user'
 ,'profil'=>'profil'
 ,'test'=>'test'
-,'user'=>'user'
-,'user'=>'user'
 ,'user'=>'user'
 ]);

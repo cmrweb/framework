@@ -8,3 +8,4 @@ $post = new Post();
 foreach ($post->getData() as $key => $value) {
     $posts[$key] = $value;
 }
+

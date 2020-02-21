@@ -121,6 +121,5 @@ $(document).ready(function () {
     for (let i = 0; i < imgs.length; i++) {
         if (imgs[i].getAttribute('src') == "asset/img/upload/")
             imgs[i].remove();
-
     }
 });
