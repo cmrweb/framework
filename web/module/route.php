@@ -4,7 +4,7 @@ $router::route([
     "home"=>"home",
     "post" => "postRender",
     "edit" => "post",
-    "dev" => null
+    "dev" => "dev"
 ,'profil'=>'profil'
 ,'test'=>'test'
 ,'user'=>'user'
