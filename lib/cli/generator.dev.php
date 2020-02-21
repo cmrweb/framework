@@ -136,25 +136,25 @@ for ($i = 3; $i < count($argv); $i++) {
             break;
     }
 }
-$controller .= "\${$argv[2]}->setData([\n";
+$controller .= "\n\${$argv[2]}->setData([\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
         case 'file':
-            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            $controller .= "\"{$field[0]}\" => \"\$fileDbName\",\n";
             break;
         case 'image':
-            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            $controller .= "\"{$field[0]}\" => \"\$fileDbName\",\n";
             break;
         case 'password':
-            $controller .= "\n\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
+            $controller .= "\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
             break;
         case 'pwd':
-            $controller .= "\n\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
+            $controller .= "\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
             break;
         default:
-            $controller .= "\n\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
+            $controller .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
             break;
     }
 }
@@ -219,25 +219,25 @@ $controller .= "){\n";
                 break;
         }
     }
-    $controller .= "\${$argv[2]}->update([\n";
+    $controller .= "\n\${$argv[2]}->update([\n";
 for ($i = 3; $i < count($argv); $i++) {
     $field = implode("-", explode(" ", $argv[$i]));
     $field = explode("-", $field);
     switch ($field[1]) {
         case 'file':
-            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            $controller .= "\"{$field[0]}\" => \"\$fileDbName\",\n";
             break;
         case 'image':
-            $controller .= "\n\"{$field[0]}\" => \"\$fileDbName\",\n";
+            $controller .= "\"{$field[0]}\" => \"\$fileDbName\",\n";
             break;
         case 'password':
-            $controller .= "\n\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
+            $controller .= "\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
             break;
         case 'pwd':
-            $controller .= "\n\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
+            $controller .= "\"{$field[0]}\" => password_hash(\$_POST['{$field[0]}'],PASSWORD_BCRYPT),\n";
             break;
         default:
-            $controller .= "\n\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
+            $controller .= "\"{$field[0]}\" => \$_POST['{$field[0]}'],\n";
             break;
     }
 }
