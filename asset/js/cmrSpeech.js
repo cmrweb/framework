@@ -8,11 +8,14 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 var speechDiv = document.querySelector('.speech');
+
 var btn = document.createElement('button');
 btn.classList.add('speechBtn');
 btn.appendChild(document.createTextNode('Parler'))
+
 var input = document.createElement('input');
 input.classList.add('speechInput');
+
 speechDiv.appendChild(btn);
 speechDiv.appendChild(input);
 

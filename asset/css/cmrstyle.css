@@ -85,7 +85,19 @@ a {
     text-decoration: none;
     color:inherit;
 }
-
+main h1,
+main h2,
+main h3,
+main h4,
+main p,
+main small,
+main a {
+    font-family: "mukta";
+    text-align: center;
+    margin: 10px auto;
+    text-decoration: none;
+    color:inherit;
+}
 article.docs{
 width: 100%;
 }
