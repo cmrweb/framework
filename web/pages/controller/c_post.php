@@ -4,10 +4,10 @@ needLog();
 // needAdmin();
 $msg = "";
 $Post = new Post("parent_id IS NULL AND user_id=".$userid);
-dump($Post->getData());
+//dump($Post->getData());
 if (isset($_POST['addPost'])) {
     if(!empty($_POST['title'])&&!empty($_POST['post'])){
-        if (!empty($_FILES['img']["size"])) {
+        if (!empty($_FILES['img']["tmp_name"])) {
             $fileDbName = uploadImg($_FILES['img']);
             if (move_uploaded_file($_FILES['img']["tmp_name"], "../" . ROOT_DIR . IMG_DIR."upload/" . $fileDbName)) {
                 $Post->setData(["user_id" => $userid, "title" => $_POST['title'], "post" => nl2br($_POST['post']), "img" => "$fileDbName"]);
@@ -25,7 +25,7 @@ if (isset($_POST['addPost'])) {
     header("Location: edit");
 }
 if (isset($_POST['update'])) {
-    if (!empty($_FILES['img']["size"])) {
+    if (!empty($_FILES['img']["tmp_name"])) {
         $fileDbName = uploadImg($_FILES['img']);
         if (move_uploaded_file($_FILES['img']["tmp_name"],  "../" . ROOT_DIR . IMG_DIR."upload/" . $fileDbName)) {
             $Post->update(["user_id" => $userid, "title" => $_POST['title'], "post" => nl2br($_POST['post']), "img" => "$fileDbName"], "id=" . $_POST['id']);

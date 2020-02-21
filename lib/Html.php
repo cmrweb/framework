@@ -1,4 +1,5 @@
 <?php
+namespace cmrweb;
 class Html extends Form{
 
     public function code($balise,$html,$class='',$id=''){

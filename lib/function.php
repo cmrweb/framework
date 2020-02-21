@@ -2,21 +2,26 @@
 function needLog(){
     if(!isset($_SESSION['user'])){
       $_SESSION['message']['danger'] ="connexion requise";
-      return  header('Location: ./');
+      header('Location: ./');
     }
 }
 
 function needAdmin(){
   if($_SESSION['user']['admin']!=1){
     $_SESSION['message']['danger'] = "connexion requise";
-  return  header('Location: ./');
+    header('Location: ./');
 }
 }
 
 
-function dump($var){
-  echo "<p class='btn success small dumpBtn' onclick='openModal(\"dump\")'>dump</p>";
-  echo "<pre id='dump' class='dump hide'><code class='language-js'>". preg_replace("/}\,\"/","},\n\"",preg_replace("/{\"/","{\n\"",preg_replace("/\,\"/",",\n\t\"",json_encode($var,true))))."</code></pre>";
+function dump($vars){
+  if(gettype($vars)=="array")
+  foreach ($vars as $key => $var) {
+    array_push($vars,$var);
+  }  
+    echo "<p class='btn success small dumpBtn' onclick='openModal(\"dump\")'>dump</p>";
+    echo "<pre id='dump' class='dump hide'><code class='language-js'>". preg_replace("/}\,\"/","},\n\"",preg_replace("/{\"/","{\n\"",preg_replace("/\,\"/",",\n\t\"",json_encode($vars,true))))."</code></pre>";
+ 
 }
 
 function token($length){
@@ -24,7 +29,7 @@ function token($length){
 }
 
 function uploadImg($img){
-  if ($img["size"] <= 500000) {
+  if ($img["size"] <= 5000000) {
     $ext = pathinfo(basename($img["name"]), PATHINFO_EXTENSION);
     $target_file = token(5);
     $uploadName = strtolower($target_file . '.' . $ext);

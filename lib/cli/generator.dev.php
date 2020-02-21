@@ -6,6 +6,7 @@ $controller = "<?php\n
 Partie SQL
     *supprimer le code ci dessous apres le lancement de la page
 */\n
+use cmrweb\DB;
 \$db = new DB;
 \$query=\"CREATE TABLE IF NOT EXISTS {$argLower}
 (
@@ -374,6 +375,7 @@ file_put_contents($cssFile, "");
  * GENERATE CLASS
  */
 $class = "<?php
+use cmrweb\DB;
 class {$argUc}
 {\n    
     private \$pdo;

@@ -2,10 +2,10 @@
     <?php
     $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
 
-    $userModule = false;
-    $init = true;
+    $userModule=true;
+    $init = false;
 
-    echo $html->h('1', 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
+    echo $html->h(1, 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
     if (isset($_POST['disc'])) {
         unset($_SESSION['user']);
         header("Location: ./");
@@ -42,7 +42,7 @@
 <div class="message">
     <?php if (isset($_SESSION['message'])) message($_SESSION['message']) ?>
 </div>
-<main>
+<main class="m4">
 
     <div id="bgCover" class="hide" onclick="openModal()"></div>
     <style>
@@ -53,3 +53,7 @@
     </style>
     <div class="speech"></div>
     <script src="<?= ROOT_DIR . JS_DIR ?>cmrSpeech.js"></script>
+<?php
+    require 'web/pages/controller/c_user.php';
+    require 'web/pages/user.php';
+    ?>

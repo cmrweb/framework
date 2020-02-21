@@ -11,43 +11,49 @@ class Vue
         preg_match_all("/\{\w*\}/", implode("|", $GLOBALS['arrays'][0]), $arrayNames);
         preg_match_all("/\<.*?(for.*|\{\>$=\S*?)/", $template, $arrayTag);
 
-        if($arrayTag[0]) 
-        foreach ($arrayTag[0] as $tag) {
-            $GLOBALS['arrayTag'][] = preg_replace("/\<|for=\{\w*\}|\s|\>/", "", $tag);
-        }
-        if($GLOBALS['v'])
-        foreach ($GLOBALS['v'][0] as $var) {
-            $GLOBALS['v'][] = preg_replace("/\>/", "", $var);
-            $phpVar[] = "$" . preg_replace("/\W/", "", $var);
-        }
-        if($GLOBALS['arrays'])
-        foreach ($GLOBALS['arrays'][0] as $arr) {
-            $phpArray[$arr] = "$" . preg_replace("/for|\W/", "", $arr);
-        }
+        if ($arrayTag[0])
+            foreach ($arrayTag[0] as $tag) {
+                $GLOBALS['arrayTag'][] = preg_replace("/\<|for=\{\w*\}|\s|\>/", "", $tag);
+            }
+        if ($GLOBALS['v'])
+            foreach ($GLOBALS['v'][0] as $var) {
+                $GLOBALS['v'][] = preg_replace("/\>/", "", $var);
+                $phpVar[] = "$" . preg_replace("/\W/", "", $var);
+            }
+        if ($GLOBALS['arrays'])
+            foreach ($GLOBALS['arrays'][0] as $arr) {
+                $phpArray[$arr] = "$" . preg_replace("/for|\W/", "", $arr);
+            }
         $GLOBALS['v'] = array_slice($GLOBALS['v'], 1);
         $tag = array_slice($arrayTag, 1);
-        if($arrayTag[0]) 
-        $GLOBALS['arrayTag'] = $GLOBALS['arrayTag'][0];
+        if ($arrayTag[0])
+            $GLOBALS['arrayTag'] = $GLOBALS['arrayTag'][0];
+
         $arrayNames = preg_replace("/\{|\}/", "", $arrayNames[0]);
         $GLOBALS['tag'] = $tag[0];
         $GLOBALS['arrayOrigin'] = preg_replace("/\<|\>/", "", $GLOBALS['arrayParam'][0]);
         $GLOBALS['arrayParam'] =  preg_replace("/\s|\>|\"|\{|\}|\w*\./", "", $GLOBALS['arrayParam'][0]);
-        if($arrayTag[0]) {
+
+        if ($arrayTag[0]) {
             $arrT = $GLOBALS['arrayTag'];
             preg_match_all("/\<(?=\w)*.*for.*[\s|\w|\W]*\W$arrT\>/", $template, $GLOBALS['arrayContent']);
-            $GLOBALS['arrayContent'] = $GLOBALS['arrayContent'][0];           
+            $GLOBALS['arrayContent'] = $GLOBALS['arrayContent'][0];
         }
 
-        if($GLOBALS['v'])
-        foreach ($phpVar as $var) {
-            eval("\$GLOBALS['vars'][] =  json_encode($var,true);");
-        }
-        if($arrayTag[0]){
+
+        if ($GLOBALS['v'])
+            foreach ($phpVar as $var) {
+                eval("\$GLOBALS['vars'][] =  json_encode($var,true);");
+            }
+        if ($arrayTag[0]) {
+
             foreach ($phpArray as $k => $arr) {
                 eval("\$GLOBALS['arrays'][] = json_encode($arr,true);");
             }
             $GLOBALS['arrays'] = (array_slice($GLOBALS['arrays'], 1));
-            $GLOBALS['arrays'] = json_decode($GLOBALS['arrays'][0], true);            
+
+            $GLOBALS['arrays'] = json_decode($GLOBALS['arrays'][0], true);
+
         }
 
 
@@ -72,14 +78,18 @@ class Vue
         <script>
             console.log(document.getElementsByTagName("<?= $GLOBALS['arrayTag'] ?>"));
             let array = document.getElementsByTagName("<?= $GLOBALS['arrayTag'] ?>");
-            array[0].outerHTML = array[0].outerHTML.replace(/<?= $GLOBALS['arrayTag'] ?>/g, "loop");
+
+            array[0].outerHTML = array[0].outerHTML.replace(/<?= $GLOBALS['arrayTag'] ?>/g, "cmr-loop");
+
             let imgs = document.getElementsByTagName('img');
             for (let i = 0; i < imgs.length; i++) {
                 if (imgs[i].getAttribute('src') == "asset/img/upload/")
                     imgs[i].remove();
 
             }
-            var loop = document.getElementsByTagName('loop');
+
+            var loop = document.getElementsByTagName('cmr-loop');
+
             loop[0].innerHTML = "";
             for (let i = 0; i < array.length; i++) {
 

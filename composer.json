@@ -8,6 +8,11 @@
             "email": "33638879+cmrweb@users.noreply.github.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "cmrweb\\":"lib/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {
         "vlucas/phpdotenv": "3.4.0"

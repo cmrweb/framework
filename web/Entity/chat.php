@@ -1,4 +1,5 @@
 <?php
+use cmrweb\DB;
 class Chat
 {
 

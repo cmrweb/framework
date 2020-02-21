@@ -1,4 +1,5 @@
 <?php
+namespace cmrweb;
 class Form{
    
 /**
@@ -31,7 +32,7 @@ public function input($type,$name,$label,$class='',$po='',$value=''){
     if($po!=''&&$value==''){
         return  "<div class=\"form \">
         <label for=\"$name\">$label</label>
-        <input type=\"$type\" class=\"input $class\" name=\"$name\" 
+        <input type=\"$type\" class=\"input $class\" name=\"$name\"
         placeholder=\"$po\" id=\"$name\">
         </div>";
     }elseif($po!=''&&$value!=''){
@@ -43,7 +44,7 @@ public function input($type,$name,$label,$class='',$po='',$value=''){
     }else{
         return  "<div class=\"form\">
         <label for=\"$name\">$label</label>
-        <input type=\"$type\" class=\"input $class\" name=\"$name\" 
+        <input type=\"$type\" class=\"input $class\" name=\"$name\"  accept=\"image/*;video/*\" capture=\"camcorder\" 
         id=\"$name\">
         </div>";
     }

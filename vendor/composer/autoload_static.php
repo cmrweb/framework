@@ -11,6 +11,10 @@ class ComposerStaticInit79f8b1e7668a36f95848abf2bbee97b8
     );
 
     public static $prefixLengthsPsr4 = array (
+        'c' => 
+        array (
+            'cmrweb\\' => 7,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
@@ -26,6 +30,10 @@ class ComposerStaticInit79f8b1e7668a36f95848abf2bbee97b8
     );
 
     public static $prefixDirsPsr4 = array (
+        'cmrweb\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
