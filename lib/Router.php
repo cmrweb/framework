@@ -1,4 +1,5 @@
 <?php
+namespace cmrweb;
 class Router
 {
     private static $url;
@@ -41,4 +42,5 @@ class Router
             }
         }
     }
+    
 }

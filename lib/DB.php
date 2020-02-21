@@ -1,4 +1,6 @@
 <?php
+namespace cmrweb;
+use PDO;
 class DB
 {
     public $pdo;

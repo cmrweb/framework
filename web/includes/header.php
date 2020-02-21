@@ -3,9 +3,9 @@
     $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
 
     $userModule = false;
-    $init = true;
+    $init = false;
 
-    echo $html->h('1', 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
+    echo $html->h(1, 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
     if (isset($_POST['disc'])) {
         unset($_SESSION['user']);
         header("Location: ./");

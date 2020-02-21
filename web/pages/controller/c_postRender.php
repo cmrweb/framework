@@ -8,7 +8,7 @@ if(isset($id)){
     $Post = new Post();
     $comments = null;
 }
-
+use cmrweb\DB;
 $db = new DB;
 $db->select("parent_id,COUNT(id) as comm","post",null,false,"parent_id");
 $countComm = $db->result;

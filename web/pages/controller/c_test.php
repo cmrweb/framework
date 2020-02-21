@@ -4,7 +4,7 @@
 Partie SQL
     *supprimer le code ci dessous apres le lancement de la page
 */
-
+use cmrweb\DB;
 $db = new DB;
 $query="CREATE TABLE IF NOT EXISTS test
 (

@@ -1,4 +1,5 @@
 <?php
+namespace cmrweb;
 class Form{
    
 /**
