@@ -74,14 +74,14 @@ class Vue
         <script>
             console.log(document.getElementsByTagName("<?= $GLOBALS['arrayTag'] ?>"));
             let array = document.getElementsByTagName("<?= $GLOBALS['arrayTag'] ?>");
-            array[0].outerHTML = array[0].outerHTML.replace(/<?= $GLOBALS['arrayTag'] ?>/g, "loop");
+            array[0].outerHTML = array[0].outerHTML.replace(/<?= $GLOBALS['arrayTag'] ?>/g, "cmr-loop");
             let imgs = document.getElementsByTagName('img');
             for (let i = 0; i < imgs.length; i++) {
                 if (imgs[i].getAttribute('src') == "asset/img/upload/")
                     imgs[i].remove();
 
             }
-            var loop = document.getElementsByTagName('loop');
+            var loop = document.getElementsByTagName('cmr-loop');
             loop[0].innerHTML = "";
             for (let i = 0; i < array.length; i++) {
 
