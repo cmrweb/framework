@@ -42,7 +42,7 @@
 <div class="message">
     <?php if (isset($_SESSION['message'])) message($_SESSION['message']) ?>
 </div>
-<main>
+<main class="m4">
 
     <div id="bgCover" class="hide" onclick="openModal()"></div>
     <style>

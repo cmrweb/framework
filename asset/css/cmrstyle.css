@@ -381,7 +381,7 @@ FORM
 .newMsg{
     z-index: 100;
     position: fixed;
-    top: 75px;
+    top: 172px;
     right: 0;
     border-radius: 25px;
     background: #fff;
@@ -394,7 +394,7 @@ FORM
 .newMsg:hover{
     z-index: 100;
     position: fixed;
-    top: 75px;
+    top: 172px;
     right: 4px;
     border-radius: 25px;
     background: #edfdff;
