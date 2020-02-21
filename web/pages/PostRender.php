@@ -1,6 +1,5 @@
 <?php
-
-dump($countComm);
+dump([$Post->getData(),$countComm]);
 if ($Post->getData()) : ?>
     <section class="large light article">
         <?= $html->h('1', 'Read');
