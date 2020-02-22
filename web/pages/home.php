@@ -1,11 +1,4 @@
 <link rel="stylesheet" href="<?= ROOT_DIR . PAGES_DIR ?>style/home.css">
-<?php if ($dev) : ?>
-    <form method="post">
-        <button class='btn dark' name='init'>Réinitialiser</button>
-    </form>
-
-<?php endif;
-// require_once 'web/module/cmr.bot.php'; ?>
 <div class="card3D">
     <section>
         <img src="<?= ROOT_DIR . IMG_DIR ?>photo.png" alt="photo enrique camara">

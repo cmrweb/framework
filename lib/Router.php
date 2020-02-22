@@ -33,8 +33,15 @@ class Router
                     require "web/pages/controller/c_$file.php";
                     if(file_exists("web/pages/$file.php"));
                     require "web/pages/$file.php";
-                } elseif (self::$url[0] == "{$route}" && !empty(self::$url[1])) {
+                } elseif (self::$url[0] == "{$route}" && !empty(self::$url[1])&& empty(self::$url[2])) {
                     $id = self::$url[1];
+                    if(file_exists("web/pages/controller/c_$file.php"));
+                    require "web/pages/controller/c_$file.php";
+                    if(file_exists("web/pages/$file.php"));
+                    require "web/pages/$file.php";
+                } elseif (self::$url[0] == "{$route}" && !empty(self::$url[1])&& !empty(self::$url[2])) {
+                    $id = self::$url[1];
+                    $slug = self::$url[2];
                     if(file_exists("web/pages/controller/c_$file.php"));
                     require "web/pages/controller/c_$file.php";
                     if(file_exists("web/pages/$file.php"));

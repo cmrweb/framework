@@ -1,0 +1,41 @@
+.admin{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+.admin div:last-child{
+    margin: 50px 0;
+    width: 100%;
+}
+.admin ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.admin li{
+    background: #dedfe4;
+    padding: 5px 10px;
+    width: 250px;
+    text-align: center;
+    border: 1px solid #848484;
+}
+.admin li a{
+    display: block;
+    width: 100%;
+}
+.admin table{
+    margin: auto;
+    width: 80%;
+    text-align: left;
+    border: 1px solid #848484;
+    border-radius: 15px;
+    padding: 20px;
+    border-collapse: collapse;
+}
+.admin th,.admin td{
+    border: 1px solid #848484;
+    padding: 10px;
+}
+.admin th{
+    background: #dedfe4;
+}

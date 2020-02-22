@@ -2,8 +2,10 @@
     $nav = $html->menu(
         [
             'Home' => ROOT_DIR . "/",
+            "admin"=>ROOT_DIR."/admin",
             'Dev' => ROOT_DIR . "/dev",
-            'Articles' => ROOT_DIR . "/post"
+            'Articles' => ROOT_DIR . "/post",
+            
         ],
         ''
     );
@@ -11,6 +13,7 @@ elseif ($userid) :
     $nav = $html->menu(
         [
             'Home' => ROOT_DIR . "/",
+            "admin"=>ROOT_DIR."/admin",
             'Dev' => ROOT_DIR . "/dev",
             'Articles' => ROOT_DIR . "/post",
             'Articles Editor' => ROOT_DIR . "/edit",
@@ -23,6 +26,7 @@ elseif ($userid && $admin) :
     $nav = $html->menu(
         [
             'Home' => ROOT_DIR . "/",
+            "admin"=>ROOT_DIR."/admin",
             'Dev' => ROOT_DIR . "/dev",
             'Articles' => ROOT_DIR . "/post",
             'Articles Editor' => ROOT_DIR . "/edit",
