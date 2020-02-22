@@ -472,6 +472,7 @@ FORM
     box-shadow: #727171 5px 4px 3px;
 }
 .form {
+    box-shadow: #999 0px 0 10px;
     margin-bottom: 10px;
 }
 

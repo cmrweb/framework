@@ -114,37 +114,31 @@ if (isset($_POST['send'])) {
     display: block
   }
 </style>
-<form method="post" class='large primary formContainer'>
+<form method="post" class='large primary formContainer form'>
   <h1>Initialiation du projet</h1>
-  <div class="form">
+
     <label for="dbHost">Hote de la Base de données</label>
     <input class="input" type="text" id="dbHost" name="dbHost" value="<?= $dbHOST ?>">
-  </div>
 
-  <div class="form">
+
     <label for="dbName">Nom de la Base de données</label>
     <input class="input" type="text" id="dbName" name="dbName" value="<?= $dbNAME ?>">
-  </div>
 
-  <div class="form">
+
     <label for="dbUser">Nom d'utilisateur de la Base de données</label>
     <input class="input" type="text" id="dbUser" name="dbUser" value="<?= $dbUSER ?>">
-  </div>
 
-  <div class="form">
+
     <label for="dbPwd">Mot de passe de la Base de données</label>
     <input class="input" type="text" id="dbPwd" name="dbPwd" value="<?= $dbPASS ?>">
-  </div>
 
-  <div class="form">
+
     <label for="username">Email d'utilisateur (Administrateur du site)</label>
     <input class="input mailSecure" type="email" id="username" name="username">
-  </div>
 
-  <div class="form">
+
     <label for="pwd">Mot de passe</label>
     <input class="input passSecure" type="password" id="pwd" name="pwd">
-  </div>
 
   <button class="btn success large center m4" name="send">Valider</button>
 </form>
