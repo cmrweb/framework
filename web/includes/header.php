@@ -5,7 +5,7 @@
     $userModule=false;
     $init = true;
 
-    echo $html->h(1, 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
+    echo $html->h(1, 'CMRWEB<span>PHP PWA</span><span>framework</span>', 'title');
     if (isset($_POST['disc'])) {
         unset($_SESSION['user']);
         header("Location: ./");
