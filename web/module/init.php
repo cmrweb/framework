@@ -137,7 +137,7 @@ if (isset($_POST['send'])) {
   </div>
 
   <div class="form">
-    <label for="username">Email d'utilisateur</label>
+    <label for="username">Email d'utilisateur (Administrateur du site)</label>
     <input class="input mailSecure" type="email" id="username" name="username">
   </div>
 

@@ -109,6 +109,7 @@ function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth, $newI
     <label for="icon">Icon 512x512</label>
     <input type="file" id="icon" class="input m2" placeholder="" name="file" id="">
     <button class="btn success large center" name="send_app">envoyer</button>
+    <a href="https://developers.google.com/web/fundamentals/web-app-manifest" target="_blank">Cliquez ici pour en savoir plus sur le Progressive Web App.</a>
 </form>
 <!-- 
     FIN PWA GENERATION
