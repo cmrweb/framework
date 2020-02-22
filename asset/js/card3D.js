@@ -6,19 +6,6 @@ card.innerHTML= card.innerHTML+`<div id="topright"></div>
 <div id="bottom"></div>
 <div id="bottomleft"></div>`;
 function card3D(id) {
-
-    // element = [
-    //     card.querySelector("#top"),
-    //     card.querySelector("#bottom"),
-    //     card.querySelector("#topright"),
-    //     card.querySelector("#topleft"),
-    //     card.querySelector("#bottomright"),
-    //     card.querySelector("#bottomleft")
-    // ];
-    // for (let i = 0; i < element.length; i++) {
-    //     console.log(element[i])
-    // }
-
     let transform, shadow,textShadow,top;
     switch (id) {
         case "top":
@@ -65,8 +52,8 @@ function card3D(id) {
         card.style.transform = transform;
         card.style.boxShadow = shadow;
         card.style.textShadow = textShadow;
-    })
-}
+    });
+};
 card3D("top");
 card3D("bottom");
 card3D("topright");
