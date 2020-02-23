@@ -10,9 +10,13 @@ $req->execute();
 $tables = $req->fetchAll(PDO::FETCH_COLUMN);
 
 if(isset($id)){
-    $query = $db->pdo->prepare("SELECT * FROM $id");
-    $query->execute();
-    $fields = $query->fetchAll(PDO::FETCH_ASSOC);
+    $fields = $query = $db->select("*",$id);
+    $emptyfield = null;
+    if(!$fields){
+        $query = $db->pdo->prepare("DESCRIBE $id");
+        $query->execute();
+        $emptyfield = $query->fetchAll(PDO::FETCH_COLUMN);
+    }
 
 if(isset($slug)){
     $q = $db->pdo->prepare("SELECT * FROM $id WHERE id=$slug");
@@ -31,6 +35,20 @@ if(isset($_POST['update'])){
     $postedField=substr($postedField,0,-1);
     $upReq =  $db->pdo->prepare("UPDATE $id SET $postedField WHERE id=$postid");
     $upReq->execute();
-    $_SESSION['message']['success'] = "mise à jour confirmer";
+    $_SESSION['message']['success'] = "Mise à jour confirmer";
     header("Location: ./");
 }
+if(isset($_POST['delete'])){
+    $postid = $_POST['id'];
+    $db->delete($id,"id=$postid");
+    header("Location: ./");
+}
+
+if(isset($_POST['addField'])){
+    $_POST = array_slice($_POST,1,-1);
+    $data = $_POST;
+    $db->insert($id,$data);
+    $_SESSION['message']['success'] = "Donnée Ajouter";
+    header("Location: ./$id");
+}
+
