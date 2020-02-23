@@ -41,6 +41,7 @@ if(isset($_POST['update'])){
 if(isset($_POST['delete'])){
     $postid = $_POST['id'];
     $db->delete($id,"id=$postid");
+    $_SESSION['message']['danger'] = "Champ Supprimer";
     header("Location: ./");
 }
 
@@ -48,7 +49,7 @@ if(isset($_POST['addField'])){
     $_POST = array_slice($_POST,1,-1);
     $data = $_POST;
     $db->insert($id,$data);
-    $_SESSION['message']['success'] = "Donnée Ajouter";
+    $_SESSION['message']['success'] = "Champ Ajouter";
     header("Location: ./$id");
 }
 
