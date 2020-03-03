@@ -1,8 +1,8 @@
 <?php if (!$userid && !$admin) :
-    $nav = $html->menu(
+    $nav = $html->navMenu(
         [
             'Home' => ROOT_DIR . "/",
-            "admin"=>ROOT_DIR."/admin",
+            "Admin"=>ROOT_DIR."/admin",
             'Dev' => ROOT_DIR . "/dev",
             'Articles' => ROOT_DIR . "/post",
             
@@ -10,7 +10,7 @@
         ''
     );
 elseif ($userid) :
-    $nav = $html->menu(
+    $nav = $html->navMenu(
         [
             'Home' => ROOT_DIR . "/",
             "admin"=>ROOT_DIR."/admin",
@@ -23,7 +23,7 @@ elseif ($userid) :
         ''
     );
 elseif ($userid && $admin) :
-    $nav = $html->menu(
+    $nav = $html->navMenu(
         [
             'Home' => ROOT_DIR . "/",
             "admin"=>ROOT_DIR."/admin",
@@ -35,7 +35,13 @@ elseif ($userid && $admin) :
         ],
         ''
     );
-endif ?>
+endif;
+
+$page = isset($_GET['url'])?explode("/",$_GET['url'])[0]:"home";?>
 <nav class="nav navClassic">
     <?= $nav ?>
 </nav>
+<script>
+    var pageName = "<?= ucfirst($page) ?>";
+    document.getElementById(pageName).style.borderBottom = "none";
+</script>s

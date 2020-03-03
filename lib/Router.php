@@ -16,7 +16,7 @@ class Router
         $username = isset($_SESSION['user']['nom'])?$_SESSION['user']['nom']:false;
         $userid = isset($_SESSION['user']['id'])?$_SESSION['user']['id']:false;
         $admin = isset($_SESSION['user']['admin'])?$_SESSION['user']['admin']:false;
-        
+
         $html = new Html();
         $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
         if(!in_array(self::$url[0],array_keys($routes))){   
@@ -27,6 +27,7 @@ class Router
         foreach ($routes as $route => $file) {
         
                 if (self::$url[0] == "{$route}" && empty(self::$url[1])) {
+                    
                     if(file_exists("web/pages/style/$file.css"));
                     echo "<link rel='stylesheet' href='web/pages/style/$file.css'>";
                     if(file_exists("web/pages/controller/c_$file.php"));

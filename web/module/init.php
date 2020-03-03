@@ -1,4 +1,5 @@
 <?php
+use cmrweb\DB;
 $projectName = preg_replace("/\//","",$_ENV['ROOT_PATH']);
 $dbHOST = $_ENV['DB_HOST'];
 $dbNAME = $_ENV['DB_NAME'];

@@ -735,12 +735,18 @@ PC DISPLAY
     .navClassic ul{
         flex-direction: row;
         position: relative;
-        top: -50px;
+        top: -41px;
     }
     .navClassic ul li a{
         border: none;
         font-size: 18px;
         font-weight: bold;
+    }
+    .navClassic li{
+        background: #fff;
+    padding: 4px;
+    border-radius: 20px 20px 0 0;
+    border: 1px solid #ccc;
     }
     #chat{
         overflow: auto;
