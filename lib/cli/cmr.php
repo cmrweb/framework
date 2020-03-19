@@ -65,7 +65,8 @@ if (empty($argv[0])||in_array($argv[1], array('-help', '-h', 'help','h', '','aid
     }else{
         echo "module inconnu";
     }
-    
+} elseif (!empty($argv[1]) && in_array($argv[1], array("dev"))) {   
+    require_once "cli.dev.php"; 
 } else {
     echo "Commande inconnue essayer : -help";
 }

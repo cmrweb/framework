@@ -2,6 +2,7 @@
 $router::route([
     "" => "home",
     "home"=>"home",
+    "admin"=>"admin",
     "post" => "postRender",
     "edit" => "post",
     "dev" => "dev"

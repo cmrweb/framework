@@ -2,10 +2,10 @@
     <?php
     $dev = $_ENV['APP_ENV'] == "dev" ? true : false;
 
-    $userModule=true;
-    $init = false;
+    $userModule=false;
+    $init = true;
 
-    echo $html->h(1, 'CMRWEB<span>Camara</span><span>Enrique</span>', 'title');
+    echo $html->h(1, 'CMRWEB<span>PHP PWA</span><span>framework</span>', 'title');
     if (isset($_POST['disc'])) {
         unset($_SESSION['user']);
         header("Location: ./");
@@ -53,7 +53,3 @@
     </style>
     <div class="speech"></div>
     <script src="<?= ROOT_DIR . JS_DIR ?>cmrSpeech.js"></script>
-<?php
-    require 'web/pages/controller/c_user.php';
-    require 'web/pages/user.php';
-    ?>

@@ -1,11 +1,4 @@
 <link rel="stylesheet" href="<?= ROOT_DIR . PAGES_DIR ?>style/home.css">
-<?php if ($dev) : ?>
-    <form method="post">
-        <button class='btn dark' name='init'>Réinitialiser</button>
-    </form>
-
-<?php endif;
-// require_once 'web/module/cmr.bot.php'; ?>
 <div class="card3D">
     <section>
         <img src="<?= ROOT_DIR . IMG_DIR ?>photo.png" alt="photo enrique camara">
@@ -27,7 +20,7 @@
 </div>
 <script src="<?= ROOT_DIR . JS_DIR ?>card3D.js"></script>
 
-<?= $html->code("section", $html->menu(['<h2>Cours/Tuto</h2>' . $html->menu(["HTML/CSS" => "https://formation.cmrweb.fr/", "JavaScript" => "https://formation.cmrweb.fr/javascript/", "React" => "https://react.cmrweb.fr/", "angular" => "https://angular.cmrweb.fr/",]) => "#"]), "tuto") .
+<?= $html->code("section", $html->menu(['<h2>Cours/Tuto</h2>' . $html->menu(["HTML/CSS" => "https://formation.cmrweb.fr/", "React" => "https://react.cmrweb.fr/", "angular" => "https://angular.cmrweb.fr/",]) => "#"],"tuto"), "tuto") .
     $html->h('2', !empty($userprenom) ? 'Bienvenu(e) ' . $userprenom : 'Bienvenu(e)', 'large');
 ?>
 
@@ -40,7 +33,7 @@
             "installer WampServer" => "http://www.wampserver.com/en/download-wampserver-64bits/",
             "installer composer" => "https://getcomposer.org/download/",
             $html->p("Dans l'invite de commande : ") .
-                "composer create-project cmrweb/cmrframework:dev-master nom_du_projet" => ""
+                "composer create-project cmrweb/cmrframework:dev-master nom_du_projet" => "#"
         ]) => "#"]); ?>
     <ul>
         <li>

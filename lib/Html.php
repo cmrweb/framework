@@ -25,7 +25,24 @@ class Html extends Form{
     public function p($text){
         return  "<p>$text</p>";
     }
-
+    public function navMenu($lst,$class='',$id=''){
+        $list=[];
+        if(!empty($id)){
+            foreach($lst as $k =>$v){
+                $list[$k]="<li id=\"$id\">
+                         <a class=\"$class\" href=\"$v\">$k</a>
+                         </li>";        
+        }
+        return "<ul>".implode("",$list)."</ul>";     
+        }else{
+            foreach($lst as $k =>$v){
+                $list[$k]="<li id=\"$k\" >
+                         <a class=\"$class\" href=\"$v\">$k</a>
+                         </li>";        
+        }
+        return "<ul>".implode("",$list)."</ul>";
+        }
+        }
     public function menu($lst,$class='',$id=''){
         $list=[];
         if(!empty($id)){

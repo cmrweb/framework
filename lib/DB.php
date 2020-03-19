@@ -29,34 +29,34 @@ class DB
             } else {
                 $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where order by id desc");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             }
             if ($group) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where GROUP by {$group}");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 $req = $this->pdo->prepare("SELECT $select FROM $from WHERE $where");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             }
         } else {
             if (!$order && !$group) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from ORDER BY `id` asc");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             } elseif($order) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from  order by id desc");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             }elseif (!$order && $group) {
                 $req = $this->pdo->prepare("SELECT $select FROM $from GROUP by {$group}");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 $req = $this->pdo->prepare("SELECT $select FROM $from");
                 $req->execute();
-                return $this->result = $req->fetchAll();
+                return $this->result = $req->fetchAll(PDO::FETCH_ASSOC);
             }
         }
     }

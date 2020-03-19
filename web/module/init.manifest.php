@@ -90,9 +90,9 @@ function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth, $newI
     <label for="shortname">Short Name</label>
     <input type="text" id="shortname" name="AppShortName" class="input m2" placeholder="Short Name">
     <label for="thclr">Theme Color</label>
-    <input type="color" id="thclr" name="color" class=" m2" placeholder="Theme Color" value="#ccc">
+    <input type="color" id="thclr" name="color" class=" m2" placeholder="Theme Color" value="#cccccc">
     <label for="bgclr">Background Color</label>
-    <input type="color" id="bgclr" name="bgcolor" class=" m2" placeholder="Background Color" value="#fff">
+    <input type="color" id="bgclr" name="bgcolor" class=" m2" placeholder="Background Color" value="#ffffff">
     <label for="display">Display Mode</label>
     <select class="input m2" name="display" id="display">
         <option value="Browser">Browser</option>
@@ -109,6 +109,7 @@ function imageResize($imageSrc, $imageWidth, $imageHeight, $newImageWidth, $newI
     <label for="icon">Icon 512x512</label>
     <input type="file" id="icon" class="input m2" placeholder="" name="file" id="">
     <button class="btn success large center" name="send_app">envoyer</button>
+    <a href="https://developers.google.com/web/fundamentals/web-app-manifest" target="_blank">Cliquez ici pour en savoir plus sur le Progressive Web App.</a>
 </form>
 <!-- 
     FIN PWA GENERATION
