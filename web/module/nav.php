@@ -34,12 +34,4 @@ elseif ($userid && $admin) :
 endif ?>
 <nav class="nav navClassic">
     <?= $nav ?>
-<<<<<<< Updated upstream
 </nav>
-=======
-</nav>
-<script>
-    var pageName = "<?= ucfirst($page) ?>";
-    document.getElementById(pageName).style.borderBottom = "none";
-</script>
->>>>>>> Stashed changes
