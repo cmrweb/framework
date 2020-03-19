@@ -41,7 +41,9 @@ $page = isset($_GET['url'])?explode("/",$_GET['url'])[0]:"home";?>
 <nav class="nav navClassic">
     <?= $nav ?>
 </nav>
+
 <script>
     var pageName = "<?= ucfirst($page) ?>";
     document.getElementById(pageName).style.borderBottom = "none";
-</script>s
+</script>
+
